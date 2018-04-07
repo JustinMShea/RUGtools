@@ -1,0 +1,127 @@
+---
+title: "Chicago R User Group (CRUG)"
+author: " "
+date: " "
+output:
+  ioslides_presentation:
+    widescreen: true
+    logo: images/Rlogo436x338.png
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Chicago R User Group News
+
+Leading up to this meetup, we reached xxx members!
+
+
+```{r, out.width = "700px", , fig.align='center'}
+path1 <- paste0(getwd(), "/images/CRUG-members.png")
+knitr::include_graphics(path1)
+```
+
+## Training Session - R From the Beginning 
+
+Joe Cursio and CRUG organizers will show you how to install R, how to install the very useful RStudio, and show some of the usefulness of R. Bring your laptop, and we’ll bring the wifi, power for your computer, and power for you (free coffee and pizza).
+
+**Date and Time: 11 AM Saturday April 14th.**
+
+**Location: Stuart School of Business (Illinois Institute of Technology’s graduate campus), 565 W. Adams, Chicago IL (a block west of the old Union Station) Classroom 270.**
+
+Joe will arive by 10 AM.
+
+## R/Finance 2018: June 1st-2nd at UIC
+
+From the inaugural conference in 2009, the annual R/Finance conference in Chicago has become the primary meeting for academics and practioners interested in using R in Finance.
+Participants from academia and industry mingle for two days to exchange ideas about current research, best practices and applications.
+
+The best part is, it takes place right in our backyard!
+
+```{r, out.width = "800px"}
+path <- paste0(getwd(), "/images/Rfin-sponsors.PNG")
+knitr::include_graphics(path)
+```
+
+
+
+# Looking for Employees / Consultants?
+
+
+## R Consortium News {.smaller .columns-2}
+
+
+```{r, out.width = "400px", , fig.align='center'}
+path1 <- paste0(getwd(), "/images/RConsortium_Vertical_Pantone.png")
+knitr::include_graphics(path1)
+```
+
+
+```{r, out.width = "270px", fig.align='center'}
+path2 <- paste0(getwd(), "/images/R-LadiesGlobal.png")
+knitr::include_graphics(path2)
+```
+
+
+**R Consortium named R-Ladies a top level project!**
+
+In 2016, R-Ladies had 4 chapters: San Francisco, Taipei, Twin Cities and London.
+
+As of March 2018, R-Ladies has over 90 chapters, including Chicago, and almost 19,000 members!
+
+The diversified voice of R-Ladies, speaking not only as a group representing gender minorities in tech but also a group attracting new R users, aligned with the R Consortium’s defined Code of Conduct and its desires for building a more diverse and inclusive R community.
+
+The R Consortium invite all in the R community to congratulate R-Ladies on this milestone.
+
+## R-Ladies Chicago {.columns-2}
+
+Thank you for attending and for all the work you do to support the Chicago R community!
+
+For more information follow their meetup:
+
+[https://www.meetup.com/rladies-chicago/](https://www.meetup.com/rladies-chicago/)
+
+And Twitter: @[RLadiesChicago](https://twitter.com/RLadiesChicago)
+
+```{r, out.width = "270px", fig.align='center'}
+path2 <- paste0(getwd(), "/images/R-LadiesGlobal.png")
+knitr::include_graphics(path2)
+```
+
+
+
+## Extending R Raffle!
+
+First to answer our trivia question about R gets a free copy of the book!
+
+```{r, out.width = "325px"}
+path <- paste0(getwd(), "/images/Extending-R.jpg")
+knitr::include_graphics(path)
+```
+
+
+## Today's Feature {.columns-2}
+
+
+- XXXXXXXXXXXX
+
+- XXXXXXXXXXX
+
+- XXXXXXXXXXX
+
+Thanks to IBM for sponsoring this meetup and making it possible!
+
+```{r, out.width = "400px"}
+path <- paste0(getwd(), "/images/IBM-Logo.jpg")
+knitr::include_graphics(path)
+```
+
+
+
+
+
+
+
+

@@ -51,9 +51,9 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
   # how many?
   NROW(new_members2)
 
-  #######################################   
- # Letiteration over more all meetups! #
-####################################### 
+  #############################################   
+ # Lets iterate and do this for all meetups! #
+#############################################
   
  ## First, get a unique ordered list of Meetup dates
   Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date())
@@ -80,7 +80,7 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
  
  new_mem_counter <- function(data) {
          
-         Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date())
+         Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date()-1)
          
          data <- data[,c("Joined.Group.on", "count_index")]
          
@@ -104,14 +104,35 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
 }
  
  ## now we can call the function whenever we need to.
+ 
  new_members <- new_mem_counter(member_list)
  
- # how's the plot look?
- plot(new_members, type="l", col = "blue") 
  
- # what gap between meetups saw the most new members?
+ 
+  #######################################
+ # Lets Explore the `new_members` data #
+#######################################
+ 
+ ## what gap between meetups saw the most new members?
  new_members[new_members$New==max(new_members$New),]
+
+   # Create Date Range Index
+  Start_Date <- "2017-01-01"
+    End_Date <- Sys.Date()
+  Date_Index <- as.numeric(row.names(new_members[new_members$Date > Start_Date &
+                                                new_members$Date <= End_Date,]))
+  # Create x-axis labels, using year-month date format
+  x_labels <- format(new_members$Date[Date_Index], "%Y-%m")
+
+  # Plot
+  barplot(new_members$New[Date_Index], names.arg = x_labels, las=2,
+         main = "CRUG members, joined between meetups",  
+         ylab = "New Members", xlab = "")
+ 
+  
+
  
  
+ ## Other subset functions. 
  
  

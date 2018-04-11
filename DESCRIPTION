@@ -1,0 +1,9 @@
+Package: CRUGtools
+Type: Package
+Title: Tools related to the Chicago R User Group.
+Version: 0.1.0
+Author: person("Justin M.", "Shea", email = "justin.shea@gmail.com", role = c("aut", "cre"))
+Description: Functions and reports related to the Chicago R User Group.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true

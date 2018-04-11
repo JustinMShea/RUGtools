@@ -1,62 +1,102 @@
-  ############### 
- # Data Import #
-############### 
+---
+title: "New Meetup Members"
+author: "Justin M. Shea"
+date: "April 9, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+## Data Import 
  
-  # assumes manual download of .xls file to the data folder of your working directory
- # also assumes you saved it as .csv, not the default .xls
+This assumes manual download of .xls file to the data folder of your working directory
+also assumes you saved it as .csv, not the default .xls
+
+```{r}
 member_file_path <- paste0(getwd(),"/data/ChicagoRUG_Member_List_on_04-09-18.csv")
 
 member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
+```
 
-  #########################
- # Data Clean and Format #
-#########################
 
- # Convert dates of charachter type to Date
+## Data Clean and Format 
+
+
+First, convert dates of charachter type to `Date`.
+
+```{r}
 member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "%m/%d/%Y")
 member_list$Last.visited.group.on <- as.Date.character(member_list$Last.visited.group.on, format = "%m/%d/%Y")
 member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "%m/%d/%Y")
+```
 
-# convert binary responses into factors
+Next, convert binary responses into factors
+
+```{r}
 member_list$Intro <- as.factor(member_list$Intro)
 member_list$Photo <- as.factor(member_list$Photo)
 member_list$Assistant.Organizer <- as.factor(member_list$Assistant.Organizer) 
 member_list$Mailing.List <- as.factor(member_list$Mailing.List)
+```
 
-  ####################################################
- # Question: How many joined since the last meetup? #
-###################################################
   
-# sort member list by "Joined.Group.on" variable
+## Question: How many joined since the last meetup?  
+ 
+ 
+First, sort member list by "Joined.Group.on" variable
+
+```{r}
 member_list <- member_list[order(member_list$Joined.Group.on),]
+```
 
-# add cumalitive sum aka "count_index"
+Next, add cumalitive sum aka "count_index"
+
+```{r}
 member_list$count_index <- seq(from =1, to = NROW(member_list), by = 1)
+```
 
-# lets plot it!
-plot(y = member_list$count_index, x = member_list$Joined.Group.on, type = "l", col = "red")
+Lets plot it!
 
+```{r}
+plot(y = member_list$count_index, x = member_list$Joined.Group.on, type = "l", col = "blue",
+     main = "Cumulative CRUG members",  
+         ylab = "Members", xlab = "")
+```
 
-  # Get a unique ordered list of Meetup dates
+Get a unique ordered list of Meetup dates
+
+```{r}
 Meetup_dates <- sort(unique(member_list$Last.Attended))
+```
 
-  # number of new member since last meetup?
+
+How many new member since last meetup?
+
+```{r}
 new_members <- subset(member_list, Joined.Group.on > Meetup_dates[NROW(Meetup_dates)])
-  # how many?
-  NROW(new_members)
 
- # How about number of new members between last meetup and the one prior to that?
+NROW(new_members)
+```
+ 
+How about the number of new members between last meetup and the one prior to that?
+
+```{r}
 new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)] &
                                     Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-1])
   # how many?
-  NROW(new_members2)
+NROW(new_members2)
+```
 
-  #############################################   
- # Lets iterate and do this for all meetups! #
-#############################################
   
+How about iterating over this process over all CRUG meetups?
+
+
+```{r, warning=FALSE}
  ## First, get a unique ordered list of Meetup dates
-  Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date())
+  Meetup_dates <- c(sort(unique(member_list$Last.Attended)), Sys.Date())
 
   # initialize data.frame to save memory
   new_df <- data.frame("Date"=NULL, "count_index"=NULL)
@@ -74,9 +114,12 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
         
         
         }
- 
+```
 
- ## That works, lets turn it into a function!
+That works, so lets turn it into a function for future use.
+
+
+```{r}
  
  new_mem_counter <- function(data) {
          
@@ -103,24 +146,45 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
        return(new_df) 
 }
  
- ## now we can call the function whenever we need to.
- 
  new_members <- new_mem_counter(member_list)
  
- 
- 
-  #######################################
- # Lets Explore the `new_members` data #
-#######################################
- 
- ## what gap between meetups saw the most new members?
- new_members[new_members$New==max(new_members$New),]
+ new_members
+```
 
+Lets Explore the `new_members` data set.
+Which gap between meetups had the most new members?
+ 
+```{r}
+ kable(new_members[new_members$New==max(new_members$New),])
+```
+
+Let plot the `new members` data.
+
+```{r}
+   # Create Date Range Index
+  Start_Date <- "2010-01-01"
+    End_Date <- Sys.Date()
+  Date_Index <- as.numeric(row.names(new_members[new_members$Date > Start_Date &
+                                                new_members$Date <= End_Date,]))
+  
+  # Create x-axis labels, using year-month date format
+  x_labels <- format(new_members$Date[Date_Index], "%Y-%m")
+
+  # Plot
+  barplot(new_members$New[Date_Index], names.arg = x_labels,
+         main = "CRUG members, joined between meetups",  
+         ylab = "New Members", xlab = "")
+```
+
+Let plot the `new members` data since 2017.
+
+```{r}
    # Create Date Range Index
   Start_Date <- "2017-01-01"
     End_Date <- Sys.Date()
   Date_Index <- as.numeric(row.names(new_members[new_members$Date > Start_Date &
                                                 new_members$Date <= End_Date,]))
+  
   # Create x-axis labels, using year-month date format
   x_labels <- format(new_members$Date[Date_Index], "%Y-%m")
 
@@ -128,11 +192,5 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
   barplot(new_members$New[Date_Index], names.arg = x_labels, las=2,
          main = "CRUG members, joined between meetups",  
          ylab = "New Members", xlab = "")
- 
-  
-
- 
- 
- ## Other subset functions. 
- 
+```
  

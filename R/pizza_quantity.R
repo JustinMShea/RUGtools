@@ -10,15 +10,15 @@
 #' of attendance. Defaults to 55 percent attendance, input 0.60.
 #' @param pizza_diameter Interger representing diameter in inches of the largest 
 #' pizza available. Defaults to 18 or 18 inces for an extra large
-#' @param pizza_eat Integer representing square inches a member consumers.Defaults to 49 or 7 by 7 inches.
+#' @param serving Integer representing number of servings per person. Defaul is 2.
 #' 
 #' @examples
 #' 
-#' pizza_quantity(130, pizza_diameter=18, attend_rate=0.65)
+#' pizza_quantity(150, pizza_diameter=18, attend_rate=0.65, serving = 2)
 #' 
 #' @export
 pizza_quantity <- 
-function(registered, pizza_diameter=18, attend_rate=0.55, pizza_eat=49) {
+function(registered, pizza_diameter=18, attend_rate=0.55, serving = 2) {
         
         if(registered %% 1 != 0) {
         
@@ -34,10 +34,18 @@ function(registered, pizza_diameter=18, attend_rate=0.55, pizza_eat=49) {
         
         } else {
         
-        estimated_attendance <- registered * attend_rate
+        estimated_attendance <- ceiling(registered * attend_rate)
         
         # Area of a circle
         pizza_area <- pi * (pizza_diameter/2)^2
+        
+        
+        # Research suggestes 1 pizza portion should be roughly the area of one's hand.
+        # Calculate average hand area for men and women, then average them and 
+        # multiply by how many servings. Default serving is 2.
+        male_size <- 7.44 * 3.3
+        female_size <- 6.77 * 2.91
+        pizza_eat <- serving * (0.85*male_size + 0.15*female_size)
         
         # Area/divided by square inches of pizza eaten per person
         people_per_pizza <- pizza_area / pizza_eat

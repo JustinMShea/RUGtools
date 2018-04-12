@@ -11,3 +11,11 @@ Thus far, we have two functions stored in the `R/` folder:
 `new_mem_counter` is used to calculate how many new members have joined between each meetup.
 
 `pizza_quantity` is used to estimate the number of :pizza: :pizza: :pizza: :pizza: :pizza: :pizza: to order for each meetup.
+
+## Installion
+
+Install from the Github master branch, depends on `R` version >= 3.0.0.
+
+```
+devtools::install_github("Chicago-R-User-Group/CRUGtools")
+```

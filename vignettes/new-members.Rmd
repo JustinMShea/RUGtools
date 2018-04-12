@@ -43,7 +43,7 @@ member_list$Mailing.List <- as.factor(member_list$Mailing.List)
 ```
 
   
-## Question: How many joined since the last meetup?  
+## Question: How many joined since January of 2017?  
  
  
 First, sort member list by "Joined.Group.on" variable
@@ -66,12 +66,23 @@ plot(y = member_list$count_index, x = member_list$Joined.Group.on, type = "l", c
          ylab = "Members", xlab = "")
 ```
 
-Get a unique ordered list of Meetup dates
+How many members since January 2017?
+
+```{r}
+members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
+
+max(members_2017_present$count_index) - min(members_2017_present$count_index)
+
+```
+
+
+# Question: How many joined since the last meetup? 
+
+First, get a unique ordered list of Meetup dates
 
 ```{r}
 Meetup_dates <- sort(unique(member_list$Last.Attended))
 ```
-
 
 How many new member since last meetup?
 

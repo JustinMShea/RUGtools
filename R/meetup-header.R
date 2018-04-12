@@ -41,8 +41,6 @@ CRUG_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x160"), offs
 
 MS_logo <- image_read(paste0(getwd(),"/vignettes/images/BitDevAdvocate.png"))
 
-MS_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x20"), image_scale(MS_logo, "x160"), offset="+40+10")
-
 # combine with R logog
 
 MS_R <- c(MS_logo,RlogoWWW)

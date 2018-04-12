@@ -1,24 +1,27 @@
-#' Estimate pizza quantity to order
+#' Estimate pizza order
 #' 
-#' How many pizzas should we order?
+#' Function to compute how many pizzas we should order based on arguements provided.
 #' 
 #' @return \code{pizza_quantity} returns a \code{\link{data.frame}} containing 4 variables. 
-#' These are \code{registered, estimated_attendance, people_per_pizza, pizza_estimate}.
+#' These are \code{registered, estimated_attendance, people_per_pizza, and the pizza_estimate}.
 #' 
-#' @param registered Integer of the number of people registered on Meetup.com
-#' @param attend_rate Numeric of type double representing a percentage estimate 
-#' of attendance. Defaults to 55 percent attendance, input 0.60.
-#' @param pizza_diameter Interger representing diameter in inches of the largest 
-#' pizza available. Defaults to 18 or 18 inces for an extra large
-#' @param serving Integer representing number of servings per person. Defaul is 2.
+#' @param registered Integer. The number of people registered on Meetup.com
+#' @param attend_rate Numeric of type double. The percentage estimate of attendance. 
+#' Defaults to 60 percent attendance rate, expressed as \strong{0.60}.
+#' @param pizza_diameter Integer. Diameter of the largest pizza available in inches. 
+#' Defaults to 18 inches for an extra large pizza.
+#' @param serving Integer or Numeric. Number of servings per person. 
+#' Default is 2 and does not have to be a whole number. See references for methodology.
+#' 
+#' @references Lisa R. Young, Ph.D., R.D. \href{https://www.nestleusa.com/enjoypizza}{Nestle USA Site: Enjoy Pizza}
+#' and \href{https://www.nestleusa.com/asset-library/documents/nutritionhealthwellness/pizza/pizzaportionguide_full.pdf}{PDF: The Fun of Pizza, the Balance of Good Nutrition, page 5.}
 #' 
 #' @examples
-#' 
-#' pizza_quantity(150, pizza_diameter=18, attend_rate=0.65, serving = 2)
+#' pizza_quantity(registered=150, pizza_diameter=18, attend_rate=0.65, serving = 2)
 #' 
 #' @export
 pizza_quantity <- 
-function(registered, pizza_diameter=18, attend_rate=0.55, serving = 2) {
+function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2) {
         
         if(registered %% 1 != 0) {
         
@@ -40,8 +43,8 @@ function(registered, pizza_diameter=18, attend_rate=0.55, serving = 2) {
         pizza_area <- pi * (pizza_diameter/2)^2
         
         
-        # Research suggestes 1 pizza portion should be roughly the area of one's hand.
-        # Calculate average hand area for men and women, then average them and 
+        # 1 portion roughly the area of one's hand: https://www.nestleusa.com/enjoypizza
+        # Calculate average hand area for men and women, then average them by attendance. 
         # multiply by how many servings. Default serving is 2.
         male_size <- 7.44 * 3.3
         female_size <- 6.77 * 2.91

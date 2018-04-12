@@ -2,31 +2,35 @@
 % Please edit documentation in R/pizza_quantity.R
 \name{pizza_quantity}
 \alias{pizza_quantity}
-\title{Estimate pizza quantity to order}
+\title{Estimate pizza order}
 \usage{
-pizza_quantity(registered, pizza_diameter = 18, attend_rate = 0.55,
+pizza_quantity(registered = 120, pizza_diameter = 18, attend_rate = 0.6,
   serving = 2)
 }
 \arguments{
-\item{registered}{Integer of the number of people registered on Meetup.com}
+\item{registered}{Integer. The number of people registered on Meetup.com}
 
-\item{pizza_diameter}{Interger representing diameter in inches of the largest 
-pizza available. Defaults to 18 or 18 inces for an extra large}
+\item{pizza_diameter}{Integer. Diameter of the largest pizza available in inches. 
+Defaults to 18 inches for an extra large pizza.}
 
-\item{attend_rate}{Numeric of type double representing a percentage estimate 
-of attendance. Defaults to 55 percent attendance, input 0.60.}
+\item{attend_rate}{Numeric of type double. The percentage estimate of attendance. 
+Defaults to 60 percent attendance rate, expressed as \strong{0.60}.}
 
-\item{serving}{Integer representing number of servings per person. Defaul is 2.}
+\item{serving}{Integer or Numeric. Number of servings per person. 
+Default is 2 and does not have to be a whole number. See references for methodology.}
 }
 \value{
 \code{pizza_quantity} returns a \code{\link{data.frame}} containing 4 variables. 
-These are \code{registered, estimated_attendance, people_per_pizza, pizza_estimate}.
+These are \code{registered, estimated_attendance, people_per_pizza, and the pizza_estimate}.
 }
 \description{
-How many pizzas should we order?
+Function to compute how many pizzas we should order based on arguements provided.
 }
 \examples{
+pizza_quantity(registered=150, pizza_diameter=18, attend_rate=0.65, serving = 2)
 
-pizza_quantity(150, pizza_diameter=18, attend_rate=0.65, serving = 2)
-
+}
+\references{
+Lisa R. Young, Ph.D., R.D. \href{https://www.nestleusa.com/enjoypizza}{Nestle USA Site: Enjoy Pizza}
+and \href{https://www.nestleusa.com/asset-library/documents/nutritionhealthwellness/pizza/pizzaportionguide_full.pdf}{PDF: The Fun of Pizza, the Balance of Good Nutrition, page 5.}
 }

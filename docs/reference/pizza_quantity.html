@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Estimate pizza quantity to order — pizza_quantity • CRUGtools</title>
+<title>Estimate pizza order — pizza_quantity • CRUGtools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Estimate pizza quantity to order — pizza_quantity" />
+<meta property="og:title" content="Estimate pizza order — pizza_quantity" />
 
-<meta property="og:description" content="How many pizzas should we order?" />
+<meta property="og:description" content="Function to compute how many pizzas we should order based on arguements provided." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,16 +103,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Estimate pizza quantity to order</h1>
+    <h1>Estimate pizza order</h1>
     
     <div class="hidden name"><code>pizza_quantity.Rd</code></div>
     </div>
 
     
-    <p>How many pizzas should we order?</p>
+    <p>Function to compute how many pizzas we should order based on arguements provided.</p>
     
 
-    <pre class="usage"><span class='fu'>pizza_quantity</span>(<span class='no'>registered</span>, <span class='kw'>pizza_diameter</span> <span class='kw'>=</span> <span class='fl'>18</span>, <span class='kw'>attend_rate</span> <span class='kw'>=</span> <span class='fl'>0.55</span>,
+    <pre class="usage"><span class='fu'>pizza_quantity</span>(<span class='kw'>registered</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>pizza_diameter</span> <span class='kw'>=</span> <span class='fl'>18</span>, <span class='kw'>attend_rate</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
   <span class='kw'>serving</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -120,33 +120,38 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>registered</th>
-      <td><p>Integer of the number of people registered on Meetup.com</p></td>
+      <td><p>Integer. The number of people registered on Meetup.com</p></td>
     </tr>
     <tr>
       <th>pizza_diameter</th>
-      <td><p>Interger representing diameter in inches of the largest 
-pizza available. Defaults to 18 or 18 inces for an extra large</p></td>
+      <td><p>Integer. Diameter of the largest pizza available in inches. 
+Defaults to 18 inches for an extra large pizza.</p></td>
     </tr>
     <tr>
       <th>attend_rate</th>
-      <td><p>Numeric of type double representing a percentage estimate 
-of attendance. Defaults to 55 percent attendance, input 0.60.</p></td>
+      <td><p>Numeric of type double. The percentage estimate of attendance. 
+Defaults to 60 percent attendance rate, expressed as <strong>0.60</strong>.</p></td>
     </tr>
     <tr>
       <th>serving</th>
-      <td><p>Integer representing number of servings per person. Defaul is 2.</p></td>
+      <td><p>Integer or Numeric. Number of servings per person. 
+Default is 2 and does not have to be a whole number. See references for methodology.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>pizza_quantity</code> returns a <code>data.frame</code> containing 4 variables. 
-These are <code>registered, estimated_attendance, people_per_pizza, pizza_estimate</code>.</p>
+These are <code>registered, estimated_attendance, people_per_pizza, and the pizza_estimate</code>.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Lisa R. Young, Ph.D., R.D. <a href='https://www.nestleusa.com/enjoypizza'>Nestle USA Site: Enjoy Pizza</a>
+and <a href='https://www.nestleusa.com/asset-library/documents/nutritionhealthwellness/pizza/pizzaportionguide_full.pdf'>PDF: The Fun of Pizza, the Balance of Good Nutrition, page 5.</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>pizza_quantity</span>(<span class='fl'>150</span>, <span class='kw'>pizza_diameter</span><span class='kw'>=</span><span class='fl'>18</span>, <span class='kw'>attend_rate</span><span class='kw'>=</span><span class='fl'>0.65</span>, <span class='kw'>serving</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;   registered estimated_attendance people_per_pizza pizza_estimate
+    <pre class="examples"><div class='input'><span class='fu'>pizza_quantity</span>(<span class='kw'>registered</span><span class='kw'>=</span><span class='fl'>150</span>, <span class='kw'>pizza_diameter</span><span class='kw'>=</span><span class='fl'>18</span>, <span class='kw'>attend_rate</span><span class='kw'>=</span><span class='fl'>0.65</span>, <span class='kw'>serving</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;   registered estimated_attendance people_per_pizza pizza_estimate
 #&gt; 1        150                   98         5.340534             19</div><div class='input'>
 </div></pre>
   </div>
@@ -156,6 +161,8 @@ These are <code>registered, estimated_attendance, people_per_pizza, pizza_estima
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

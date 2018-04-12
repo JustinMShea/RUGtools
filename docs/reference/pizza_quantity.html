@@ -27,7 +27,7 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="Estimate pizza order — pizza_quantity" />
 
-<meta property="og:description" content="Function to compute how many pizzas we should order based on arguements provided." />
+<meta property="og:description" content="Function to compute how many thin-crust pizzas to order based on arguments provided." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,7 +109,7 @@
     </div>
 
     
-    <p>Function to compute how many pizzas we should order based on arguements provided.</p>
+    <p>Function to compute how many <strong>thin-crust</strong> pizzas to order based on arguments provided.</p>
     
 
     <pre class="usage"><span class='fu'>pizza_quantity</span>(<span class='kw'>registered</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>pizza_diameter</span> <span class='kw'>=</span> <span class='fl'>18</span>, <span class='kw'>attend_rate</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
@@ -144,6 +144,10 @@ Default is 2 and does not have to be a whole number. See references for methodol
     <p><code>pizza_quantity</code> returns a <code>data.frame</code> containing 4 variables. 
 These are <code>registered, estimated_attendance, people_per_pizza, and the pizza_estimate</code>.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><strong>WARNING: </strong>This function is for thin-crust pizza only! Do not use for deep-dish or pan-pizza.</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Lisa R. Young, Ph.D., R.D. <a href='https://www.nestleusa.com/enjoypizza'>Nestle USA Site: Enjoy Pizza</a>
@@ -161,6 +165,8 @@ and <a href='https://www.nestleusa.com/asset-library/documents/nutritionhealthwe
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
       

@@ -24,7 +24,10 @@ Default is 2 and does not have to be a whole number. See references for methodol
 These are \code{registered, estimated_attendance, people_per_pizza, and the pizza_estimate}.
 }
 \description{
-Function to compute how many pizzas we should order based on arguements provided.
+Function to compute how many \strong{thin-crust} pizzas to order based on arguments provided.
+}
+\details{
+\strong{WARNING: }This function is for thin-crust pizza only! Do not use for deep-dish or pan-pizza.
 }
 \examples{
 pizza_quantity(registered=150, pizza_diameter=18, attend_rate=0.65, serving = 2)

@@ -1,6 +1,8 @@
 #' Estimate pizza order
 #' 
-#' Function to compute how many pizzas we should order based on arguements provided.
+#' Function to compute how many \strong{thin-crust} pizzas to order based on arguments provided.
+#' 
+#' \strong{WARNING: }This function is for thin-crust pizza only! Do not use for deep-dish or pan-pizza.
 #' 
 #' @return \code{pizza_quantity} returns a \code{\link{data.frame}} containing 4 variables. 
 #' These are \code{registered, estimated_attendance, people_per_pizza, and the pizza_estimate}.

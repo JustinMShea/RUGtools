@@ -1,6 +1,6 @@
 # CRUGtools
 
-![](https://github.com/Chicago-R-User-Group/CRUGtools/blob/master/vignettes/images/CRUG-Header.png)
+![](https://github.com/Chicago-R-User-Group/CRUGtools/blob/master/vignettes/images/CRUG_Header.png)
 
 A collection of reports and functions related to the [Chicago R User Group (Chicago RUG, CRUG) Data and Statistics](https://www.meetup.com/ChicagoRUG/).
 

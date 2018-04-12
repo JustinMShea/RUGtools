@@ -4,7 +4,7 @@
 
 A collection of reports and functions related to the [Chicago R User Group (Chicago RUG, CRUG) Data and Statistics](https://www.meetup.com/ChicagoRUG/).
 
-The `vignettes` folder containts a report titled [new-members](https://chicago-r-user-group.github.io/CRUGtools/articles/new-members.html) as well as our `intro-slides.Rmd` template. **Note:** Organizers will need to locally store the [meetup member list file](https://www.meetup.com/ChicagoRUG/members) they download in the `inst/extdata` folder to run the `new-members` report. The file is `.gitignored` from this repo and should be stored locally.
+The `vignettes` folder contains a report titled [new-members](https://chicago-r-user-group.github.io/CRUGtools/articles/new-members.html) as well as our `intro-slides.Rmd` template. **Note:** Organizers will need to locally store the [meetup member list file](https://www.meetup.com/ChicagoRUG/members) they download in the `inst/extdata` folder to run the `new-members` report. The file is `.gitignored` from this repo and should be stored locally.
 
 Currently, we have two functions stored in the `R/` folder:
 

@@ -10,4 +10,4 @@ Thus far, we have two functions stored in the `R/` folder are
 
 `new_mem_counter` is used to calculate how many new members have joined between each meetup.
 
-`pizza_quantity` is used to estimate the number of pizzas to order for each meetup.
+`pizza_quantity` is used to estimate the number of :pizza: :pizza: :pizza: :pizza: :pizza: :pizza: to order for each meetup.

@@ -4,9 +4,9 @@
 
 A collection of reports and functions related to the [Chicago R User Group (Chicago RUG, CRUG) Data and Statistics](https://www.meetup.com/ChicagoRUG/).
 
-The `vignettes` folder containts a report on new members and seemed like a good place to store our intro-slides template, along with supporting data and various images. The `data` folder is meant to be stored locally and are .gitignored from this repo.
+The `vignettes` folder containts a report on new members and our intro-slides template, along with supporting data and various images. The `data` folder is meant to be stored locally and is .gitignored from this repo.
 
-Thus far, we have two functions stored in the `R/` folder are
+Thus far, we have two functions stored in the `R/` folder:
 
 `new_mem_counter` is used to calculate how many new members have joined between each meetup.
 

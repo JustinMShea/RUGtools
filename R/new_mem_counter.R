@@ -1,4 +1,6 @@
-#' Generate new members between each meetup
+#' New Member Counter
+#' 
+#' Generates totals of new members between each meetup
 #'
 #' @return\code{new_mem_counter} returns a \code{\link{data.frame}} containing 2 variables. 
 #' These are the `Date` of each meetup, and how many `New` members joined leading up to each 
@@ -8,20 +10,19 @@
 #'  Note: All date fields must by coverted to class \code{\link{Date}}.
 #'
 #' @examples
-#' 
-#' member_file_path <- paste0(getwd(),"/data/ChicagoRUG_Member_List_on_04-09-18.csv")
+#' \dontrun{
+#' member_file_path <- paste0(getwd(),"vignettes/data/ChicagoRUG_Member_List_on_04-09-18.csv")
 #' 
 #' member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
 #' 
 #'  # Convert date columns to type 'Date'.
-#'  
 #'  member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "%m/%d/%Y")
-#'  member_list$Last.visited.group.on <- as.Date.character(member_list$Last.visited.group.on, format = "%m/%d/%Y")
 #'  member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "%m/%d/%Y")
 #' 
 #'  new_members <- new_mem_counter(member_list)
+#'  }
 #'  
-#'  @export
+#' @export
 new_mem_counter <- function(data) {
         
         Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date()-1)
@@ -33,8 +34,8 @@ new_mem_counter <- function(data) {
         
         for(i in (NROW(Meetup_dates)-1):1) {
                 
-                df <- subset(data, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)-(i-1)] &
-                                     Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
+                df <- subset(data, data$Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)-(i-1)] &
+                                     data$Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
                 
                 Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
                 New  <- max(df$count_index) - min(df$count_index)

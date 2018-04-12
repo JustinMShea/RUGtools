@@ -6,7 +6,6 @@ output:
   ioslides_presentation:
     widescreen: true
     logo: images/Rlogo436x338.png
-
 ---
 
 ```{r setup, include=FALSE}

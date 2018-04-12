@@ -2,12 +2,15 @@
 title: "New Meetup Members"
 author: "Justin M. Shea"
 date: "April 9, 2018"
-output: html_document
+output: html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{New Meetup Members}
+  %\usepackage[UTF-8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
 ```
 
 ## Data Import 
@@ -16,6 +19,8 @@ This assumes manual download of .xls file to the data folder of your working dir
 also assumes you saved it as .csv, not the default .xls
 
 ```{r}
+library(knitr)
+
 member_file_path <- paste0(getwd(),"/data/ChicagoRUG_Member_List_on_04-09-18.csv")
 
 member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
@@ -143,8 +148,8 @@ That works, so lets turn it into a function for future use.
          
          for(i in (NROW(Meetup_dates)-1):1) {
                  
-                 df <- subset(data, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)-(i-1)] &
-                                      Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
+                 df <- subset(data, data$Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)-(i-1)] &
+                                      data$Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
                  
                  Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
                  New  <- max(df$count_index) - min(df$count_index)

@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+meetup-header.R
+vignettes/intro-slides.Rmd
+vignettes/images

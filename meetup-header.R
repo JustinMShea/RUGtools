@@ -37,6 +37,9 @@ RlogoWWW_resize <- image_resize(RlogoWWW, "600x338")
 
 CRUG_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x160"), offset="+40+10")
 
+image_write(CRUG_header, path = "vignettes/images/CRUG_header.png", format = "png")
+
+
 # microsoft developer advocate header: attend_graph image and devAdvocate logo 
 
 MS_logo <- image_read(paste0(getwd(),"/vignettes/images/BitDevAdvocate.png"))

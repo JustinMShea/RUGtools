@@ -12,7 +12,7 @@ Thus far, we have two functions stored in the `R/` folder:
 
 `pizza_quantity` is used to estimate the number of :pizza: :pizza: :pizza: :pizza: :pizza: :pizza: to order for each meetup.
 
-## Installion
+## Installation
 
 Install from the Github master branch, depends on `R` version >= 3.0.0.
 

@@ -25,4 +25,4 @@ vignettes/*.pdf
 .Rproj.user
 CRUGtools.Rproj
 data/
-vignettes/data
+inst/extdata

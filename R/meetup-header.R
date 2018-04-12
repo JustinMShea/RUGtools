@@ -39,7 +39,7 @@ CRUG_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x160"), offs
 
 # microsoft developer advocate header: attend_graph image and devAdvocate logo 
 
-MS_logo <- image_read(path.expand("~/R-CRUG/images/BitDevAdvocate.png"))
+MS_logo <- image_read(paste0(getwd(),"/vignettes/images/BitDevAdvocate.png"))
 
 MS_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x20"), image_scale(MS_logo, "x160"), offset="+40+10")
 
@@ -49,10 +49,10 @@ MS_R <- c(MS_logo,RlogoWWW)
 
 MS_header <- image_append(image_scale(MS_R, "338"))
 
-image_write(MS_header, path = "images/MS_header.png", format = "png")
+image_write(MS_header, path = "vignettes/images/MS_header.png", format = "png")
 
 # combined header: attend_graph, R, and MS logos
 
 MS_CRUG_header <- image_composite(attend_graph, image_scale(MS_header, "x120"), offset="+40+10")
 
-image_write(MS_CRUG_header, path = "images/MS_CRUG_header.png", format = "png")
+image_write(MS_CRUG_header, path = "vignettes/images/MS_CRUG_header.png", format = "png")

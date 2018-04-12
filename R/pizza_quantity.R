@@ -39,19 +39,21 @@ function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2) {
         
         estimated_attendance <- ceiling(registered * attend_rate)
         
-        # Area of a circle
+        # Calculate area of a pizza
         pizza_area <- pi * (pizza_diameter/2)^2
         
-        
         # 1 portion roughly the area of one's hand: https://www.nestleusa.com/enjoypizza
-        # Calculate average hand area for men and women, then average them by attendance. 
-        # multiply by how many servings. Default serving is 2.
+        
+        # Calculate average hand area for men and women: 
+        # https://choosehandsafety.com/choosing-hand-tools/hand-tool-size 
         male_size <- 7.44 * 3.3
         female_size <- 6.77 * 2.91
-        pizza_eat <- serving * (0.85*male_size + 0.15*female_size)
         
-        # Area/divided by square inches of pizza eaten per person
-        people_per_pizza <- pizza_area / pizza_eat
+        # Weight hand sizes by participation rate and multiply by number servings.
+        portion <- serving * (0.85*male_size + 0.15*female_size)
+        
+        # Pizza Area/divided portion in square inches per person
+        people_per_pizza <- pizza_area / portion
         
         # return the number of pizza, rounded up
         pizza_estimate <- ceiling(estimated_attendance/people_per_pizza)

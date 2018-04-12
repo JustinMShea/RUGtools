@@ -44,15 +44,14 @@ function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2) {
         # Calculate area of a pizza
         pizza_area <- pi * (pizza_diameter/2)^2
         
-        # 1 portion roughly the area of one's hand: https://www.nestleusa.com/enjoypizza
-        
-        # Calculate average hand area for men and women: 
+        # 1 portion roughly the area of one's hand: 
+        # https://www.nestleusa.com/enjoypizza
         # https://choosehandsafety.com/choosing-hand-tools/hand-tool-size 
-        male_size <- 7.44 * 3.3
-        female_size <- 6.77 * 2.91
+        y <- 7.44 * 3.3
+        x <- 6.77 * 2.91
         
         # Weight hand sizes by participation rate and multiply by number servings.
-        portion <- serving * (0.85*male_size + 0.15*female_size)
+        portion <- serving*(0.85*y + 0.15*x)
         
         # Pizza Area/divided portion in square inches per person
         people_per_pizza <- pizza_area / portion

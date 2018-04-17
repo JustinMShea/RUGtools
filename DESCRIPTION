@@ -1,10 +1,10 @@
-Package: CRUGtools
+Package: RUGtools
 Type: Package
-Title: Tools useful to Chicago R User Group organizers
-Version: 0.1.0
+Title: Tools useful for organizing R User Group meetups
+Version: 0.2-0
 Authors@R: person("Justin M.", "Shea", email = "justin.shea@gmail.com", role = c("aut", "cre"))
-Description: This package contains functions, reports, and slides useful for organizing
-   the Chicago R User Group. 
+Description: This package contains functions, reports, and Rmarkdown templates 
+   inspired by organizing the Chicago R User Group. 
 Depends: R (>= 3.0.0)
 License: GPL-3
 Encoding: UTF-8
@@ -12,5 +12,5 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports: knitr, rmarkdown
 VignetteBuilder: knitr
-URL: https://chicago-r-user-group.github.io/CRUGtools/
-BugReports: https://github.com/Chicago-R-User-Group/CRUGtools/issues
+URL: https://chicago-r-user-group.github.io/RUGtools/
+BugReports: https://github.com/Chicago-R-User-Group/RUGtools/issues

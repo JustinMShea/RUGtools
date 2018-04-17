@@ -1,16 +1,12 @@
 ---
 title: "Introduction Slide Template"
 author: " "
-date: " "
-output:
-  ioslides_presentation:
-    widescreen: true
-    logo: images/Rlogo436x338.png
+date: "`r Sys.Date()`"
+output: CRUGtools::intro_slides
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(CRUGtools)
 ```
 
 ## Chicago R User Group News
@@ -43,9 +39,6 @@ knitr::include_graphics(path)
 
 
 # Looking for Employees / Consultants?
-
-A quick shoutout to recruiters that might be present and query the audience
-if anyone in the room works for a firm that is hiring.
 
 
 ## R Consortium News {.smaller .columns-2}
@@ -103,7 +96,7 @@ Thanks to Microsoft for sponsoring this meetup and making it possible!
 ```{r, out.width = "400px"}
 path <- paste0(getwd(), "/images/BitDevAdvocate.jpg")
 knitr::include_graphics(path)
-
+```
 
 
 

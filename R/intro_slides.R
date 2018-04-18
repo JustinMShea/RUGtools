@@ -1,10 +1,10 @@
 #' Intro Slides
 #'
-#' Creates introductino slides markdown template
+#' Creates introduction ioslides markdown template.
 #' 
-#' @param ... Arguments passed to \code{\link{ioslides_presentation}}.
-#'
-#'
+#' @param ... Arguments passed to ioslides_presentation.
+#' 
+#' 
 #'@export
 intro_slides <- function(...) {
   

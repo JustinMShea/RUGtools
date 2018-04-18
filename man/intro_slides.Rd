@@ -7,8 +7,8 @@
 intro_slides(...)
 }
 \arguments{
-\item{...}{Arguments passed to \code{\link{ioslides_presentation}}.}
+\item{...}{Arguments passed to ioslides_presentation.}
 }
 \description{
-Creates introductino slides markdown template
+Creates introduction ioslides markdown template.
 }

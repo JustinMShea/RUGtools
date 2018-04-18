@@ -30,7 +30,7 @@
 data(member_list)
 }
 \description{
-Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PID removed, data formated.
+Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PII removed, data formated.
 }
 \examples{
  str(member_list)

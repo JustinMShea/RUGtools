@@ -1,6 +1,6 @@
 #' member_list
 #' 
-#' Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PID removed, data formated. 
+#' Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PII removed, data formated. 
 #' 
 #' @docType data
 #' 

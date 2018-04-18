@@ -13,53 +13,14 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Data Import 
- 
-This assumes manual download of the meetup member list file to the `inst/extdata` folder of your working directory and saved it as `.csv`, not the default `.xls`.
-
-```{r}
-library(knitr)
-
-member_file_path <- system.file("extdata", "ChicagoRUG_Member_List_on_04-09-18.csv", package = "CRUGtools", mustWork = TRUE)
-
-member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
-```
-
-
-## Data Clean and Format 
-
-
-First, convert dates of charachter type to `Date`.
-
-```{r}
-member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "%m/%d/%Y")
-member_list$Last.visited.group.on <- as.Date.character(member_list$Last.visited.group.on, format = "%m/%d/%Y")
-member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "%m/%d/%Y")
-```
-
-Next, convert binary responses into factors
-
-```{r}
-member_list$Intro <- as.factor(member_list$Intro)
-member_list$Photo <- as.factor(member_list$Photo)
-member_list$Assistant.Organizer <- as.factor(member_list$Assistant.Organizer) 
-member_list$Mailing.List <- as.factor(member_list$Mailing.List)
-```
 
   
 ## Question: How many joined since January of 2017?  
  
- 
-First, sort member list by "Joined.Group.on" variable
+Load the member list data.
 
 ```{r}
-member_list <- member_list[order(member_list$Joined.Group.on),]
-```
-
-Next, add cumalitive sum aka "count_index"
-
-```{r}
-member_list$count_index <- seq(from =1, to = NROW(member_list), by = 1)
+data(member_list)
 ```
 
 Lets plot it!

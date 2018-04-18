@@ -1,6 +1,6 @@
 # CRUGtools
 
-<img src="https://github.com/Chicago-R-User-Group/RUGtools/blob/master/inst/rmarkdown/templates/intro_slides/skeleton/images/CRUGtools.png" height="100" />
+<img src="https://github.com/Chicago-R-User-Group/RUGtools/blob/master/inst/rmarkdown/templates/intro_slides/skeleton/images/CRUGtools.png" height="200" />
 
 A collection of reports and functions related to the [Chicago R User Group (Chicago RUG, CRUG) Data and Statistics](https://www.meetup.com/ChicagoRUG/).
 

@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tools useful to Chicago R User Group organizers • CRUGtools</title>
+<title>Tools useful for organizing R User Group meetups • RUGtools</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Tools useful to Chicago R User Group organizers">
-<meta property="og:description" content="This package contains functions, reports, and slides useful for organizing
-   the Chicago R User Group. ">
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Tools useful for organizing R User Group meetups">
+<meta property="og:description" content="This package contains functions, data, reports, and Rmarkdown templates 
+   inspired by organizing the Chicago R User Group. ">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -29,8 +29,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">CRUGtools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <a class="navbar-link" href="index.html">RUGtools</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -53,12 +53,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/intro-slides.html">Introduction Slide Template</a>
-    </li>
-    <li>
       <a href="articles/new-members.html">New Meetup Members</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -72,21 +72,16 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="crugtools" class="section level1">
+    <div id="rugtools" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#crugtools" class="anchor"></a>CRUGtools</h1></div>
-<p><img src="https://github.com/Chicago-R-User-Group/CRUGtools/blob/master/vignettes/images/CRUG_header.png"></p>
-<p>A collection of reports and functions related to the <a href="https://www.meetup.com/ChicagoRUG/">Chicago R User Group (Chicago RUG, CRUG) Data and Statistics</a>.</p>
-<p>The <code>vignettes</code> folder containts a report titled <a href="https://chicago-r-user-group.github.io/CRUGtools/articles/new-members.html">new-members</a> as well as our <code>intro-slides.Rmd</code> template. <strong>Note:</strong> Organizers will need to locally store the <a href="https://www.meetup.com/ChicagoRUG/members">meetup member list file</a> they download in the <code>inst/extdata</code> folder to run the <code>new-members</code> report. The file is <code>.gitignored</code> from this repo and should be stored locally.</p>
-<p>Currently, we have two functions stored in the <code>R/</code> folder:</p>
-<p><code>new_mem_counter</code> is used to calculate how many new members have joined between each meetup.</p>
-<p><code>pizza_quantity</code> is used to estimate the number of 🍕 🍕 🍕 🍕 🍕 🍕 to order for each meetup!</p>
-<p>Please see the <a href="https://chicago-r-user-group.github.io/CRUGtools/">CRUGtools companion site</a> to view reports and functions.</p>
+<a href="#rugtools" class="anchor"></a>RUGtools</h1></div>
+<p><img src="https://github.com/Chicago-R-User-Group/RUGtools/blob/master/inst/rmarkdown/templates/intro_slides/skeleton/images/CRUGtools.png" height="200"></p>
+<p>A collection of data, functions, reports, and a custom r markdown template related to the <a href="https://www.meetup.com/ChicagoRUG/">Chicago R User Group (Chicago RUG, CRUG) Data and Statistics</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>Install from the Github master branch, depends on <code>R</code> version &gt;= 3.0.0.</p>
-<pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("Chicago-R-User-Group/CRUGtools")</a></code></pre>
+<p>Install from the Github master branch.</p>
+<pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">devtools::install_github("Chicago-R-User-Group/RUGtools")</a></code></pre>
 </div>
 </div>
   </div>
@@ -95,7 +90,7 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="https://github.com/Chicago-R-User-Group/CRUGtools/issues">https://​github.com/​Chicago-R-User-Group/​CRUGtools/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/Chicago-R-User-Group/RUGtools/issues">https://​github.com/​Chicago-R-User-Group/​RUGtools/​issues</a>
 </li>
 </ul>
 </div>

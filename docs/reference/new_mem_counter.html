@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New Member Counter — new_mem_counter • CRUGtools</title>
+<title>New Member Counter — new_mem_counter • RUGtools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -56,8 +56,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">CRUGtools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
+        <a class="navbar-link" href="../index.html">RUGtools</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
       </span>
     </div>
 
@@ -80,12 +80,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/intro-slides.html">Introduction Slide Template</a>
-    </li>
-    <li>
       <a href="../articles/new-members.html">New Meetup Members</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -132,18 +132,17 @@ meetup.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>member_file_path</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(<span class='fu'>getwd</span>(),<span class='st'>"vignettes/data/ChicagoRUG_Member_List_on_04-09-18.csv"</span>)
-
-<span class='no'>member_list</span> <span class='kw'>&lt;-</span> <span class='fu'>read.csv</span>(<span class='no'>member_file_path</span>, <span class='kw'>stringsAsFactors</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
-
- <span class='co'># Convert date columns to type 'Date'.</span>
- <span class='no'>member_list</span>$<span class='no'>Joined.Group.on</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date.character</span>(<span class='no'>member_list</span>$<span class='no'>Joined.Group.on</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%m/%d/%Y"</span>)
- <span class='no'>member_list</span>$<span class='no'>Last.Attended</span> <span class='kw'>&lt;-</span> <span class='fu'>as.Date.character</span>(<span class='no'>member_list</span>$<span class='no'>Last.Attended</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%m/%d/%Y"</span>)
+    <pre class="examples"><div class='input'> <span class='fu'>data</span>(<span class='no'>member_list</span>)
 
  <span class='no'>new_members</span> <span class='kw'>&lt;-</span> <span class='fu'>new_mem_counter</span>(<span class='no'>member_list</span>)
 
-<span class='co'># }</span><div class='input'> 
+ <span class='fu'>tail</span>(<span class='no'>new_members</span>)</div><div class='output co'>#&gt;          Date New
+#&gt; 57 2017-11-15  98
+#&gt; 58 2018-01-27  87
+#&gt; 59 2018-02-15  66
+#&gt; 60 2018-03-29  94
+#&gt; 61 2018-04-14  83
+#&gt; 62 2018-04-17   5</div><div class='input'> 
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

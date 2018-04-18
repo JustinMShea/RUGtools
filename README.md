@@ -1,4 +1,4 @@
-# CRUGtools
+# RUGtools
 
 <img src="https://github.com/Chicago-R-User-Group/RUGtools/blob/master/inst/rmarkdown/templates/intro_slides/skeleton/images/CRUGtools.png" height="200" />
 
@@ -10,5 +10,5 @@ A collection of reports and functions related to the [Chicago R User Group (Chic
 Install from the Github master branch, depends on `R` version >= 3.0.0.
 
 ```
-devtools::install_github("Chicago-R-User-Group/CRUGtools")
+devtools::install_github("Chicago-R-User-Group/RUGtools")
 ```

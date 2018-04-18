@@ -23,6 +23,5 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
-CRUGtools.Rproj
-data/
-inst/extdata
+RUGtools.Rproj
+data-raw/meetup

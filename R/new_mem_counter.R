@@ -10,25 +10,18 @@
 #'  Note: All date fields must by coverted to class \code{\link{Date}}.
 #'
 #' @examples
-#' \dontrun{
-#' member_file_path <- system.file("extdata", "ChicagoRUG_Member_List_on_04-09-18.csv", 
-#'                                  package = "CRUGtools", mustWork = TRUE)
-#' 
-#' member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
-#' 
-#'  # Convert date columns of type char to type 'Date'.
-#'  member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "%m/%d/%Y")
-#'  member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "%m/%d/%Y")
+#'  data(member_list)
 #' 
 #'  new_members <- new_mem_counter(member_list)
-#'  }
+#'  
+#'  tail(new_members)
 #'  
 #' @export
 new_mem_counter <- function(data) {
         
         Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date()-1)
         
-        data <- data[,c("Joined.Group.on", "count_index")]
+        data <- data[,c("Joined.Group.on", "Count.Index")]
         
         #initialize data.frame
         new_df <- data.frame("Date"=Meetup_dates[1], "New"=0)
@@ -39,7 +32,7 @@ new_mem_counter <- function(data) {
                                      data$Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
                 
                 Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
-                New  <- max(df$count_index) - min(df$count_index)
+                New  <- max(df$Count.Index) - min(df$Count.Index)
                 
                 new_df <- rbind(new_df,data.frame(Date, New))
                 

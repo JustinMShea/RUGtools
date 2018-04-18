@@ -19,16 +19,10 @@ meetup.
 Generates totals of new members between each meetup
 }
 \examples{
-\dontrun{
-member_file_path <- paste0(getwd(),"vignettes/data/ChicagoRUG_Member_List_on_04-09-18.csv")
-
-member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
-
- # Convert date columns to type 'Date'.
- member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "\%m/\%d/\%Y")
- member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "\%m/\%d/\%Y")
+ data(member_list)
 
  new_members <- new_mem_counter(member_list)
- }
+ 
+ tail(new_members)
  
 }

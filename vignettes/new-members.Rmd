@@ -1,7 +1,7 @@
 ---
 title: "New Meetup Members"
 author: "Justin M. Shea"
-date: "April 9, 2018"
+date: "April 17, 2018"
 output: html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
@@ -11,6 +11,10 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(knitr)
+
+library(RUGtools)
 ```
 
 
@@ -26,7 +30,7 @@ data(member_list)
 Lets plot it!
 
 ```{r}
-plot(y = member_list$count_index, x = member_list$Joined.Group.on, type = "l", col = "blue",
+plot(y = member_list$Count.Index, x = member_list$Joined.Group.on, type = "l", col = "blue",
      main = "Cumulative CRUG members",  
          ylab = "Members", xlab = "")
 ```
@@ -36,7 +40,7 @@ How many members since January 2017?
 ```{r}
 members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
 
-max(members_2017_present$count_index) - min(members_2017_present$count_index)
+max(members_2017_present$Count.Index) - min(members_2017_present$Count.Index)
 
 ```
 
@@ -75,7 +79,7 @@ How about iterating over this process over all CRUG meetups?
   Meetup_dates <- c(sort(unique(member_list$Last.Attended)), Sys.Date())
 
   # initialize data.frame to save memory
-  new_df <- data.frame("Date"=NULL, "count_index"=NULL)
+  new_df <- data.frame("Date"=NULL, "Count.Index"=NULL)
   
   # start the for loop
   for(i in 1:NROW(Meetup_dates)-1) {
@@ -84,7 +88,7 @@ How about iterating over this process over all CRUG meetups?
                              Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
         
         Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
-        New  <- max(df$count_index) - min(df$count_index)
+        New  <- max(df$Count.Index) - min(df$Count.Index)
         
         new_df <- rbind(new_df,data.frame(Date, New))
         
@@ -101,7 +105,7 @@ That works, so lets turn it into a function for future use.
          
          Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date()-1)
          
-         data <- data[,c("Joined.Group.on", "count_index")]
+         data <- data[,c("Joined.Group.on", "Count.Index")]
          
          #initialize data.frame
          new_df <- data.frame("Date"=Meetup_dates[1], "New"=0)
@@ -112,7 +116,7 @@ That works, so lets turn it into a function for future use.
                                       data$Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
                  
                  Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
-                 New  <- max(df$count_index) - min(df$count_index)
+                 New  <- max(df$Count.Index) - min(df$Count.Index)
                  
                  new_df <- rbind(new_df,data.frame(Date, New))
                  

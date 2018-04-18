@@ -11,7 +11,7 @@ Graph + geom_point() +
         geom_smooth() +
         labs(x="Percent Meetup Attendance", 
               y="Final Grade in R skills") +
-        theme_classic()
+        theme_classic(base_size = 22)
 
 ## or use a linear model cubic spline
 Graph + geom_point() + 
@@ -26,16 +26,30 @@ attend_graph <- image_graph(width = 600, height = 338)
                 Graph + geom_point() + 
                 geom_smooth(method = "lm", formula = y ~ splines::bs(x, 3)) +
                 labs(x="Percent Meetup Attendance", y="Final Grade in R skills") +
-                theme_classic()
-                dev.off()
+                theme_classic(base_size = 16)
+dev.off()
                 
+                
+                
+crug_twitter_header <- image_graph(width = 1500, height = 500)
+Graph + geom_point() + 
+        geom_smooth(method = "loess") +
+        labs(x="Percent Meetup Attendance", y="Final Grade in R skills (4.0 scale)") +
+        theme_classic(base_size = 16)
+
+dev.off()
+
+image_write(crug_twitter_header, path = "vignettes/images/crug_twitter_header.png", format = "png")
+
+
 # main page header: attedance image and R logo
 
 RlogoWWW <- image_read("https://www.r-project.org/logo/Rlogo.png")
 
 RlogoWWW_resize <- image_resize(RlogoWWW, "600x338")
 
-CRUG_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x160"), offset="+40+10")
+CRUG_header <- image_composite(attend_graph, image_scale(RlogoWWW, "x150"), offset="+50+10")
+CRUG_header
 
 image_write(CRUG_header, path = "vignettes/images/CRUG_Header.png", format = "png")
 

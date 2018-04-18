@@ -11,11 +11,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' member_file_path <- paste0(getwd(),"vignettes/data/ChicagoRUG_Member_List_on_04-09-18.csv")
+#' member_file_path <- system.file("extdata", "ChicagoRUG_Member_List_on_04-09-18.csv", 
+#'                                  package = "CRUGtools", mustWork = TRUE)
 #' 
 #' member_list <- read.csv(member_file_path, stringsAsFactors=FALSE)
 #' 
-#'  # Convert date columns to type 'Date'.
+#'  # Convert date columns of type char to type 'Date'.
 #'  member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "%m/%d/%Y")
 #'  member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "%m/%d/%Y")
 #' 

@@ -24,4 +24,4 @@ vignettes/*.pdf
 *.knit.md
 .Rproj.user
 RUGtools.Rproj
-inst/extdata
+data-raw/meetup

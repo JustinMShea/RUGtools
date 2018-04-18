@@ -3,7 +3,7 @@ Type: Package
 Title: Tools useful for organizing R User Group meetups
 Version: 0.2-0
 Authors@R: person("Justin M.", "Shea", email = "justin.shea@gmail.com", role = c("aut", "cre"))
-Description: This package contains functions, reports, and Rmarkdown templates 
+Description: This package contains functions, data, reports, and Rmarkdown templates 
    inspired by organizing the Chicago R User Group. 
 Depends: R (>= 3.0.0)
 License: GPL-3

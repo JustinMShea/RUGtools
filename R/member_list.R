@@ -25,6 +25,11 @@
 #'  \item \strong{R.Experience}
 #'  \item \strong{Count.Index}
 #'  }
+#'  
 #' @source \url{https://www.meetup.com/ChicagoRUG/members/?op=csv}
+#' 
 #' @examples  str(member_list)
+#' plot(y = member_list$Count.Index, x = member_list$Joined.Group.on, type = "l", col = "blue",
+#'  main = "Cumulative CRUG members", ylab = "Members", xlab = "")
+#' 
 "member_list"

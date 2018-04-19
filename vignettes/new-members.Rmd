@@ -19,7 +19,7 @@ library(RUGtools)
 
 
   
-## Question: How many members joined since January of 2017?  
+###  How many members joined since January of 2017?  
  
 Load the member list data.
 
@@ -45,7 +45,7 @@ max(members_2017_present$Count.Index) - min(members_2017_present$Count.Index)
 ```
 
 
-###  How many joined since the last meetup? 
+###  How many joined between meetups? 
 
 First, get a unique ordered list of Meetup dates
 
@@ -84,7 +84,7 @@ max_new_members <- new_members[new_members$New==max(new_members$New),]
 kable(max_new_members, align = 'l')
 ```
 
-Let plot the `new members` data.
+Plot the `new members` data.
 
 ```{r}
    # Create Date Range Index
@@ -102,7 +102,7 @@ Let plot the `new members` data.
          ylab = "New Members", xlab = "")
 ```
 
-Let plot the `new members` data since 2017.
+Plot the `new members` data since 2017.
 
 ```{r}
    # Create Date Range Index

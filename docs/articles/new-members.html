@@ -84,9 +84,9 @@
 
     
     
-<div id="question-how-many-members-joined-since-january-of-2017" class="section level2">
-<h2 class="hasAnchor">
-<a href="#question-how-many-members-joined-since-january-of-2017" class="anchor"></a>Question: How many members joined since January of 2017?</h2>
+<div id="how-many-members-joined-since-january-of-2017" class="section level3">
+<h3 class="hasAnchor">
+<a href="#how-many-members-joined-since-january-of-2017" class="anchor"></a>How many members joined since January of 2017?</h3>
 <p>Load the member list data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)</code></pre></div>
 <p>Lets plot it!</p>
@@ -94,6 +94,7 @@
      <span class="dt">main =</span> <span class="st">"Cumulative CRUG members"</span>,  
          <span class="dt">ylab =</span> <span class="st">"Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="new-members_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+</div>
 <div id="how-many-joined-since-january-2017" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-many-joined-since-january-2017" class="anchor"></a>How many joined since January 2017?</h3>
@@ -102,9 +103,9 @@
 <span class="kw">max</span>(members_2017_present<span class="op">$</span>Count.Index) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(members_2017_present<span class="op">$</span>Count.Index)</code></pre></div>
 <pre><code>## [1] 961</code></pre>
 </div>
-<div id="how-many-joined-since-the-last-meetup" class="section level3">
+<div id="how-many-joined-between-meetups" class="section level3">
 <h3 class="hasAnchor">
-<a href="#how-many-joined-since-the-last-meetup" class="anchor"></a>How many joined since the last meetup?</h3>
+<a href="#how-many-joined-between-meetups" class="anchor"></a>How many joined between meetups?</h3>
 <p>First, get a unique ordered list of Meetup dates</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Meetup_dates &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(member_list<span class="op">$</span>Last.Attended))
 
@@ -394,7 +395,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <td align="left">161</td>
 </tr></tbody>
 </table>
-<p>Let plot the <code>new members</code> data.</p>
+<p>Plot the <code>new members</code> data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">   <span class="co"># Create Date Range Index</span>
   Start_Date &lt;-<span class="st"> "2010-01-01"</span>
     End_Date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
@@ -409,7 +410,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
          <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="new-members_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<p>Let plot the <code>new members</code> data since 2017.</p>
+<p>Plot the <code>new members</code> data since 2017.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">   <span class="co"># Create Date Range Index</span>
   Start_Date &lt;-<span class="st"> "2017-01-01"</span>
     End_Date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
@@ -425,17 +426,9 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="new-members_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#question-how-many-members-joined-since-january-of-2017">Question: How many members joined since January of 2017?</a></li>
-      </ul>
-</div>
       </div>
 
 </div>

@@ -84,9 +84,9 @@
 
     
     
-<div id="question-how-many-joined-since-january-of-2017" class="section level2">
+<div id="question-how-many-members-joined-since-january-of-2017" class="section level2">
 <h2 class="hasAnchor">
-<a href="#question-how-many-joined-since-january-of-2017" class="anchor"></a>Question: How many joined since January of 2017?</h2>
+<a href="#question-how-many-members-joined-since-january-of-2017" class="anchor"></a>Question: How many members joined since January of 2017?</h2>
 <p>Load the member list data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)</code></pre></div>
 <p>Lets plot it!</p>
@@ -94,152 +94,304 @@
      <span class="dt">main =</span> <span class="st">"Cumulative CRUG members"</span>,  
          <span class="dt">ylab =</span> <span class="st">"Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="new-members_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<p>How many members since January 2017?</p>
+<div id="how-many-joined-since-january-2017" class="section level3">
+<h3 class="hasAnchor">
+<a href="#how-many-joined-since-january-2017" class="anchor"></a>How many joined since January 2017?</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">members_2017_present &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)
 
 <span class="kw">max</span>(members_2017_present<span class="op">$</span>Count.Index) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(members_2017_present<span class="op">$</span>Count.Index)</code></pre></div>
 <pre><code>## [1] 961</code></pre>
 </div>
-<div id="question-how-many-joined-since-the-last-meetup" class="section level1">
-<h1 class="hasAnchor">
-<a href="#question-how-many-joined-since-the-last-meetup" class="anchor"></a>Question: How many joined since the last meetup?</h1>
+<div id="how-many-joined-since-the-last-meetup" class="section level3">
+<h3 class="hasAnchor">
+<a href="#how-many-joined-since-the-last-meetup" class="anchor"></a>How many joined since the last meetup?</h3>
 <p>First, get a unique ordered list of Meetup dates</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Meetup_dates &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(member_list<span class="op">$</span>Last.Attended))</code></pre></div>
-<p>How many new member since last meetup?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)])
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Meetup_dates &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(member_list<span class="op">$</span>Last.Attended))
+
+new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)])
 
 <span class="kw">NROW</span>(new_members)</code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>How about the number of new members between last meetup and the one prior to that?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members2 &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)] <span class="op">&amp;</span>
 <span class="st">                                    </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>])
-  <span class="co"># how many?</span>
+
 <span class="kw">NROW</span>(new_members2)</code></pre></div>
 <pre><code>## [1] 84</code></pre>
-<p>How about iterating over this process over all CRUG meetups?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> ## First, get a unique ordered list of Meetup dates
-  Meetup_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(member_list<span class="op">$</span>Last.Attended)), <span class="kw">Sys.Date</span>())
+<p>Since was getting repetitive, we’ve created a function <code>new_mem_counter</code> to count the number of new members joined between meetups.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)
 
-  <span class="co"># initialize data.frame to save memory</span>
-  new_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">"Date"</span>=<span class="ot">NULL</span>, <span class="st">"Count.Index"</span>=<span class="ot">NULL</span>)
-  
-  <span class="co"># start the for loop</span>
-  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>) {
-          
-   df &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span>(i<span class="op">-</span><span class="dv">1</span>)] <span class="op">&amp;</span>
-<span class="st">                             </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span>(i)])
-        
-        Date &lt;-<span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span>(i<span class="op">-</span><span class="dv">1</span>)]
-        New  &lt;-<span class="st"> </span><span class="kw">max</span>(df<span class="op">$</span>Count.Index) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(df<span class="op">$</span>Count.Index)
-        
-        new_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(new_df,<span class="kw">data.frame</span>(Date, New))
-        
-        
-        }</code></pre></div>
-<p>That works, so lets turn it into a function for future use.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> new_mem_counter &lt;-<span class="st"> </span><span class="cf">function</span>(data) {
-         
-         Meetup_dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(data<span class="op">$</span>Last.Attended)), <span class="kw">Sys.Date</span>()<span class="op">-</span><span class="dv">1</span>)
-         
-         data &lt;-<span class="st"> </span>data[,<span class="kw">c</span>(<span class="st">"Joined.Group.on"</span>, <span class="st">"Count.Index"</span>)]
-         
-         <span class="co">#initialize data.frame</span>
-         new_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">"Date"</span>=Meetup_dates[<span class="dv">1</span>], <span class="st">"New"</span>=<span class="dv">0</span>)
-         
-         <span class="cf">for</span>(i <span class="cf">in</span> (<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>)<span class="op">:</span><span class="dv">1</span>) {
-                 
-                 df &lt;-<span class="st"> </span><span class="kw">subset</span>(data, data<span class="op">$</span>Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span>(i<span class="op">-</span><span class="dv">1</span>)] <span class="op">&amp;</span>
-<span class="st">                                      </span>data<span class="op">$</span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span>(i)])
-                 
-                 Date &lt;-<span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span>(i<span class="op">-</span><span class="dv">1</span>)]
-                 New  &lt;-<span class="st"> </span><span class="kw">max</span>(df<span class="op">$</span>Count.Index) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(df<span class="op">$</span>Count.Index)
-                 
-                 new_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(new_df,<span class="kw">data.frame</span>(Date, New))
-                 
-                 
-         }
-         
-       <span class="kw">return</span>(new_df) 
-}
- 
- new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)
- 
- new_members</code></pre></div>
-<pre><code>##          Date New
-## 1  2010-05-27   0
-## 2  2010-08-26  20
-## 3  2010-10-20  10
-## 4  2010-12-16  15
-## 5  2011-03-23  34
-## 6  2011-06-02  17
-## 7  2011-09-08  25
-## 8  2011-11-17  23
-## 9  2012-01-26  30
-## 10 2012-04-05  60
-## 11 2012-05-30  57
-## 12 2012-06-18  13
-## 13 2012-08-15  48
-## 14 2012-10-03  55
-## 15 2012-11-14  52
-## 16 2013-02-07  74
-## 17 2013-05-01  69
-## 18 2013-05-30  32
-## 19 2013-05-31   0
-## 20 2013-08-08  63
-## 21 2013-09-11  64
-## 22 2013-11-14  33
-## 23 2014-02-19  70
-## 24 2014-04-05  39
-## 25 2014-04-16  15
-## 26 2014-05-14  56
-## 27 2014-10-23 149
-## 28 2014-11-13  33
-## 29 2015-01-29  90
-## 30 2015-03-12  66
-## 31 2015-04-02  30
-## 32 2015-07-28 123
-## 33 2015-07-31   5
-## 34 2015-10-21  97
-## 35 2015-11-05  19
-## 36 2015-12-02  35
-## 37 2016-06-05 161
-## 38 2016-06-12   8
-## 39 2016-06-26  18
-## 40 2016-06-29   8
-## 41 2016-07-10  16
-## 42 2016-07-24  25
-## 43 2016-08-03  31
-## 44 2016-09-01  39
-## 45 2016-09-28  39
-## 46 2016-11-10  40
-## 47 2017-01-24  98
-## 48 2017-01-26   1
-## 49 2017-03-07  76
-## 50 2017-03-16  25
-## 51 2017-04-27  44
-## 52 2017-05-17  41
-## 53 2017-06-22  64
-## 54 2017-07-15  33
-## 55 2017-09-07  91
-## 56 2017-10-14  75
-## 57 2017-11-15  98
-## 58 2018-01-27  87
-## 59 2018-02-15  66
-## 60 2018-03-29  94
-## 61 2018-04-14  83
-## 62 2018-04-17   5</code></pre>
+<span class="kw">kable</span>(new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Date</th>
+<th align="left">New</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2010-05-27</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">2010-08-26</td>
+<td align="left">20</td>
+</tr>
+<tr class="odd">
+<td align="left">2010-10-20</td>
+<td align="left">10</td>
+</tr>
+<tr class="even">
+<td align="left">2010-12-16</td>
+<td align="left">15</td>
+</tr>
+<tr class="odd">
+<td align="left">2011-03-23</td>
+<td align="left">34</td>
+</tr>
+<tr class="even">
+<td align="left">2011-06-02</td>
+<td align="left">17</td>
+</tr>
+<tr class="odd">
+<td align="left">2011-09-08</td>
+<td align="left">25</td>
+</tr>
+<tr class="even">
+<td align="left">2011-11-17</td>
+<td align="left">23</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-01-26</td>
+<td align="left">30</td>
+</tr>
+<tr class="even">
+<td align="left">2012-04-05</td>
+<td align="left">60</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-05-30</td>
+<td align="left">57</td>
+</tr>
+<tr class="even">
+<td align="left">2012-06-18</td>
+<td align="left">13</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-08-15</td>
+<td align="left">48</td>
+</tr>
+<tr class="even">
+<td align="left">2012-10-03</td>
+<td align="left">55</td>
+</tr>
+<tr class="odd">
+<td align="left">2012-11-14</td>
+<td align="left">52</td>
+</tr>
+<tr class="even">
+<td align="left">2013-02-07</td>
+<td align="left">74</td>
+</tr>
+<tr class="odd">
+<td align="left">2013-05-01</td>
+<td align="left">69</td>
+</tr>
+<tr class="even">
+<td align="left">2013-05-30</td>
+<td align="left">32</td>
+</tr>
+<tr class="odd">
+<td align="left">2013-05-31</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">2013-08-08</td>
+<td align="left">63</td>
+</tr>
+<tr class="odd">
+<td align="left">2013-09-11</td>
+<td align="left">64</td>
+</tr>
+<tr class="even">
+<td align="left">2013-11-14</td>
+<td align="left">33</td>
+</tr>
+<tr class="odd">
+<td align="left">2014-02-19</td>
+<td align="left">70</td>
+</tr>
+<tr class="even">
+<td align="left">2014-04-05</td>
+<td align="left">39</td>
+</tr>
+<tr class="odd">
+<td align="left">2014-04-16</td>
+<td align="left">15</td>
+</tr>
+<tr class="even">
+<td align="left">2014-05-14</td>
+<td align="left">56</td>
+</tr>
+<tr class="odd">
+<td align="left">2014-10-23</td>
+<td align="left">149</td>
+</tr>
+<tr class="even">
+<td align="left">2014-11-13</td>
+<td align="left">33</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-01-29</td>
+<td align="left">90</td>
+</tr>
+<tr class="even">
+<td align="left">2015-03-12</td>
+<td align="left">66</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-04-02</td>
+<td align="left">30</td>
+</tr>
+<tr class="even">
+<td align="left">2015-07-28</td>
+<td align="left">123</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-07-31</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">2015-10-21</td>
+<td align="left">97</td>
+</tr>
+<tr class="odd">
+<td align="left">2015-11-05</td>
+<td align="left">19</td>
+</tr>
+<tr class="even">
+<td align="left">2015-12-02</td>
+<td align="left">35</td>
+</tr>
+<tr class="odd">
+<td align="left">2016-06-05</td>
+<td align="left">161</td>
+</tr>
+<tr class="even">
+<td align="left">2016-06-12</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">2016-06-26</td>
+<td align="left">18</td>
+</tr>
+<tr class="even">
+<td align="left">2016-06-29</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">2016-07-10</td>
+<td align="left">16</td>
+</tr>
+<tr class="even">
+<td align="left">2016-07-24</td>
+<td align="left">25</td>
+</tr>
+<tr class="odd">
+<td align="left">2016-08-03</td>
+<td align="left">31</td>
+</tr>
+<tr class="even">
+<td align="left">2016-09-01</td>
+<td align="left">39</td>
+</tr>
+<tr class="odd">
+<td align="left">2016-09-28</td>
+<td align="left">39</td>
+</tr>
+<tr class="even">
+<td align="left">2016-11-10</td>
+<td align="left">40</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-01-24</td>
+<td align="left">98</td>
+</tr>
+<tr class="even">
+<td align="left">2017-01-26</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-03-07</td>
+<td align="left">76</td>
+</tr>
+<tr class="even">
+<td align="left">2017-03-16</td>
+<td align="left">25</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-04-27</td>
+<td align="left">44</td>
+</tr>
+<tr class="even">
+<td align="left">2017-05-17</td>
+<td align="left">41</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-06-22</td>
+<td align="left">64</td>
+</tr>
+<tr class="even">
+<td align="left">2017-07-15</td>
+<td align="left">33</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-09-07</td>
+<td align="left">91</td>
+</tr>
+<tr class="even">
+<td align="left">2017-10-14</td>
+<td align="left">75</td>
+</tr>
+<tr class="odd">
+<td align="left">2017-11-15</td>
+<td align="left">98</td>
+</tr>
+<tr class="even">
+<td align="left">2018-01-27</td>
+<td align="left">87</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-02-15</td>
+<td align="left">66</td>
+</tr>
+<tr class="even">
+<td align="left">2018-03-29</td>
+<td align="left">94</td>
+</tr>
+<tr class="odd">
+<td align="left">2018-04-14</td>
+<td align="left">83</td>
+</tr>
+<tr class="even">
+<td align="left">2018-04-17</td>
+<td align="left">5</td>
+</tr>
+</tbody>
+</table>
 <p>Lets Explore the <code>new_members</code> data set. Which gap between meetups had the most new members?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">kable</span>(new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw">max</span>(new_members<span class="op">$</span>New),])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">max_new_members &lt;-<span class="st"> </span>new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw">max</span>(new_members<span class="op">$</span>New),]
+
+<span class="kw">kable</span>(max_new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
 <th align="left">Date</th>
-<th align="right">New</th>
+<th align="left">New</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td>37</td>
 <td align="left">2016-06-05</td>
-<td align="right">161</td>
+<td align="left">161</td>
 </tr></tbody>
 </table>
 <p>Let plot the <code>new members</code> data.</p>
@@ -256,7 +408,7 @@
   <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels,
          <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="new-members_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p><img src="new-members_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Let plot the <code>new members</code> data since 2017.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">   <span class="co"># Create Date Range Index</span>
   Start_Date &lt;-<span class="st"> "2017-01-01"</span>
@@ -271,7 +423,8 @@
   <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>,
          <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="new-members_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><img src="new-members_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+</div>
 </div>
   </div>
 
@@ -280,8 +433,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#question-how-many-joined-since-january-of-2017">Question: How many joined since January of 2017?</a></li>
-      <li><a href="#question-how-many-joined-since-the-last-meetup">Question: How many joined since the last meetup?</a></li>
+<li><a href="#question-how-many-members-joined-since-january-of-2017">Question: How many members joined since January of 2017?</a></li>
       </ul>
 </div>
       </div>

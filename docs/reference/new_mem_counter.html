@@ -27,7 +27,7 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="New Member Counter — new_mem_counter" />
 
-<meta property="og:description" content="Generates totals of new members between each meetup" />
+<meta property="og:description" content="Generates sum of new members between each meetup." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,7 +109,7 @@
     </div>
 
     
-    <p>Generates totals of new members between each meetup</p>
+    <p>Generates sum of new members between each meetup.</p>
     
 
     <pre class="usage"><span class='fu'>new_mem_counter</span>(<span class='no'>data</span>)</pre>
@@ -142,7 +142,20 @@ meetup.</p>
 #&gt; 59 2018-02-15  66
 #&gt; 60 2018-03-29  94
 #&gt; 61 2018-04-14  83
-#&gt; 62 2018-04-17   5</div><div class='input'> 
+#&gt; 62 2018-04-17   5</div><div class='input'>
+ <span class='co'># Plot the `new members` data since 2017.</span>
+
+ <span class='co'># Create Date Range Index</span>
+ <span class='no'>Range</span> <span class='kw'>&lt;-</span> <span class='no'>new_members</span>[<span class='no'>new_members</span>$<span class='no'>Date</span> <span class='kw'>&gt;</span> <span class='st'>"2017-01-01"</span> <span class='kw'>&amp;</span> <span class='no'>new_members</span>$<span class='no'>Date</span> <span class='kw'>&lt;=</span> <span class='fu'>Sys.Date</span>(),]
+ <span class='no'>Date_Index</span> <span class='kw'>&lt;-</span> <span class='fu'>as.numeric</span>(<span class='fu'>row.names</span>(<span class='no'>Range</span>))
+
+ <span class='co'># Create x-axis labels, using year-month date format</span>
+ <span class='no'>x_labels</span> <span class='kw'>&lt;-</span> <span class='fu'>format</span>(<span class='no'>new_members</span>$<span class='no'>Date</span>[<span class='no'>Date_Index</span>], <span class='st'>"%Y-%m"</span>)
+
+ <span class='co'># Plot</span>
+ <span class='fu'>barplot</span>(<span class='no'>new_members</span>$<span class='no'>New</span>[<span class='no'>Date_Index</span>], <span class='kw'>names.arg</span> <span class='kw'>=</span> <span class='no'>x_labels</span>, <span class='kw'>las</span><span class='kw'>=</span><span class='fl'>2</span>,
+         <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"CRUG members, joined between meetups"</span>,
+         <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"New Members"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='new_mem_counter-1.png' alt='' width='700' height='433' /></div><div class='input'>         
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

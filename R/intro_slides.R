@@ -1,9 +1,15 @@
-#' Intro Slides
+#' R User Group Introduction Slides
 #'
-#' Creates introduction ioslides markdown template.
+#' This function creates an ioslides rmarkdown template, with default content useful
+#' for introducing \strong{Chicago R user group} meetups. Slides can be accessed 
+#' from within RStudio using the \strong{New R Markdown} dialog menu, and then 
+#' selecting \strong{From Template}. One can also use the `draft` function, 
+#' exemplified in the Examples section below.
 #' 
-#' @param ... Arguments passed to ioslides_presentation.
+#' @param ... Arguments passed to rmarkdown::ioslides_presentation function.
 #' 
+#' @examples
+#' rmarkdown::draft(file="new_meetup.Rmd", template = "inst/rmarkdown/templates/intro_slides")
 #' 
 #'@export
 intro_slides <- function(...) {

@@ -2,13 +2,21 @@
 % Please edit documentation in R/intro_slides.R
 \name{intro_slides}
 \alias{intro_slides}
-\title{Intro Slides}
+\title{R User Group Introduction Slides}
 \usage{
 intro_slides(...)
 }
 \arguments{
-\item{...}{Arguments passed to ioslides_presentation.}
+\item{...}{Arguments passed to rmarkdown::ioslides_presentation function.}
 }
 \description{
-Creates introduction ioslides markdown template.
+This function creates an ioslides rmarkdown template, with default content useful
+for introducing \strong{Chicago R user group} meetups. Slides can be accessed 
+from within RStudio using the \strong{New R Markdown} dialog menu, and then 
+selecting \strong{From Template}. One can also use the `draft` function, 
+exemplified in the Examples section below.
+}
+\examples{
+rmarkdown::draft(file="new_meetup.Rmd", template = "inst/rmarkdown/templates/intro_slides")
+
 }

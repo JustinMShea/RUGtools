@@ -19,7 +19,7 @@ library(RUGtools)
 
 
   
-## Question: How many joined since January of 2017?  
+## Question: How many members joined since January of 2017?  
  
 Load the member list data.
 
@@ -35,7 +35,7 @@ plot(y = member_list$Count.Index, x = member_list$Joined.Group.on, type = "l", c
          ylab = "Members", xlab = "")
 ```
 
-How many members since January 2017?
+### How many joined since January 2017?
 
 ```{r}
 members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
@@ -45,17 +45,13 @@ max(members_2017_present$Count.Index) - min(members_2017_present$Count.Index)
 ```
 
 
-# Question: How many joined since the last meetup? 
+###  How many joined since the last meetup? 
 
 First, get a unique ordered list of Meetup dates
 
 ```{r}
 Meetup_dates <- sort(unique(member_list$Last.Attended))
-```
 
-How many new member since last meetup?
-
-```{r}
 new_members <- subset(member_list, Joined.Group.on > Meetup_dates[NROW(Meetup_dates)])
 
 NROW(new_members)
@@ -66,76 +62,26 @@ How about the number of new members between last meetup and the one prior to tha
 ```{r}
 new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)] &
                                     Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-1])
-  # how many?
+
 NROW(new_members2)
 ```
 
-  
-How about iterating over this process over all CRUG meetups?
 
-
-```{r, warning=FALSE}
- ## First, get a unique ordered list of Meetup dates
-  Meetup_dates <- c(sort(unique(member_list$Last.Attended)), Sys.Date())
-
-  # initialize data.frame to save memory
-  new_df <- data.frame("Date"=NULL, "Count.Index"=NULL)
-  
-  # start the for loop
-  for(i in 1:NROW(Meetup_dates)-1) {
-          
-   df <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)-(i-1)] &
-                             Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
-        
-        Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
-        New  <- max(df$Count.Index) - min(df$Count.Index)
-        
-        new_df <- rbind(new_df,data.frame(Date, New))
-        
-        
-        }
-```
-
-That works, so lets turn it into a function for future use.
-
+Since was getting repetitive, we've created a function `new_mem_counter` to count the number of new members joined between meetups.
 
 ```{r}
- 
- new_mem_counter <- function(data) {
-         
-         Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date()-1)
-         
-         data <- data[,c("Joined.Group.on", "Count.Index")]
-         
-         #initialize data.frame
-         new_df <- data.frame("Date"=Meetup_dates[1], "New"=0)
-         
-         for(i in (NROW(Meetup_dates)-1):1) {
-                 
-                 df <- subset(data, data$Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)-(i-1)] &
-                                      data$Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
-                 
-                 Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
-                 New  <- max(df$Count.Index) - min(df$Count.Index)
-                 
-                 new_df <- rbind(new_df,data.frame(Date, New))
-                 
-                 
-         }
-         
-       return(new_df) 
-}
- 
- new_members <- new_mem_counter(member_list)
- 
- new_members
+new_members <- new_mem_counter(member_list)
+
+kable(new_members, align = 'l')
 ```
 
 Lets Explore the `new_members` data set.
 Which gap between meetups had the most new members?
  
 ```{r}
- kable(new_members[new_members$New==max(new_members$New),])
+max_new_members <- new_members[new_members$New==max(new_members$New),]
+
+kable(max_new_members, align = 'l')
 ```
 
 Let plot the `new members` data.

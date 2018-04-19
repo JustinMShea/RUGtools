@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-meetup-header.R
 vignettes/
 docs/
 data-raw/

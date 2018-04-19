@@ -35,6 +35,7 @@ like R/Finance and UseR!.}
 }
 }
 \examples{
+\dontrun{
 rmarkdown::draft(file="new_meetup.Rmd", template = "inst/rmarkdown/templates/intro_slides")
-
+}
 }

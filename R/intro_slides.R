@@ -26,8 +26,9 @@
 #'  for more information on creating custom R Markdown templates for your meetup.
 #' 
 #' @examples
+#' \dontrun{
 #' rmarkdown::draft(file="new_meetup.Rmd", template = "inst/rmarkdown/templates/intro_slides")
-#' 
+#' }
 #'@export
 intro_slides <- function(...) {
   

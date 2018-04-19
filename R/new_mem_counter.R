@@ -1,6 +1,6 @@
 #' New Member Counter
 #' 
-#' Generates totals of new members between each meetup
+#' Generates sum of new members between each meetup.
 #'
 #' @return\code{new_mem_counter} returns a \code{\link{data.frame}} containing 2 variables. 
 #' These are the `Date` of each meetup, and how many `New` members joined leading up to each 
@@ -16,6 +16,20 @@
 #'  
 #'  tail(new_members)
 #'  
+#'  # Plot the `new members` data since 2017.
+#'  
+#'  # Create Date Range Index
+#'  Range <- new_members[new_members$Date > "2017-01-01" & new_members$Date <= Sys.Date(),]
+#'  Date_Index <- as.numeric(row.names(Range))
+#'  
+#'  # Create x-axis labels, using year-month date format
+#'  x_labels <- format(new_members$Date[Date_Index], "%Y-%m")
+#'  
+#'  # Plot
+#'  barplot(new_members$New[Date_Index], names.arg = x_labels, las=2,
+#'          main = "CRUG members, joined between meetups",  
+#'          ylab = "New Members", xlab = "")
+#'          
 #' @export
 new_mem_counter <- function(data) {
         

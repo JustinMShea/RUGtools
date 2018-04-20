@@ -2,4 +2,4 @@
 
 export(intro_slides)
 export(new_mem_counter)
-export(pizza_quantity)
+export(pizza_estimate)

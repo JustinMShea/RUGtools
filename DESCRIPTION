@@ -4,7 +4,7 @@ Title: Tools useful for organizing R User Group meetups
 Version: 0.2-0
 Authors@R: person("Justin M.", "Shea", email = "justin.shea@gmail.com", role = c("aut", "cre"))
 Description: This package contains functions, data, reports, and Rmarkdown templates 
-   inspired by organizing the Chicago R User Group. 
+   inspired by the organizers of the Chicago R User Group. 
 Depends: R (>= 3.0.0)
 License: GPL-3
 Encoding: UTF-8
@@ -12,5 +12,5 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports: knitr, rmarkdown
 VignetteBuilder: knitr
-URL: https://chicago-r-user-group.github.io/RUGtools/
-BugReports: https://github.com/Chicago-R-User-Group/RUGtools/issues
+URL: https://justinmshea.github.io/RUGtools/
+BugReports: https://github.com/JustinMShea/RUGtools/issues

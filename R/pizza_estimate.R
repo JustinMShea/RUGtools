@@ -1,7 +1,20 @@
-#' Estimate pizza order
+#' Estimate your pizza order
 #' 
 #' Function to compute how many pizzas to order based on arguments provided. 
-#' Defaults to \strong{thin-crust} style.
+#' Defaults to \strong{thin} crust.
+#' 
+#' Chicago thin crust is cut into small squares, known as "tavern style" or 
+#' "party cut". 
+#' 
+#' Channeling our ever-curious pizza scientist, \emph{\strong{it turns out}}, the 
+#' "party cut" inherits a few very attractive properties when dividing multiple 
+#' pizzas among \strong{n} guests. Smaller pieces allow guests to more precisely 
+#' estimate pizza consumption, thus decreasing the integer-programming problem 
+#' exacerbated by larger slices. 
+#' 
+#' 
+#' By requesting the "party cut", one reduces the tragedy that is wasted pizza 
+#' and exhibits great stewardship of the sponsor resources entrusted to them.
 #' 
 #' 
 #' @return \code{pizza_estimate} returns a \code{\link{data.frame}} containing 5 variables. 
@@ -13,20 +26,23 @@
 #' @param pizza_diameter Integer. Diameter of the largest pizza available in inches. 
 #' Defaults to 18 inches for an extra large pizza.
 #' @param serving Integer or Numeric. Number of servings per person. 
-#' Default is 2 and does not have to be a whole number. See references for methodology.
-#' @param style Character vector of either "thincrust", "pan", or "deepdish". 
-#' Defaults to Chicago "thincrust".
+#' Default is 2 and does not have to be a whole number. See references for methodology!
+#' @param style Character vector of either "thin", "pan", or "deepdish". 
+#' Defaults to "thin" crust, please read the \strong{Details} section for important 
+#' information. Most pizza parlors have "thin" and "pan" styles..."deepdish" is an option 
+#' because this function was written in Chicago, though it is our sincerest hope,
+#' that we shall never set this parameter.
 #' 
 #' @references Lisa R. Young, Ph.D., R.D. \href{https://www.nestleusa.com/enjoypizza}{Nestle USA Site: Enjoy Pizza}
 #' and \href{https://www.nestleusa.com/asset-library/documents/nutritionhealthwellness/pizza/pizzaportionguide_full.pdf}{PDF: The Fun of Pizza, the Balance of Good Nutrition, page 5.}
 #' 
 #' @examples
 #' pizza_estimate(registered=150, pizza_diameter=18, attend_rate=0.60, serving = 2, 
-#' style = "thincrust")
+#' style = "thin")
 #' 
 #' @export
 pizza_estimate <- 
-function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2, style = "thincrust") {
+function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2, style = "thin") {
         
         if(registered %% 1 != 0) {
         
@@ -40,7 +56,7 @@ function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2, style
         
         stop(paste("Argument 'attend_rate' must be a percentage expressed in decimal point form.", attend_rate, " is incorrect."))
         
-  } else if(!style %in% c("thincrust", "pan", "deepdish")) {  
+  } else if(!style %in% c("thin", "pan", "deepdish")) {  
           
           stop(paste("Pizza 'style' must be either 'thincrust', 'pan', or 'deepdish'. ", "You input ",style))  
           
@@ -61,7 +77,7 @@ function(registered=120, pizza_diameter=18, attend_rate=0.60, serving = 2, style
         portion <- serving*(0.85*y + 0.15*x)
         
         # style grid, to adjust for style
-        style_grid <- data.frame(style = c("thincrust", "pan", "deepdish"), mult = c(1, 0.77, 0.55))
+        style_grid <- data.frame(style = c("thin", "pan", "deepdish"), mult = c(1, 0.77, 0.55))
  
         # Pizza Area/divided portion in square inches per person
         eaters_per_pizza <- (pizza_area / portion) / (style_grid[style_grid$style==style,2])

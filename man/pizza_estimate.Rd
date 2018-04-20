@@ -2,10 +2,10 @@
 % Please edit documentation in R/pizza_estimate.R
 \name{pizza_estimate}
 \alias{pizza_estimate}
-\title{Estimate pizza order}
+\title{Estimate your pizza order}
 \usage{
 pizza_estimate(registered = 120, pizza_diameter = 18, attend_rate = 0.6,
-  serving = 2, style = "thincrust")
+  serving = 2, style = "thin")
 }
 \arguments{
 \item{registered}{Integer. The number of people registered on Meetup.com}
@@ -17,10 +17,13 @@ Defaults to 18 inches for an extra large pizza.}
 Defaults to 60 percent attendance rate, expressed as \strong{0.60}.}
 
 \item{serving}{Integer or Numeric. Number of servings per person. 
-Default is 2 and does not have to be a whole number. See references for methodology.}
+Default is 2 and does not have to be a whole number. See references for methodology!}
 
-\item{style}{Character vector of either "thincrust", "pan", or "deepdish". 
-Defaults to Chicago "thincrust".}
+\item{style}{Character vector of either "thin", "pan", or "deepdish". 
+Defaults to "thin" crust, please read the \strong{Details} section for important 
+information. Most pizza parlors have "thin" and "pan" styles..."deepdish" is an option 
+because this function was written in Chicago, though it is our sincerest hope,
+that we shall never set this parameter.}
 }
 \value{
 \code{pizza_estimate} returns a \code{\link{data.frame}} containing 5 variables. 
@@ -28,11 +31,24 @@ These are \code{registered, est_attend, eaters_per_pizza, style, and the pizza_e
 }
 \description{
 Function to compute how many pizzas to order based on arguments provided. 
-Defaults to \strong{thin-crust} style.
+Defaults to \strong{thin} crust.
+}
+\details{
+Chicago thin crust is cut into small squares, known as "tavern style" or 
+"party cut".
+
+Channeling our ever-curious pizza scientist, \emph{\strong{it turns out}}, the 
+"party cut" inherits a few very attractive properties when dividing multiple 
+pizzas among \strong{n} guests. Smaller pieces allow guests to more precisely 
+estimate pizza consumption, thus decreasing the integer-programming problem 
+exacerbated by larger slices.
+
+By requesting the "party cut", one reduces the tragedy that is wasted pizza 
+and exhibits great stewardship of the sponsor resources entrusted to them.
 }
 \examples{
 pizza_estimate(registered=150, pizza_diameter=18, attend_rate=0.60, serving = 2, 
-style = "thincrust")
+style = "thin")
 
 }
 \references{

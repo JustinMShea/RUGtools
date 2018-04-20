@@ -37,17 +37,16 @@ member_list$How.long.have.you.been.using.R..or.S..software. <- NULL
 member_list$R.Experience <- stringi::stri_trans_general(member_list$R.Experience, "latin-ascii")
 member_list$Location <- stringi::stri_trans_general(member_list$Location, "latin-ascii")
 
-
 # order by date joined
 member_list <- member_list[with(member_list, order(Joined.Group.on)),]
 # OR order by date joined AND then meetup.id
 member_list <- member_list[with(member_list, order(Joined.Group.on, Member.ID)),]
 
-# Add cumalitive sum aka "count_index"
-member_list$Count.Index <- seq(from = 1, to = NROW(member_list), by = 1)
-row.names(member_list) <- as.integer(member_list$count_index)
-
-
+# Overwrite current Member.ID with a sequence of integers starting with 1.
+# Acts as a count index
+member_list$Member.ID <- seq(from = 1, to = NROW(member_list), by = 1)
+# set row.names to integer of count index.
+row.names(member_list) <- as.integer(member_list$Member.ID)
 
 
 # Drop name, User.ID, and title columns

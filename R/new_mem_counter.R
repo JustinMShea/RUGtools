@@ -35,7 +35,7 @@ new_mem_counter <- function(data) {
         
         Meetup_dates <- c(sort(unique(data$Last.Attended)), Sys.Date()-1)
         
-        data <- data[,c("Joined.Group.on", "Count.Index")]
+        data <- data[,c("Joined.Group.on", "Member.ID")]
         
         #initialize data.frame
         new_df <- data.frame("Date"=Meetup_dates[1], "New"=0)
@@ -46,7 +46,7 @@ new_mem_counter <- function(data) {
                                      data$Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-(i)])
                 
                 Date <- Meetup_dates[NROW(Meetup_dates)-(i-1)]
-                New  <- max(df$Count.Index) - min(df$Count.Index)
+                New  <- max(df$Member.ID) - min(df$Member.ID)
                 
                 new_df <- rbind(new_df,data.frame(Date, New))
                 

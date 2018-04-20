@@ -28,7 +28,7 @@
 <meta property="og:title" content="Estimate your pizza order — pizza_estimate" />
 
 <meta property="og:description" content="Function to compute how many pizzas to order based on arguments provided. 
-Defaults to thin crust, the clear choice among Chicago locals." />
+Defaults to thin crust." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,7 +111,7 @@ Defaults to thin crust, the clear choice among Chicago locals." />
 
     
     <p>Function to compute how many pizzas to order based on arguments provided. 
-Defaults to <strong>thin</strong> crust, the clear choice among Chicago locals.</p>
+Defaults to <strong>thin</strong> crust.</p>
     
 
     <pre class="usage"><span class='fu'>pizza_estimate</span>(<span class='kw'>registered</span> <span class='kw'>=</span> <span class='fl'>120</span>, <span class='kw'>pizza_diameter</span> <span class='kw'>=</span> <span class='fl'>18</span>, <span class='kw'>attend_rate</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
@@ -144,8 +144,8 @@ Default is 2 and does not have to be a whole number. See references for methodol
       <td><p>Character vector of either "thin", "pan", or "deepdish". 
 Defaults to "thin" crust, please read the <strong>Details</strong> section for important 
 information. Most pizza parlors have "thin" and "pan" styles..."deepdish" is an option 
-because this documentation is written in Chicago, though we sincerely hope we 
-shall never need to set this parameter.</p></td>
+because this function was written in Chicago, though it is our sincerest hope,
+that we shall never set this parameter.</p></td>
     </tr>
     </table>
     
@@ -161,8 +161,8 @@ These are <code>registered, est_attend, eaters_per_pizza, style, and the pizza_e
 <p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em>, the 
 "party cut" inherits a few very attractive properties when dividing multiple 
 pizzas among <strong>n</strong> guests. Smaller pieces allow guests to more precisely 
-estimate pizza consumption, thus decreasing integer-programming problems, 
-which are exacerbated by larger slices.</p>
+estimate pizza consumption, thus decreasing the integer-programming problem 
+exacerbated by larger slices.</p>
 <p>By requesting the "party cut", one reduces the tragedy that is wasted pizza 
 and exhibits great stewardship of the sponsor resources entrusted to them.</p>
     

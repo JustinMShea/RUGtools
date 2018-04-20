@@ -6,22 +6,23 @@
 \title{member_list}
 \format{A data.frame with 3101 observations on 17 variables:
 \itemize{
- \item \strong{Member.ID}
- \item \strong{Joined.Group.on}
- \item \strong{Last.visited.group.on}
- \item \strong{Last.Attended}
- \item \strong{Total.RSVPs}
- \item \strong{RSVPed.Yes}
- \item \strong{RSVPed.Maybe}
- \item \strong{RSVPed.No}
- \item \strong{Meetups.attended}
- \item \strong{No.shows}
- \item \strong{Intro}
- \item \strong{Photo}
- \item \strong{Assistant.Organizer}
- \item \strong{Mailing.List}
- \item \strong{R.Experience}
- \item \strong{Count.Index}
+ \item \strong{Member.ID: }{Integer. Original Member.ID overwritten with a sequence 
+ of numbers beginning with 1 (not zero). Used as count index to sum new members.}
+ \item \strong{Location: }{Character string, format by "City, State"}
+ \item \strong{Joined.Group.on: }{Date, format YYYY-MM-DD}
+ \item \strong{Last.visited.group.on: }{Date, format YYYY-MM-DD}
+ \item \strong{Last.Attended: }{Date, format YYYY-MM-DD}
+ \item \strong{Total.RSVPs: }{Integer}
+ \item \strong{RSVPed.Yes: }{Integer}
+ \item \strong{RSVPed.Maybe: }{Integer}
+ \item \strong{RSVPed.No: }{Integer}
+ \item \strong{Meetups.attended: }{Integer}
+ \item \strong{No.shows: }{Integer}
+ \item \strong{Intro: }{Factor with 2 levels. "Yes","No"}
+ \item \strong{Photo: }{Factor with 2 levels. "Yes","No"}
+ \item \strong{Assistant.Organizer: }{Factor with 2 levels. "Yes","No"}
+ \item \strong{Mailing.List: }{Factor with 3 levels. "Yes","No", "Digest"}
+ \item \strong{R.Experience: }{Character string, member input on signup.}
  }}
 \source{
 \url{https://www.meetup.com/ChicagoRUG/members/?op=csv}
@@ -30,11 +31,13 @@
 data(member_list)
 }
 \description{
-Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PII removed, data formated.
+Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PII removed, 
+data formated and ready for analysis.
 }
 \examples{
  str(member_list)
-plot(y = member_list$Count.Index, x = member_list$Joined.Group.on, type = "l", col = "blue",
+
+plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", col = "blue",
  main = "Cumulative CRUG members", ylab = "Members", xlab = "")
 
 }

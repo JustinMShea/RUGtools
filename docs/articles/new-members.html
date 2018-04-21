@@ -75,7 +75,7 @@
       <h1>New Meetup Members</h1>
                         <h4 class="author">Justin M. Shea</h4>
             
-            <h4 class="date">April 17, 2018</h4>
+            <h4 class="date">April 21, 2018</h4>
       
       
       <div class="hidden name"><code>new-members.Rmd</code></div>
@@ -84,24 +84,68 @@
 
     
     
+<div id="introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h2>
+</div>
+<div id="r-user-group-introduction-slides-template" class="section level2">
+<h2 class="hasAnchor">
+<a href="#r-user-group-introduction-slides-template" class="anchor"></a>R User Group Introduction Slides template</h2>
+<p>This is a traditional ioslides R Markdown template, but modified to contain default content routinely used when introducing Chicago R user group meetups. Slides are useful because they look good and you won’t forget to do important things like <strong>thanking the sponsors!</strong> Slides can be accessed from within R Studio using the <code>New R Markdown</code> dialog menu, and then selecting <code>From Template</code>. One can also use the <code>draft</code> function, exemplified below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rmarkdown<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rmarkdown/topics/draft">draft</a></span>(<span class="dt">file=</span><span class="st">"new_meetup.Rmd"</span>, <span class="dt">template =</span> <span class="st">"intro_slides"</span>, <span class="dt">package=</span><span class="st">"RUGtools"</span>)</code></pre></div>
+</div>
+<div id="estimate-your-pizza-order" class="section level2">
+<h2 class="hasAnchor">
+<a href="#estimate-your-pizza-order" class="anchor"></a>Estimate your pizza order</h2>
+<p>In Chicago, we think a lot about Pizza. And if one is involved in the local meetup culture, this is doubly so. At a recent meetup group (which ironically shared the same name as a pizza shape), I counted nearly 6 large pizzas left over. Struck by an overwhelming sorrow, I vowed that we shall never be part of such a tragedy. With a few data points, the <code>pizza_estimate</code> function helps ensure we are able to look ourselves in the mirror the next morning.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pizzas &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pizza_estimate.html">pizza_estimate</a></span>(<span class="dt">registered =</span> <span class="dv">140</span>, <span class="dt">pizza_diameter =</span> <span class="dv">18</span>, <span class="dt">attend_rate =</span> <span class="fl">0.60</span>, 
+               <span class="dt">serving =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">"thin"</span>)
+
+<span class="kw">kable</span>(pizzas)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">registered</th>
+<th align="right">est_attend</th>
+<th align="right">eaters_per_pizza</th>
+<th align="left">style</th>
+<th align="right">pizza_estimate</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">140</td>
+<td align="right">84</td>
+<td align="right">5.342811</td>
+<td align="left">thin</td>
+<td align="right">16</td>
+</tr></tbody>
+</table>
+<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing multiple pizzas among <strong>n</strong> guests. Smaller pieces allow guests to more precisely estimate pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. By requesting the “party cut”, one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.</p>
+<p><img src="new-members_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+</div>
+<div id="data-and-analysis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-and-analysis" class="anchor"></a>Data and Analysis</h2>
+<p>Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG. Personally identifiable information has been removed, data formatted and ready for analysis.</p>
 <div id="how-many-members-joined-since-january-of-2017" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-many-members-joined-since-january-of-2017" class="anchor"></a>How many members joined since January of 2017?</h3>
 <p>Load the member list data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)</code></pre></div>
+<p>How many members do we have?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(member_list<span class="op">$</span>Member.ID)</code></pre></div>
+<pre><code>## [1] 3101</code></pre>
 <p>Lets plot it!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">y =</span> member_list<span class="op">$</span>Count.Index, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">col =</span> <span class="st">"blue"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">col =</span> <span class="st">"blue"</span>,
      <span class="dt">main =</span> <span class="st">"Cumulative CRUG members"</span>,  
          <span class="dt">ylab =</span> <span class="st">"Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="new-members_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p><img src="new-members_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 <div id="how-many-joined-since-january-2017" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-many-joined-since-january-2017" class="anchor"></a>How many joined since January 2017?</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">members_2017_present &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)
 
-<span class="kw">max</span>(members_2017_present<span class="op">$</span>Count.Index) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(members_2017_present<span class="op">$</span>Count.Index)</code></pre></div>
-<pre><code>## [1] 961</code></pre>
+<span class="kw">max</span>(members_2017_present<span class="op">$</span>Member.ID) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(members_2017_present<span class="op">$</span>Member.ID)</code></pre></div>
+<pre><code>## [1] 964</code></pre>
 </div>
 <div id="how-many-joined-between-meetups" class="section level3">
 <h3 class="hasAnchor">
@@ -109,17 +153,14 @@
 <p>First, get a unique ordered list of Meetup dates</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Meetup_dates &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(member_list<span class="op">$</span>Last.Attended))
 
-new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)])
-
-<span class="kw">NROW</span>(new_members)</code></pre></div>
-<pre><code>## [1] 6</code></pre>
-<p>How about the number of new members between last meetup and the one prior to that?</p>
+new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)])</code></pre></div>
+<p>Then count the number of new members joined between the most recent meetup and the one prior to that.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members2 &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)] <span class="op">&amp;</span>
 <span class="st">                                    </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>])
 
 <span class="kw">NROW</span>(new_members2)</code></pre></div>
 <pre><code>## [1] 84</code></pre>
-<p>Since was getting repetitive, we’ve created a function <code>new_mem_counter</code> to count the number of new members joined between meetups.</p>
+<p>In danger of repeating the above analysis several times over, we created a function <code>new_mem_counter</code> to count the number of new members joined between meetups for all meetups in the data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)
 
 <span class="kw">kable</span>(new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
@@ -179,11 +220,11 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 </tr>
 <tr class="odd">
 <td align="left">2012-08-15</td>
-<td align="left">48</td>
+<td align="left">47</td>
 </tr>
 <tr class="even">
 <td align="left">2012-10-03</td>
-<td align="left">55</td>
+<td align="left">54</td>
 </tr>
 <tr class="odd">
 <td align="left">2012-11-14</td>
@@ -303,7 +344,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 </tr>
 <tr class="even">
 <td align="left">2016-09-01</td>
-<td align="left">39</td>
+<td align="left">38</td>
 </tr>
 <tr class="odd">
 <td align="left">2016-09-28</td>
@@ -374,8 +415,8 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <td align="left">83</td>
 </tr>
 <tr class="even">
-<td align="left">2018-04-19</td>
-<td align="left">5</td>
+<td align="left">2018-04-20</td>
+<td align="left">8</td>
 </tr>
 </tbody>
 </table>
@@ -409,7 +450,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
   <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels,
          <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="new-members_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="new-members_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>Plot the <code>new members</code> data since 2017.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">   <span class="co"># Create Date Range Index</span>
   Start_Date &lt;-<span class="st"> "2017-01-01"</span>
@@ -424,11 +465,22 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
   <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>,
          <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="new-members_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="new-members_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+</div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#introduction">Introduction</a></li>
+      <li><a href="#r-user-group-introduction-slides-template">R User Group Introduction Slides template</a></li>
+      <li><a href="#estimate-your-pizza-order">Estimate your pizza order</a></li>
+      <li><a href="#data-and-analysis">Data and Analysis</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

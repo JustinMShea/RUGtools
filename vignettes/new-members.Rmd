@@ -1,7 +1,7 @@
 ---
 title: "New Meetup Members"
 author: "Justin M. Shea"
-date: "April 17, 2018"
+date: "April 21, 2018"
 output: html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
@@ -17,8 +17,67 @@ library(knitr)
 library(RUGtools)
 ```
 
+## Introduction
 
-  
+
+
+## R User Group Introduction Slides template
+
+This is a traditional ioslides R Markdown template, but modified to contain default content routinely used when introducing Chicago R user group meetups.
+Slides are useful because they look good and you won't forget to do important things
+like **thanking the sponsors!** Slides can be accessed from within R Studio 
+using the `New R Markdown` dialog menu, and then selecting `From Template`. 
+One can also use the `draft` function, exemplified below.
+
+```{r, eval=FALSE}
+rmarkdown::draft(file="new_meetup.Rmd", template = "intro_slides", package="RUGtools")
+```
+
+## Estimate your pizza order
+
+In Chicago, we think a lot about Pizza. And if one is involved in the local meetup 
+culture, this is doubly so. At a recent meetup group (which inronically shared the same name as a pizza shape), I counted nearly 6 large pizzas left over. Struck by an
+overwelming sorrow, I vowed that we shall never be part of such a tragedy. With a
+few data points, the `pizza_estimate` function helps us estimate how many pizzas to order.
+
+```{r}
+
+pizzas <- pizza_estimate(registered = 140, pizza_diameter = 18, attend_rate = 0.60, 
+               serving = 2, style = "thin")
+
+kable(pizzas)
+```
+
+ 
+Channeling our ever-curious pizza scientist, _**it turns out**_ the 
+"party cut" inherits a few very attractive properties when dividing multiple 
+pizzas among **n** guests. Smaller pieces allow guests to more precisely 
+estimate pizza consumption, thus decreasing the integer-programming problem 
+exacerbated by larger slices. 
+
+```{r}
+plot(5*c(1,0,-1,0), 5*c(0,1,0,-1) ,col="transparent",
+     xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="") 
+
+abline(h=-5:5); abline(v=-5:5)
+
+polygon(4.3*sin(seq(0,2*pi,length=100)), 
+        4.3*cos(seq(0,2*pi,length=100)))
+
+text( x=c( (1:4)-2.5,(1:6)-3.5, (1:8)-4.5, (1:8)-4.5,
+           (1:8)-4.5, (1:8)-4.5,  (1:6)-3.5, (1:4)-2.5 ),
+      y=c( rep(4,4), rep(3,6), rep(2,8), rep(1,8), 
+           rep(0,8), rep(-1,8), rep(-2,6), rep(-3,4) )-0.5, 
+      labels=1:52)
+```
+ 
+By requesting the "party cut", one reduces wasted pizza and exhibits great stewardship of the sponsor resources entrusted to them.
+
+## Data and Analysis
+
+Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG.
+Personally identifiable information has been removed, data formated and ready for analysis.
+
 ###  How many members joined since January of 2017?  
  
 Load the member list data.

@@ -2,11 +2,13 @@
 title: "Chicago R User Group Meetup"
 author: " "
 date: "`r Sys.Date()`"
-output: CRUGtools::intro_slides
+output: RUGtools::intro_slides
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(RUGtools)
 ```
 
 ## Chicago R User Group News
@@ -20,12 +22,7 @@ knitr::include_graphics(path1)
 ```
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(CRUGtools)
-```
-
-# R News
+# Local R News
 
 ## R User Group {.smaller .columns-2}
 
@@ -83,8 +80,9 @@ For more information join the meetup and follow on twitter:
 
 ![](images/twitter50x41.png)@[RLadiesChicago](https://twitter.com/RLadiesChicago)
 
+# Global R news
 
-## R Consortium News {.smaller}
+## R Consortium {.smaller}
 
 ```{r, out.width = "500px", , fig.align='left'}
 path1 <- paste0(getwd(), "/images/R-Consortium-Logo.png")
@@ -99,6 +97,7 @@ Follow the R Consortium
 
 ![](images/twitter50x41.png) @[RConsortium](https://twitter.com/Rconsortium)
 
+# Jobs: Anyone hiring? Any recruiters here?
 
 # Today's meetup and its Sponsor
 

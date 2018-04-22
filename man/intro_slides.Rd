@@ -13,29 +13,33 @@ intro_slides(...)
 \arguments{
 \item{...}{Arguments passed to rmarkdown::ioslides_presentation function.}
 }
+\value{
+A folder containing the R Markdown template as well as supporting images.
+}
 \description{
 This function creates an ioslides R Markdown template, with default content 
-routinely used when introducing \strong{Chicago R user group} meetups. Slides
-are useful because they look good and you won't forget to do important things
-like \strong{thanking the Sponsors!} Slides can be accessed from within R Studio 
-using the \strong{New R Markdown} dialog menu, and then selecting \strong{From Template}. 
-One can also use the \code{\link{draft}} function, 
-exemplified in the Examples section below.
+routinely used when introducing Chicago R user group meetups.
 }
 \details{
-Default ioslides template includes placeholder slides for the following:
+Slides are useful because they look good and you won't forget to do important things
+like \strong{thanking the Sponsors!} Slides can be accessed from within R Studio 
+using the \strong{New R Markdown} dialog menu, and then selecting \strong{From Template}. 
+One can also use the \code{\link{draft}} function, exemplified in the Examples 
+section below.
+
+Default template includes placeholder slides for the following:
 \itemize{
 \item{\strong{Local R news: }}{Announcements about your local meetup or general R community.}
 \item{\strong{Global R news: }}{R Consortium announcements and upcoming conferences 
 like R/Finance and UseR!.}
-\item{\strong{R-Ladies: }}{Welcome your local R-Ladies chapter!}
+\item{\strong{R-Ladies: }}{Welcome the local R-Ladies chapter.}
+\item{\strong{Jobs: }}{Ask the audience if anyone is hiring or if recuiters are present.}
 \item{\strong{Thank the Sponsors: }}{Display their logo and promotional material of preference.}
 \item{\strong{R Swag: }}{Giveaways of hex stickers, Raffle off books, etc.}
 \item{\strong{Tonights presentations: }}{Summary of presentations.}
 }
 }
 \examples{
-\dontrun{
-rmarkdown::draft(file="new_meetup.Rmd", template = "inst/rmarkdown/templates/intro_slides")
-}
+rmarkdown::draft(file="Meetup-2018-n5.Rmd", template = "intro_slides", package="RUGtools")
+
 }

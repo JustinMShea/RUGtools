@@ -1,7 +1,7 @@
 ---
 title: "New Meetup Members"
 author: "Justin M. Shea"
-date: "April 17, 2018"
+date: "April 21, 2018"
 output: html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
@@ -17,8 +17,66 @@ library(knitr)
 library(RUGtools)
 ```
 
+## Introduction
 
-  
+
+
+## R User Group Introduction Slides template
+
+This is a traditional ioslides R Markdown template, but modified to contain default content routinely used when introducing Chicago R user group meetups.
+Slides are useful because they look good and you won't forget to do important things
+like **thanking the sponsors!** Slides can be accessed from within R Studio 
+using the `New R Markdown` dialog menu, and then selecting `From Template`. 
+One can also use the `draft` function, exemplified below.
+
+```{r, eval=FALSE}
+rmarkdown::draft(file="new_meetup.Rmd", template = "intro_slides", package="RUGtools")
+```
+
+## Estimate your pizza order
+
+In Chicago, we think a lot about Pizza. And if one is involved in the local meetup 
+culture, this is doubly so. At a recent meetup group (which ironically shared the same name as a pizza shape), I counted nearly 6 large pizzas left over. Struck by an
+overwhelming sorrow, I vowed that we shall never be part of such a tragedy. With a
+few data points, the `pizza_estimate` function helps ensure we are able to look ourselves in the mirror the next morning.
+
+```{r}
+
+pizzas <- pizza_estimate(registered = 140, pizza_diameter = 18, attend_rate = 0.60, 
+               serving = 2, style = "thin")
+
+kable(pizzas)
+```
+
+ 
+Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
+"party cut" (thin-crust cut into small squares) inherits a few very attractive properties when dividing multiple pizzas among **n** guests. Smaller pieces allow guests to more precisely 
+estimate pizza consumption, thus decreasing the integer-programming problem 
+exacerbated by larger slices. By requesting the "party cut", one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.
+
+```{r, echo=FALSE}
+plot(5*c(1,0,-1,0), 5*c(0,1,0,-1) ,col="transparent",
+     xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="") 
+
+abline(h=-5:5); abline(v=-5:5)
+
+polygon(4.3*sin(seq(0,2*pi,length=100)), 
+        4.3*cos(seq(0,2*pi,length=100)))
+
+text( x=c( (1:4)-2.5,(1:6)-3.5, (1:8)-4.5, (1:8)-4.5,
+           (1:8)-4.5, (1:8)-4.5,  (1:6)-3.5, (1:4)-2.5 ),
+      y=c( rep(4,4), rep(3,6), rep(2,8), rep(1,8), 
+           rep(0,8), rep(-1,8), rep(-2,6), rep(-3,4) )-0.5, 
+      labels=1:52)
+```
+ 
+
+
+## Data and Analysis
+
+Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG.
+Personally identifiable information has been removed, data formatted and ready for analysis.
+
 ###  How many members joined since January of 2017?  
  
 Load the member list data.
@@ -27,10 +85,16 @@ Load the member list data.
 data(member_list)
 ```
 
+How many members do we have?
+
+```{r}
+max(member_list$Member.ID)
+```
+
 Lets plot it!
 
 ```{r}
-plot(y = member_list$Count.Index, x = member_list$Joined.Group.on, type = "l", col = "blue",
+plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", col = "blue",
      main = "Cumulative CRUG members",  
          ylab = "Members", xlab = "")
 ```
@@ -40,7 +104,7 @@ plot(y = member_list$Count.Index, x = member_list$Joined.Group.on, type = "l", c
 ```{r}
 members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
 
-max(members_2017_present$Count.Index) - min(members_2017_present$Count.Index)
+max(members_2017_present$Member.ID) - min(members_2017_present$Member.ID)
 
 ```
 
@@ -54,10 +118,9 @@ Meetup_dates <- sort(unique(member_list$Last.Attended))
 
 new_members <- subset(member_list, Joined.Group.on > Meetup_dates[NROW(Meetup_dates)])
 
-NROW(new_members)
 ```
  
-How about the number of new members between last meetup and the one prior to that?
+Then count the number of new members joined between the most recent meetup and the one prior to that.
 
 ```{r}
 new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)] &
@@ -66,8 +129,7 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
 NROW(new_members2)
 ```
 
-
-Since was getting repetitive, we've created a function `new_mem_counter` to count the number of new members joined between meetups.
+In danger of repeating the above analysis several times over, we created a function `new_mem_counter` to count the number of new members joined between meetups for all meetups in the data set.
 
 ```{r}
 new_members <- new_mem_counter(member_list)
@@ -75,8 +137,7 @@ new_members <- new_mem_counter(member_list)
 kable(new_members, align = 'l')
 ```
 
-Lets Explore the `new_members` data set.
-Which gap between meetups had the most new members?
+Lets Explore the `new_members` data set. Which gap between meetups had the most new members?
  
 ```{r}
 max_new_members <- new_members[new_members$New==max(new_members$New),]

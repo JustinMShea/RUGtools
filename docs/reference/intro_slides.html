@@ -28,12 +28,7 @@
 <meta property="og:title" content="R User Group Introduction Slides — intro_slides" />
 
 <meta property="og:description" content="This function creates an ioslides R Markdown template, with default content 
-routinely used when introducing Chicago R user group meetups. Slides
-are useful because they look good and you won't forget to do important things
-like thanking the Sponsors! Slides can be accessed from within R Studio 
-using the New R Markdown dialog menu, and then selecting From Template. 
-One can also use the draft function, 
-exemplified in the Examples section below." />
+routinely used when introducing Chicago R user group meetups." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -116,12 +111,7 @@ exemplified in the Examples section below." />
 
     
     <p>This function creates an ioslides R Markdown template, with default content 
-routinely used when introducing <strong>Chicago R user group</strong> meetups. Slides
-are useful because they look good and you won't forget to do important things
-like <strong>thanking the Sponsors!</strong> Slides can be accessed from within R Studio 
-using the <strong>New R Markdown</strong> dialog menu, and then selecting <strong>From Template</strong>. 
-One can also use the <code>draft</code> function, 
-exemplified in the Examples section below.</p>
+routinely used when introducing Chicago R user group meetups.</p>
     
 
     <pre class="usage"><span class='fu'>intro_slides</span>(<span class='no'>...</span>)</pre>
@@ -140,13 +130,23 @@ exemplified in the Examples section below.</p>
     <p>See R Studio's <a href='https://rmarkdown.rstudio.com/developer_document_templates.html'>Document Templates</a>
  for more information on creating custom R Markdown templates for your meetup.</p>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A folder containing the R Markdown template as well as supporting images.</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Default ioslides template includes placeholder slides for the following:</p><ul>
+    <p>Slides are useful because they look good and you won't forget to do important things
+like <strong>thanking the Sponsors!</strong> Slides can be accessed from within R Studio 
+using the <strong>New R Markdown</strong> dialog menu, and then selecting <strong>From Template</strong>. 
+One can also use the <code>draft</code> function, exemplified in the Examples 
+section below.</p>
+<p>Default template includes placeholder slides for the following:</p><ul>
 <li><p><strong>Local R news: </strong>Announcements about your local meetup or general R community.</p></li>
 <li><p><strong>Global R news: </strong>R Consortium announcements and upcoming conferences 
 like R/Finance and UseR!.</p></li>
-<li><p><strong>R-Ladies: </strong>Welcome your local R-Ladies chapter!</p></li>
+<li><p><strong>R-Ladies: </strong>Welcome the local R-Ladies chapter.</p></li>
+<li><p><strong>Jobs: </strong>Ask the audience if anyone is hiring or if recuiters are present.</p></li>
 <li><p><strong>Thank the Sponsors: </strong>Display their logo and promotional material of preference.</p></li>
 <li><p><strong>R Swag: </strong>Giveaways of hex stickers, Raffle off books, etc.</p></li>
 <li><p><strong>Tonights presentations: </strong>Summary of presentations.</p></li>
@@ -154,9 +154,8 @@ like R/Finance and UseR!.</p></li>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='kw pkg'>rmarkdown</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rmarkdown/topics/draft'>draft</a></span>(<span class='kw'>file</span><span class='kw'>=</span><span class='st'>"new_meetup.Rmd"</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='st'>"inst/rmarkdown/templates/intro_slides"</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='kw pkg'>rmarkdown</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rmarkdown/topics/draft'>draft</a></span>(<span class='kw'>file</span><span class='kw'>=</span><span class='st'>"Meetup-2018-n5.Rmd"</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='st'>"intro_slides"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"RUGtools"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rmarkdown::draft(file = "Meetup-2018-n5.Rmd", template = "intro_slides",     package = "RUGtools"): The template 'intro_slides' was not found in the RUGtools package</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -164,6 +163,8 @@ like R/Finance and UseR!.</p></li>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#source">Source</a></li>
+
+      <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
       

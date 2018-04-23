@@ -1,6 +1,6 @@
 # RUGtools
 
-(https://ci.appveyor.com/api/projects/status/github/JustinMShea/RUGtools?branch=master&svg=true)](https://ci.appveyor.com/project/JustinMShea/RUGtools) [![Travis-CI Build Status](https://travis-ci.org/JustinMShea/RUGtools.svg?branch=master)](https://travis-ci.org/JustinMShea/RUGtools
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JustinMShea/RUGtools?branch=master&svg=true)](https://ci.appveyor.com/project/JustinMShea/RUGtools) [![Travis-CI Build Status](https://travis-ci.org/JustinMShea/RUGtools.svg?branch=master)](https://travis-ci.org/JustinMShea/RUGtools)
 
 <img src="https://github.com/Chicago-R-User-Group/RUGtools/blob/master/inst/rmarkdown/templates/intro_slides/skeleton/images/CRUGtools.png" height="200" />
 

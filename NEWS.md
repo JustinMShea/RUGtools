@@ -3,6 +3,14 @@ title: "NEWS"
 output: github_document
 ---
 
+# RUGtools 0.3-0 (in Development)
+
+Added a new function, `meetup_import`, which contains most all of the script
+preiously contained in the "data-raw/meetup-download-clean.R" file, used to produce 
+the "member_list" data.frame. Now, we just call this function after downloading 
+data from meetup.com and it cleans and formats the data for us.
+
+
 # RUGtools 0.2-0
 
 In the spirit of open source, doped the `C` and now its `RUGtools`, which will hopefully encourage others to use the work and perhaps contribute.

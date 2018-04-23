@@ -35,7 +35,8 @@ Chicago R User Group Data downloaded from meetup.com/ChicagoRUG. PII removed,
 data formated and ready for analysis.
 }
 \examples{
- str(member_list)
+ 
+str(member_list)
 
 plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", col = "blue",
  main = "Cumulative CRUG members", ylab = "Members", xlab = "")

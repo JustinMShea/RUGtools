@@ -1,7 +1,7 @@
 ---
-title: "New Meetup Members"
+title: "Introduction to RUGtools"
 author: "Justin M. Shea"
-date: "April 21, 2018"
+date: "April 23, 2018"
 output: html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}

@@ -29,9 +29,10 @@
 #' @source See R Studio's \href{https://rmarkdown.rstudio.com/developer_document_templates.html}{Document Templates}
 #'  for more information on creating custom R Markdown templates for your meetup.
 #' 
-#' @examples
+#' @examples 
+#' \dontrun{
 #' rmarkdown::draft(file="Meetup-2018-n5.Rmd", template = "intro_slides", package="RUGtools")
-#' 
+#' }
 #'@export
 intro_slides <- function(...) {
   

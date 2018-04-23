@@ -40,6 +40,7 @@ like R/Finance and UseR!.}
 }
 }
 \examples{
+\dontrun{
 rmarkdown::draft(file="Meetup-2018-n5.Rmd", template = "intro_slides", package="RUGtools")
-
+}
 }

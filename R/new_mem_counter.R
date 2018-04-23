@@ -2,7 +2,7 @@
 #' 
 #' Generates sum of new members between each meetup.
 #'
-#' @return\code{new_mem_counter} returns a \code{\link{data.frame}} containing 2 variables. 
+#' @return \code{new_mem_counter} returns a \code{\link{data.frame}} containing 2 variables. 
 #' These are the `Date` of each meetup, and how many `New` members joined leading up to each 
 #' meetup.
 #' 
@@ -16,7 +16,7 @@
 #'  
 #'  tail(new_members)
 #'  
-#'  # Plot the `new members` data since 2017.
+#'  # Plot the new members data since 2017.
 #'  
 #'  # Create Date Range Index
 #'  Range <- new_members[new_members$Date > "2017-01-01" & new_members$Date <= Sys.Date(),]

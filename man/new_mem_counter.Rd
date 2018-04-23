@@ -25,7 +25,7 @@ Generates sum of new members between each meetup.
  
  tail(new_members)
  
- # Plot the `new members` data since 2017.
+ # Plot the new members data since 2017.
  
  # Create Date Range Index
  Range <- new_members[new_members$Date > "2017-01-01" & new_members$Date <= Sys.Date(),]

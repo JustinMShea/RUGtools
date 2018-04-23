@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • RUGtools</title>
+<title>Import Meetup .csv — meetup_import • RUGtools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,7 +25,11 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Import Meetup .csv — meetup_import" />
+
+<meta property="og:description" content="Import, Clean, and Format of data manually downloaded from meetup.com's 
+member list page" />
+<meta name="twitter:card" content="summary" />
 
 
 <!-- mathjax -->
@@ -42,7 +46,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -98,65 +102,75 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Import Meetup .csv</h1>
+    
+    <div class="hidden name"><code>meetup_import.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    
+    <p>Import, Clean, and Format of data manually downloaded from meetup.com's 
+member list page</p>
+    
 
-    <colgroup>
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        <!--  -->
-        <td>
-          <p><code><a href="intro_slides.html">intro_slides()</a></code> </p>
-        </td>
-        <td><p>R User Group Introduction Slides</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="meetup_import.html">meetup_import()</a></code> </p>
-        </td>
-        <td><p>Import Meetup .csv</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="member_list.html">member_list</a></code> </p>
-        </td>
-        <td><p>member_list</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="new_mem_counter.html">new_mem_counter()</a></code> </p>
-        </td>
-        <td><p>New Member Counter</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="pizza_estimate.html">pizza_estimate()</a></code> </p>
-        </td>
-        <td><p>Estimate your pizza order</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>meetup_import</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>File path to .csv file. Defaults to NULL. Default attempts to import 
+any .csv file present in the <strong>data-raw/meetup</strong> folder of the working directory.
+See <strong>Details</strong> section and file argument of <code>read.csv</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments passed to <code>read.csv</code></p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A <code>data.frame</code> formated indentically to <code><a href='member_list.html'>member_list</a></code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Assumes manual download of the meetup member list file. For example, the 
+Chicago R User Group (CRUG) url looks like this: https://www.meetup.com/ChicagoRUG/members/?op=csv
+Note: One can only download this file if signed into meetup.com as an organizer.</p>
+<p>The file download from meetup.com is in .xls format. To ensure proper conversion 
+to .csv, open it with excel and then `save as .csv`. Alternatively, one can 
+upload the .xls file to google sheets and then export as .csv.</p>  
+<p>To utilize the Default file path of this function, place the file the folder 
+path <strong>`data-raw/meetup`</strong> of the working directory and make sure it is
+the only file in the folder.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>read.csv</code></p></div>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>member_list</span> <span class='kw'>&lt;-</span> <span class='fu'>meetup_import</span>()
+<span class='co'># }</span></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

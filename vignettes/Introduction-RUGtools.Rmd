@@ -52,10 +52,10 @@ kable(pizzas)
  
 Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
 "party cut" (thin-crust cut into small squares) inherits a few very attractive 
-properties when dividing **n** pizzas among **p** guests. Smaller pieces allow 
-guests to more precisely estimate personal pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. Thus, _if_ one requests the 
-_**party cut**_, the `pizza_estimate` shall be more accurate. This reduces wasted 
-pizza and exhibiting great stewardship of sponsor resources bestowed upon thee.
+properties when dividing **n** pizzas among **p** guests. Small square pieces allow 
+guests to better estimate pizza consumption, thus decreasing the integer-programming 
+problem exacerbated by large triangular slices. Reducing wasted pizza is not only 
+virtuous, it demonstrates great stewardship of sponsor resources bestowed upon thee.
 
 ```{r, echo=FALSE, fig.height= 6, fig.width= 6}
 plot(5*c(1, 0, -1, 0), 5*c(0, 1, 0, -1) , col="transparent",

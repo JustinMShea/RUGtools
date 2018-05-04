@@ -51,7 +51,7 @@ knitr::include_graphics(path1)
 
 ## R Fortunes from the past
 
-```{r}
+```{r, echo=TRUE}
 fortunes::fortune()
 ```
 

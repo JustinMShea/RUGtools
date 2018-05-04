@@ -36,9 +36,11 @@ rmarkdown::draft(file="new_meetup.Rmd", template = "intro_slides", package="RUGt
 ## Estimate your pizza order
 
 In Chicago, we think a lot about Pizza. And if one is involved in the local meetup 
-culture, this is doubly so. At a recent meetup group (which ironically shared the same name as a pizza shape), I counted nearly 6 large pizzas left over. Struck by an
-overwhelming sorrow, I vowed that we shall never be part of such a tragedy. With a
-few data points, the `pizza_estimate` function helps ensure we are able to look ourselves in the mirror the next morning.
+culture, this is doubly so. At a recent meetup group that wasn't ours, I counted 
+nearly 6 large pizzas left over. Struck by an overwhelming sorrow, I vowed the 
+Chicago R User Group shall never partake in such a tragic waste of resources. 
+With a few data points, one can use the `pizza_estimate` function to arrive at
+a more efficient order.
 
 ```{r, align = "l"}
 
@@ -47,16 +49,17 @@ pizzas <- pizza_estimate(registered = 140, pizza_diameter = 18, attend_rate = 0.
 
 kable(pizzas)
 ```
-
  
 Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
-"party cut" (thin-crust cut into small squares) inherits a few very attractive properties when dividing multiple pizzas among **n** guests. Smaller pieces allow guests to more precisely 
-estimate pizza consumption, thus decreasing the integer-programming problem 
-exacerbated by larger slices. By requesting the "party cut", one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.
+"party cut" (thin-crust cut into small squares) inherits a few very attractive 
+properties when dividing **n** pizzas among **p** guests. Smaller pieces allow 
+guests to more precisely estimate personal pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. Thus, _if_ one requests the 
+_**party cut**_, the `pizza_estimate` shall be more accurate. This reduces wasted 
+pizza and exhibiting great stewardship of sponsor resources bestowed upon thee.
 
 ```{r, echo=FALSE, fig.height= 6, fig.width= 6}
 plot(5*c(1, 0, -1, 0), 5*c(0, 1, 0, -1) , col="transparent",
-     xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="") 
+     xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="")
 abline(h=-5:5)
 abline(v=-5:5)
 polygon(5*sin(seq(0, 2*pi, length=100)), 5*cos(seq(0, 2*pi, length=100)))
@@ -70,7 +73,7 @@ text(x=c((1:4)-2.5, (1:6)-3.5, (1:8)-4.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1
 Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG.
 Personally identifiable information has been removed, data formatted and ready for analysis.
 
-###  How many members joined since January of 2017?  
+###  How many members joined since January of 2017?
  
 Load the member list data.
 
@@ -97,7 +100,7 @@ plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", col
 ```{r}
 members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
 
-max(members_2017_present$Member.ID) - min(members_2017_present$Member.ID)
+NROW(members_2017_present$Member.ID)
 
 ```
 
@@ -122,12 +125,15 @@ new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_
 NROW(new_members2)
 ```
 
-In danger of repeating the above analysis several times over, we created a function `new_mem_counter` to count the number of new members joined between meetups for all meetups in the data set.
+In danger of repeating the above analysis several times over, we created a function `new_mem_counter` to count the number of new members joined between meetups for 
+all meetups in the data set.
 
 ```{r}
 new_members <- new_mem_counter(member_list)
 
-kable(new_members, align = 'l')
+kable(head(new_members), align = 'l')
+
+kable(tail(new_members), align = 'l')
 ```
 
 Lets Explore the `new_members` data set. Which gap between meetups had the most new members?

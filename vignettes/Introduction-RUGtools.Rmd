@@ -54,7 +54,7 @@ Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
 estimate pizza consumption, thus decreasing the integer-programming problem 
 exacerbated by larger slices. By requesting the "party cut", one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.
 
-```{r, echo=FALSE, fig.height= 4, fig.width= 4}
+```{r, echo=FALSE, fig.height= 6, fig.width= 6}
 plot(5*c(1, 0, -1, 0), 5*c(0, 1, 0, -1) , col="transparent",
      xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="") 
 abline(h=-5:5)

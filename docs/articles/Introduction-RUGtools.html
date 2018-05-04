@@ -119,7 +119,7 @@
 </tr></tbody>
 </table>
 <p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing multiple pizzas among <strong>n</strong> guests. Smaller pieces allow guests to more precisely estimate pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. By requesting the “party cut”, one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.</p>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-3-1.png" width="384"></p>
 </div>
 <div id="data-and-analysis" class="section level2">
 <h2 class="hasAnchor">
@@ -131,7 +131,7 @@
 <p>Load the member list data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)</code></pre></div>
 <p>How many members do we have?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(member_list<span class="op">$</span>Member.ID)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">NROW</span>(member_list<span class="op">$</span>Member.ID)</code></pre></div>
 <pre><code>## [1] 3101</code></pre>
 <p>Lets plot it!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">col =</span> <span class="st">"blue"</span>,
@@ -415,7 +415,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <td align="left">83</td>
 </tr>
 <tr class="even">
-<td align="left">2018-04-22</td>
+<td align="left">2018-05-02</td>
 <td align="left">8</td>
 </tr>
 </tbody>

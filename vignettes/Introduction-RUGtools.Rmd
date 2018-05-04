@@ -75,37 +75,33 @@ Personally identifiable information has been removed, data formatted and ready f
 
 ###  How many members joined since January of 2017?
  
-Load the member list data.
-
-```{r}
-data(member_list)
-```
-
+Load the member list data. 
 How many members do we have?
 
 ```{r}
+data(member_list)
+
 NROW(member_list$Member.ID)
 ```
 
-Lets plot it!
+Lets plot the cumulative membership.
 
-```{r}
-plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", col = "blue",
-     main = "Cumulative CRUG members",  
-         ylab = "Members", xlab = "")
+```{r, tidy=TRUE}
+plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", 
+     col = "blue", frame = FALSE, main = "Chicago R User Group members", 
+     ylab = "Members", xlab = "")
 ```
 
-### How many joined since January 2017?
+How many members joined since January 2017?
 
 ```{r}
 members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
 
 NROW(members_2017_present$Member.ID)
-
 ```
 
 
-###  How many joined between meetups? 
+## How many new members join between meetups? 
 
 First, get a unique ordered list of Meetup dates
 
@@ -113,7 +109,6 @@ First, get a unique ordered list of Meetup dates
 Meetup_dates <- sort(unique(member_list$Last.Attended))
 
 new_members <- subset(member_list, Joined.Group.on > Meetup_dates[NROW(Meetup_dates)])
-
 ```
  
 Then count the number of new members joined between the most recent meetup and the one prior to that.
@@ -136,7 +131,7 @@ kable(head(new_members), align = 'l')
 kable(tail(new_members), align = 'l')
 ```
 
-Lets Explore the `new_members` data set. Which gap between meetups had the most new members?
+Which gap between meetups had the most new members?
  
 ```{r}
 max_new_members <- new_members[new_members$New==max(new_members$New),]
@@ -148,35 +143,58 @@ Plot the `new members` data.
 
 ```{r}
    # Create Date Range Index
-  Start_Date <- "2010-01-01"
-    End_Date <- Sys.Date()
-  Date_Index <- as.numeric(row.names(new_members[new_members$Date > Start_Date &
-                                                new_members$Date <= End_Date,]))
+  Date_Index <- as.numeric(row.names(new_members[new_members$Date > "2010-01-01" & new_members$Date <= Sys.Date(),]))
   
   # Create x-axis labels, using year-month date format
   x_labels <- format(new_members$Date[Date_Index], "%Y-%m")
 
   # Plot
-  barplot(new_members$New[Date_Index], names.arg = x_labels,
-         main = "CRUG members, joined between meetups",  
-         ylab = "New Members", xlab = "")
+  barplot(new_members$New[Date_Index], names.arg = x_labels, main = "CRUG members, joined between meetups",  
+          ylab = "New Members", xlab = "")
 ```
 
 Plot the `new members` data since 2017.
 
 ```{r}
    # Create Date Range Index
-  Start_Date <- "2017-01-01"
-    End_Date <- Sys.Date()
-  Date_Index <- as.numeric(row.names(new_members[new_members$Date > Start_Date &
-                                                new_members$Date <= End_Date,]))
+  Date_Index <- as.numeric(row.names(new_members[new_members$Date > "2017-01-01" & new_members$Date <= Sys.Date(),]))
   
-  # Create x-axis labels, using year-month date format
   x_labels <- format(new_members$Date[Date_Index], "%Y-%m")
 
   # Plot
-  barplot(new_members$New[Date_Index], names.arg = x_labels, las=2,
-         main = "CRUG members, joined between meetups",  
-         ylab = "New Members", xlab = "")
+  barplot(new_members$New[Date_Index], names.arg = x_labels, las=2, main = "CRUG members, joined between meetups",  
+          ylab = "New Members", xlab = "")
 ```
  
+ 
+##  Graphing membership over time
+
+```{r, message=FALSE, warning=FALSE}
+library(xts)
+
+members_xts <- xts(x = member_list$Member.ID, order.by = member_list$Joined.Group.on)
+
+plot(members_xts, col = "blue", grid.col = "white", main = "Chicago R User Group members by join date")
+```
+
+### How many members join by month?
+
+```{r}
+members_monthly <- to.monthly(members_xts, OHLC = FALSE)
+
+barplot(diff(members_monthly), col = "lightgrey", main = "Chicago R User Group, new members by month")
+```
+
+### What's our percentage growth per month?
+
+Omit the first two month's outliers.
+
+```{r}
+barplot(100*diff(members_monthly)/members_monthly[-c(1:2)], col = "lightgrey")
+```
+
+Let's view the last 3 years.
+
+```{r}
+barplot(tail(100*diff(members_monthly)/members_monthly, 36), col = "lightgrey")
+```

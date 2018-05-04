@@ -118,7 +118,7 @@
 <td align="right">16</td>
 </tr></tbody>
 </table>
-<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing <strong>n</strong> pizzas among <strong>p</strong> guests. Smaller pieces allow guests to more precisely estimate personal pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. Thus, <em>if</em> one requests the <em><strong>party cut</strong></em>, the <code>pizza_estimate</code> shall be more accurate. This reduces wasted pizza and exhibiting great stewardship of sponsor resources bestowed upon thee.</p>
+<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing <strong>n</strong> pizzas among <strong>p</strong> guests. Small square pieces allow guests to better estimate pizza consumption, thus decreasing the integer-programming problem exacerbated by large triangular slices. Reducing wasted pizza is not only virtuous, it demonstrates great stewardship of sponsor resources bestowed upon thee.</p>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 </div>
 <div id="data-and-analysis" class="section level2">
@@ -128,28 +128,26 @@
 <div id="how-many-members-joined-since-january-of-2017" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-many-members-joined-since-january-of-2017" class="anchor"></a>How many members joined since January of 2017?</h3>
-<p>Load the member list data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)</code></pre></div>
-<p>How many members do we have?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">NROW</span>(member_list<span class="op">$</span>Member.ID)</code></pre></div>
+<p>Load the member list data. How many members do we have?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)
+
+<span class="kw">NROW</span>(member_list<span class="op">$</span>Member.ID)</code></pre></div>
 <pre><code>## [1] 3101</code></pre>
-<p>Lets plot it!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">col =</span> <span class="st">"blue"</span>,
-     <span class="dt">main =</span> <span class="st">"Cumulative CRUG members"</span>,  
-         <span class="dt">ylab =</span> <span class="st">"Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-</div>
-<div id="how-many-joined-since-january-2017" class="section level3">
-<h3 class="hasAnchor">
-<a href="#how-many-joined-since-january-2017" class="anchor"></a>How many joined since January 2017?</h3>
+<p>Lets plot the cumulative membership.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, 
+    <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members"</span>, <span class="dt">ylab =</span> <span class="st">"Members"</span>, 
+    <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p>How many members joined since January 2017?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">members_2017_present &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)
 
 <span class="kw">NROW</span>(members_2017_present<span class="op">$</span>Member.ID)</code></pre></div>
 <pre><code>## [1] 965</code></pre>
 </div>
-<div id="how-many-joined-between-meetups" class="section level3">
-<h3 class="hasAnchor">
-<a href="#how-many-joined-between-meetups" class="anchor"></a>How many joined between meetups?</h3>
+</div>
+<div id="how-many-new-members-join-between-meetups" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-many-new-members-join-between-meetups" class="anchor"></a>How many new members join between meetups?</h2>
 <p>First, get a unique ordered list of Meetup dates</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Meetup_dates &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(member_list<span class="op">$</span>Last.Attended))
 
@@ -236,7 +234,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 </tr>
 </tbody>
 </table>
-<p>Lets Explore the <code>new_members</code> data set. Which gap between meetups had the most new members?</p>
+<p>Which gap between meetups had the most new members?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">max_new_members &lt;-<span class="st"> </span>new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw">max</span>(new_members<span class="op">$</span>New),]
 
 <span class="kw">kable</span>(max_new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
@@ -254,34 +252,52 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 </table>
 <p>Plot the <code>new members</code> data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">   <span class="co"># Create Date Range Index</span>
-  Start_Date &lt;-<span class="st"> "2010-01-01"</span>
-    End_Date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
-  Date_Index &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> </span>Start_Date <span class="op">&amp;</span>
-<span class="st">                                                </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span>End_Date,]))
+  Date_Index &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> "2010-01-01"</span> <span class="op">&amp;</span><span class="st"> </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span><span class="kw">Sys.Date</span>(),]))
   
   <span class="co"># Create x-axis labels, using year-month date format</span>
   x_labels &lt;-<span class="st"> </span><span class="kw">format</span>(new_members<span class="op">$</span>Date[Date_Index], <span class="st">"%Y-%m"</span>)
 
   <span class="co"># Plot</span>
-  <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels,
-         <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
-         <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+  <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
+          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>Plot the <code>new members</code> data since 2017.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">   <span class="co"># Create Date Range Index</span>
-  Start_Date &lt;-<span class="st"> "2017-01-01"</span>
-    End_Date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
-  Date_Index &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> </span>Start_Date <span class="op">&amp;</span>
-<span class="st">                                                </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span>End_Date,]))
+  Date_Index &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">row.names</span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> "2017-01-01"</span> <span class="op">&amp;</span><span class="st"> </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span><span class="kw">Sys.Date</span>(),]))
   
-  <span class="co"># Create x-axis labels, using year-month date format</span>
   x_labels &lt;-<span class="st"> </span><span class="kw">format</span>(new_members<span class="op">$</span>Date[Date_Index], <span class="st">"%Y-%m"</span>)
 
   <span class="co"># Plot</span>
-  <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>,
-         <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
-         <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
+  <span class="kw">barplot</span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  
+          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+</div>
+<div id="graphing-membership-over-time" class="section level2">
+<h2 class="hasAnchor">
+<a href="#graphing-membership-over-time" class="anchor"></a>Graphing membership over time</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xts)
+
+members_xts &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">x =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">order.by =</span> member_list<span class="op">$</span>Joined.Group.on)
+
+<span class="kw">plot</span>(members_xts, <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">grid.col =</span> <span class="st">"white"</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members by join date"</span>)</code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<div id="how-many-members-join-by-month" class="section level3">
+<h3 class="hasAnchor">
+<a href="#how-many-members-join-by-month" class="anchor"></a>How many members join by month?</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">members_monthly &lt;-<span class="st"> </span><span class="kw">to.monthly</span>(members_xts, <span class="dt">OHLC =</span> <span class="ot">FALSE</span>)
+
+<span class="kw">barplot</span>(<span class="kw">diff</span>(members_monthly), <span class="dt">col =</span> <span class="st">"lightgrey"</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group, new members by month"</span>)</code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+</div>
+<div id="whats-our-percentage-growth-per-month" class="section level3">
+<h3 class="hasAnchor">
+<a href="#whats-our-percentage-growth-per-month" class="anchor"></a>What’s our percentage growth per month?</h3>
+<p>Omit the first two month’s outliers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="dv">100</span><span class="op">*</span><span class="kw">diff</span>(members_monthly)<span class="op">/</span>members_monthly[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)], <span class="dt">col =</span> <span class="st">"lightgrey"</span>)</code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<p>Let’s view the last 3 years.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="kw">tail</span>(<span class="dv">100</span><span class="op">*</span><span class="kw">diff</span>(members_monthly)<span class="op">/</span>members_monthly, <span class="dv">36</span>), <span class="dt">col =</span> <span class="st">"lightgrey"</span>)</code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
 </div>
   </div>
@@ -295,6 +311,8 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
       <li><a href="#r-user-group-introduction-slides-template">R User Group Introduction Slides template</a></li>
       <li><a href="#estimate-your-pizza-order">Estimate your pizza order</a></li>
       <li><a href="#data-and-analysis">Data and Analysis</a></li>
+      <li><a href="#how-many-new-members-join-between-meetups">How many new members join between meetups?</a></li>
+      <li><a href="#graphing-membership-over-time">Graphing membership over time</a></li>
       </ul>
 </div>
       </div>

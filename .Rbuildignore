@@ -3,3 +3,4 @@
 vignettes/
 docs/
 data-raw/
+^\.travis\.yml$

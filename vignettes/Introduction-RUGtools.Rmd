@@ -40,7 +40,7 @@ culture, this is doubly so. At a recent meetup group (which ironically shared th
 overwhelming sorrow, I vowed that we shall never be part of such a tragedy. With a
 few data points, the `pizza_estimate` function helps ensure we are able to look ourselves in the mirror the next morning.
 
-```{r}
+```{r, align = "l"}
 
 pizzas <- pizza_estimate(registered = 140, pizza_diameter = 18, attend_rate = 0.60, 
                serving = 2, style = "thin")
@@ -54,20 +54,13 @@ Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
 estimate pizza consumption, thus decreasing the integer-programming problem 
 exacerbated by larger slices. By requesting the "party cut", one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.
 
-```{r, echo=FALSE}
-plot(5*c(1,0,-1,0), 5*c(0,1,0,-1) ,col="transparent",
+```{r, echo=FALSE, fig.height= 6, fig.width= 6}
+plot(5*c(1, 0, -1, 0), 5*c(0, 1, 0, -1) , col="transparent",
      xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="") 
-
-abline(h=-5:5); abline(v=-5:5)
-
-polygon(4.3*sin(seq(0,2*pi,length=100)), 
-        4.3*cos(seq(0,2*pi,length=100)))
-
-text( x=c( (1:4)-2.5,(1:6)-3.5, (1:8)-4.5, (1:8)-4.5,
-           (1:8)-4.5, (1:8)-4.5,  (1:6)-3.5, (1:4)-2.5 ),
-      y=c( rep(4,4), rep(3,6), rep(2,8), rep(1,8), 
-           rep(0,8), rep(-1,8), rep(-2,6), rep(-3,4) )-0.5, 
-      labels=1:52)
+abline(h=-5:5)
+abline(v=-5:5)
+polygon(5*sin(seq(0, 2*pi, length=100)), 5*cos(seq(0, 2*pi, length=100)))
+text(x=c((1:4)-2.5, (1:6)-3.5, (1:8)-4.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1:8)-4.5, (1:6)-3.5, (1:4)-2.5), y=c(rep(5,4), rep(4,6), rep(3,8), rep(2,10), rep(1,10), rep(0,10), rep(-1,10), rep(-2,8), rep(-3,6), rep(-4,4))-0.5, labels=1:76)
 ```
  
 
@@ -88,7 +81,7 @@ data(member_list)
 How many members do we have?
 
 ```{r}
-max(member_list$Member.ID)
+NROW(member_list$Member.ID)
 ```
 
 Lets plot it!

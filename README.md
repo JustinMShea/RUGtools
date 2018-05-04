@@ -6,13 +6,15 @@
 
 A collection of data, functions, reports, and a custom r markdown template related to the [Chicago R User Group (Chicago RUG, CRUG) Data and Statistics](https://www.meetup.com/ChicagoRUG/). These include:
 
+- **`intro_slides`**
+
+- **`meetup_import`**
+
 - **`member_list`**
 
 - **`pizza_estimate`**
 
 - **`new_mem_counter`**
-
-- **`meetup_import`**
 
 
 Please see the [package companion site](https://justinmshea.github.io/RUGtools/) 

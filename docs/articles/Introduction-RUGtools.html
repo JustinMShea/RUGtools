@@ -97,7 +97,7 @@
 <div id="estimate-your-pizza-order" class="section level2">
 <h2 class="hasAnchor">
 <a href="#estimate-your-pizza-order" class="anchor"></a>Estimate your pizza order</h2>
-<p>In Chicago, we think a lot about Pizza. And if one is involved in the local meetup culture, this is doubly so. At a recent meetup group (which ironically shared the same name as a pizza shape), I counted nearly 6 large pizzas left over. Struck by an overwhelming sorrow, I vowed that we shall never be part of such a tragedy. With a few data points, the <code>pizza_estimate</code> function helps ensure we are able to look ourselves in the mirror the next morning.</p>
+<p>In Chicago, we think a lot about Pizza. And if one is involved in the local meetup culture, this is doubly so. At a recent meetup group that wasn’t ours, I counted nearly 6 large pizzas left over. Struck by an overwhelming sorrow, I vowed the Chicago R User Group shall never partake in such a tragic waste of resources. With a few data points, one can use the <code>pizza_estimate</code> function to arrive at a more efficient order.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pizzas &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pizza_estimate.html">pizza_estimate</a></span>(<span class="dt">registered =</span> <span class="dv">140</span>, <span class="dt">pizza_diameter =</span> <span class="dv">18</span>, <span class="dt">attend_rate =</span> <span class="fl">0.60</span>, 
                <span class="dt">serving =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">"thin"</span>)
 
@@ -118,7 +118,7 @@
 <td align="right">16</td>
 </tr></tbody>
 </table>
-<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing multiple pizzas among <strong>n</strong> guests. Smaller pieces allow guests to more precisely estimate pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. By requesting the “party cut”, one reduces wasted pizza and exhibits great stewardship of the sponsor resources bestowed upon them.</p>
+<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing <strong>n</strong> pizzas among <strong>p</strong> guests. Smaller pieces allow guests to more precisely estimate personal pizza consumption, thus decreasing the integer-programming problem exacerbated by larger slices. Thus, <em>if</em> one requests the <em><strong>party cut</strong></em>, the <code>pizza_estimate</code> shall be more accurate. This reduces wasted pizza and exhibiting great stewardship of sponsor resources bestowed upon thee.</p>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 </div>
 <div id="data-and-analysis" class="section level2">
@@ -144,8 +144,8 @@
 <a href="#how-many-joined-since-january-2017" class="anchor"></a>How many joined since January 2017?</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">members_2017_present &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)
 
-<span class="kw">max</span>(members_2017_present<span class="op">$</span>Member.ID) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(members_2017_present<span class="op">$</span>Member.ID)</code></pre></div>
-<pre><code>## [1] 964</code></pre>
+<span class="kw">NROW</span>(members_2017_present<span class="op">$</span>Member.ID)</code></pre></div>
+<pre><code>## [1] 965</code></pre>
 </div>
 <div id="how-many-joined-between-meetups" class="section level3">
 <h3 class="hasAnchor">
@@ -163,7 +163,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <p>In danger of repeating the above analysis several times over, we created a function <code>new_mem_counter</code> to count the number of new members joined between meetups for all meetups in the data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)
 
-<span class="kw">kable</span>(new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
+<span class="kw">kable</span>(<span class="kw">head</span>(new_members), <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Date</th>
@@ -194,228 +194,44 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <td align="left">2011-06-02</td>
 <td align="left">17</td>
 </tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">tail</span>(new_members), <span class="dt">align =</span> <span class="st">'l'</span>)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th></th>
+<th align="left">Date</th>
+<th align="left">New</th>
+</tr></thead>
+<tbody>
 <tr class="odd">
-<td align="left">2011-09-08</td>
-<td align="left">25</td>
-</tr>
-<tr class="even">
-<td align="left">2011-11-17</td>
-<td align="left">23</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-01-26</td>
-<td align="left">30</td>
-</tr>
-<tr class="even">
-<td align="left">2012-04-05</td>
-<td align="left">60</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-05-30</td>
-<td align="left">57</td>
-</tr>
-<tr class="even">
-<td align="left">2012-06-18</td>
-<td align="left">13</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-08-15</td>
-<td align="left">47</td>
-</tr>
-<tr class="even">
-<td align="left">2012-10-03</td>
-<td align="left">54</td>
-</tr>
-<tr class="odd">
-<td align="left">2012-11-14</td>
-<td align="left">52</td>
-</tr>
-<tr class="even">
-<td align="left">2013-02-07</td>
-<td align="left">74</td>
-</tr>
-<tr class="odd">
-<td align="left">2013-05-01</td>
-<td align="left">69</td>
-</tr>
-<tr class="even">
-<td align="left">2013-05-30</td>
-<td align="left">32</td>
-</tr>
-<tr class="odd">
-<td align="left">2013-05-31</td>
-<td align="left">0</td>
-</tr>
-<tr class="even">
-<td align="left">2013-08-08</td>
-<td align="left">63</td>
-</tr>
-<tr class="odd">
-<td align="left">2013-09-11</td>
-<td align="left">64</td>
-</tr>
-<tr class="even">
-<td align="left">2013-11-14</td>
-<td align="left">33</td>
-</tr>
-<tr class="odd">
-<td align="left">2014-02-19</td>
-<td align="left">70</td>
-</tr>
-<tr class="even">
-<td align="left">2014-04-05</td>
-<td align="left">39</td>
-</tr>
-<tr class="odd">
-<td align="left">2014-04-16</td>
-<td align="left">15</td>
-</tr>
-<tr class="even">
-<td align="left">2014-05-14</td>
-<td align="left">56</td>
-</tr>
-<tr class="odd">
-<td align="left">2014-10-23</td>
-<td align="left">149</td>
-</tr>
-<tr class="even">
-<td align="left">2014-11-13</td>
-<td align="left">33</td>
-</tr>
-<tr class="odd">
-<td align="left">2015-01-29</td>
-<td align="left">90</td>
-</tr>
-<tr class="even">
-<td align="left">2015-03-12</td>
-<td align="left">66</td>
-</tr>
-<tr class="odd">
-<td align="left">2015-04-02</td>
-<td align="left">30</td>
-</tr>
-<tr class="even">
-<td align="left">2015-07-28</td>
-<td align="left">123</td>
-</tr>
-<tr class="odd">
-<td align="left">2015-07-31</td>
-<td align="left">5</td>
-</tr>
-<tr class="even">
-<td align="left">2015-10-21</td>
-<td align="left">97</td>
-</tr>
-<tr class="odd">
-<td align="left">2015-11-05</td>
-<td align="left">19</td>
-</tr>
-<tr class="even">
-<td align="left">2015-12-02</td>
-<td align="left">35</td>
-</tr>
-<tr class="odd">
-<td align="left">2016-06-05</td>
-<td align="left">161</td>
-</tr>
-<tr class="even">
-<td align="left">2016-06-12</td>
-<td align="left">8</td>
-</tr>
-<tr class="odd">
-<td align="left">2016-06-26</td>
-<td align="left">18</td>
-</tr>
-<tr class="even">
-<td align="left">2016-06-29</td>
-<td align="left">8</td>
-</tr>
-<tr class="odd">
-<td align="left">2016-07-10</td>
-<td align="left">16</td>
-</tr>
-<tr class="even">
-<td align="left">2016-07-24</td>
-<td align="left">25</td>
-</tr>
-<tr class="odd">
-<td align="left">2016-08-03</td>
-<td align="left">31</td>
-</tr>
-<tr class="even">
-<td align="left">2016-09-01</td>
-<td align="left">38</td>
-</tr>
-<tr class="odd">
-<td align="left">2016-09-28</td>
-<td align="left">39</td>
-</tr>
-<tr class="even">
-<td align="left">2016-11-10</td>
-<td align="left">40</td>
-</tr>
-<tr class="odd">
-<td align="left">2017-01-24</td>
-<td align="left">98</td>
-</tr>
-<tr class="even">
-<td align="left">2017-01-26</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">2017-03-07</td>
-<td align="left">76</td>
-</tr>
-<tr class="even">
-<td align="left">2017-03-16</td>
-<td align="left">25</td>
-</tr>
-<tr class="odd">
-<td align="left">2017-04-27</td>
-<td align="left">44</td>
-</tr>
-<tr class="even">
-<td align="left">2017-05-17</td>
-<td align="left">41</td>
-</tr>
-<tr class="odd">
-<td align="left">2017-06-22</td>
-<td align="left">64</td>
-</tr>
-<tr class="even">
-<td align="left">2017-07-15</td>
-<td align="left">33</td>
-</tr>
-<tr class="odd">
-<td align="left">2017-09-07</td>
-<td align="left">91</td>
-</tr>
-<tr class="even">
-<td align="left">2017-10-14</td>
-<td align="left">75</td>
-</tr>
-<tr class="odd">
+<td>57</td>
 <td align="left">2017-11-15</td>
 <td align="left">98</td>
 </tr>
 <tr class="even">
+<td>58</td>
 <td align="left">2018-01-27</td>
 <td align="left">87</td>
 </tr>
 <tr class="odd">
+<td>59</td>
 <td align="left">2018-02-15</td>
 <td align="left">66</td>
 </tr>
 <tr class="even">
+<td>60</td>
 <td align="left">2018-03-29</td>
 <td align="left">94</td>
 </tr>
 <tr class="odd">
+<td>61</td>
 <td align="left">2018-04-14</td>
 <td align="left">83</td>
 </tr>
 <tr class="even">
-<td align="left">2018-05-02</td>
+<td>62</td>
+<td align="left">2018-05-03</td>
 <td align="left">8</td>
 </tr>
 </tbody>

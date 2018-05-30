@@ -4,17 +4,23 @@
 \alias{meetup_import}
 \title{Import Meetup .csv}
 \usage{
-meetup_import(file = NULL, ...)
+meetup_import(file = NULL, format = "\%d-\%b-\%y", ...)
 }
 \arguments{
-\item{file}{File path to .csv file. Defaults to NULL. Default attempts to import 
-any .csv file present in the \strong{data-raw/meetup} folder of the working directory.
-See \strong{Details} section and file argument of \code{\link{read.csv}}}
+\item{file}{File path to .csv file. Defaults to NULL. Default attempts to 
+import any .csv file present in the \strong{data-raw/meetup} folder of the 
+working directory.See \strong{Details} section and file argument of 
+\code{\link{read.csv}}}
+
+\item{format}{Character vector of Date format. See usage above for default. 
+Meetup seems to change this frequently, so check your data. 
+See \code{\link{strptime}} for formating details.}
 
 \item{...}{arguments passed to \code{\link{read.csv}}}
 }
 \value{
-A \code{\link{data.frame}} formated indentically to \code{\link{member_list}}.
+A \code{\link{data.frame}} formated indentically to 
+ \code{\link{member_list}}.
 }
 \description{
 Import, Clean, and Format of data manually downloaded from meetup.com's 
@@ -29,8 +35,8 @@ The file download from meetup.com is in .xls format. To ensure proper conversion
 to .csv, open it with excel and then `save as .csv`. Alternatively, one can 
 upload the .xls file to google sheets and then export as .csv.
   
-To utilize the Default file path of this function, place the file the folder 
-path \strong{`data-raw/meetup`} of the working directory and make sure it is
+To utilize the Default file path of this function, place the file in the 
+folder path \strong{`data-raw/meetup`} of the working directory and make sure it is
 the only file in the folder.
 }
 \examples{

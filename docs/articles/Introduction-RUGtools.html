@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RUGtools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -125,14 +125,11 @@
 <h2 class="hasAnchor">
 <a href="#data-and-analysis" class="anchor"></a>Data and Analysis</h2>
 <p>Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG. Personally identifiable information has been removed, data formatted and ready for analysis.</p>
-<div id="how-many-members-joined-since-january-of-2017" class="section level3">
-<h3 class="hasAnchor">
-<a href="#how-many-members-joined-since-january-of-2017" class="anchor"></a>How many members joined since January of 2017?</h3>
 <p>Load the member list data. How many members do we have?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(member_list)
 
 <span class="kw">NROW</span>(member_list<span class="op">$</span>Member.ID)</code></pre></div>
-<pre><code>## [1] 3101</code></pre>
+<pre><code>## [1] 3167</code></pre>
 <p>Lets plot the cumulative membership.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, 
     <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members"</span>, <span class="dt">ylab =</span> <span class="st">"Members"</span>, 
@@ -142,8 +139,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">members_2017_present &lt;-<span class="st"> </span><span class="kw">subset</span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)
 
 <span class="kw">NROW</span>(members_2017_present<span class="op">$</span>Member.ID)</code></pre></div>
-<pre><code>## [1] 965</code></pre>
-</div>
+<pre><code>## [1] 1038</code></pre>
 </div>
 <div id="how-many-new-members-join-between-meetups" class="section level2">
 <h2 class="hasAnchor">
@@ -157,7 +153,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <span class="st">                                    </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw">NROW</span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>])
 
 <span class="kw">NROW</span>(new_members2)</code></pre></div>
-<pre><code>## [1] 84</code></pre>
+<pre><code>## [1] 83</code></pre>
 <p>In danger of repeating the above analysis several times over, we created a function <code>new_mem_counter</code> to count the number of new members joined between meetups for all meetups in the data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)
 
@@ -205,7 +201,7 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <tr class="odd">
 <td>57</td>
 <td align="left">2017-11-15</td>
-<td align="left">98</td>
+<td align="left">96</td>
 </tr>
 <tr class="even">
 <td>58</td>
@@ -220,17 +216,17 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
 <tr class="even">
 <td>60</td>
 <td align="left">2018-03-29</td>
-<td align="left">94</td>
+<td align="left">93</td>
 </tr>
 <tr class="odd">
 <td>61</td>
 <td align="left">2018-04-14</td>
-<td align="left">83</td>
+<td align="left">82</td>
 </tr>
 <tr class="even">
 <td>62</td>
-<td align="left">2018-05-03</td>
-<td align="left">8</td>
+<td align="left">2018-05-29</td>
+<td align="left">84</td>
 </tr>
 </tbody>
 </table>
@@ -272,9 +268,9 @@ new_members &lt;-<span class="st"> </span><span class="kw">subset</span>(member_
           <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 </div>
-<div id="graphing-membership-over-time" class="section level2">
+<div id="graphing-membership-as-time-series" class="section level2">
 <h2 class="hasAnchor">
-<a href="#graphing-membership-over-time" class="anchor"></a>Graphing membership over time</h2>
+<a href="#graphing-membership-as-time-series" class="anchor"></a>Graphing membership as time series</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(xts)
 
 members_xts &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">x =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">order.by =</span> member_list<span class="op">$</span>Joined.Group.on)
@@ -312,7 +308,7 @@ members_xts &lt;-<span class="st"> </span><span class="kw">xts</span>(<span clas
       <li><a href="#estimate-your-pizza-order">Estimate your pizza order</a></li>
       <li><a href="#data-and-analysis">Data and Analysis</a></li>
       <li><a href="#how-many-new-members-join-between-meetups">How many new members join between meetups?</a></li>
-      <li><a href="#graphing-membership-over-time">Graphing membership over time</a></li>
+      <li><a href="#graphing-membership-as-time-series">Graphing membership as time series</a></li>
       </ul>
 </div>
       </div>

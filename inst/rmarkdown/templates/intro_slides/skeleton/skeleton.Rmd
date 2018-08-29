@@ -13,7 +13,7 @@ library(RUGtools)
 
 ## Chicago R User Group News
 
-Leading up to this meetup, we reached xxx members!
+Leading up to this meetup, we reached xxxx members!
 
 
 ```{r, out.width = "700px", , fig.align='center'}
@@ -42,31 +42,11 @@ Follow us:
 ![](images/twitter50x41.png) @[ChicagoRusers](https://twitter.com/ChicagoRusers)
 
 
-Our new header graphic on [meetup.com](https://www.meetup.com/ChicagoRUG) clearly indicates the more R meetups one attends, the more proficient one becomes with `R`! :)
-
-```{r, out.width = "500px", fig.align='left'}
-path1 <- paste0(getwd(), "/images/CRUG_Header.png")
-knitr::include_graphics(path1)
-```
-
 ## R Fortunes from the past
 
 ```{r, echo=TRUE}
 fortunes::fortune()
 ```
-
-## R/Finance: June 1st-2nd at UIC {.smaller}
-
-```{r, out.width = "900px"}
-path <- paste0(getwd(), "/images/R-finance-header.PNG")
-knitr::include_graphics(path)
-```
-
-From the inaugural conference in 2009, the annual R/Finance conference in Chicago has become the primary meeting for academics and practitioners interested in using R in Finance. Participants from academia and industry mingle for two days to exchange ideas about current research, best practices and applications.
-
-The best part is, it takes place right in our backyard! 
-
-[https://www.rinfinance.com/](https://www.rinfinance.com/)
 
 ## R-Ladies Chicago
 
@@ -86,38 +66,15 @@ For more information join the meetup and follow on twitter:
 
 ![](images/twitter50x41.png)@[RLadiesChicago](https://twitter.com/RLadiesChicago)
 
-# Global R news
-
-## R Consortium {.smaller}
-
-```{r, out.width = "500px", , fig.align='left'}
-path1 <- paste0(getwd(), "/images/R-Consortium-Logo.png")
-knitr::include_graphics(path1)
-```
-
-The central mission of the R Consortium is to work with and provide support to the R Foundation and key organizations and groups developing, maintaining, distributing and using R software. 
-
-**Survey on open source Package Licensing:** The most popular license used among respondents is GPL-3 at 35% with GPL-2|GPL-3 a close second at 34%, GPL-2 next at 24%, and MIT at 21%.
-
-Follow the R Consortium
-
-![](images/twitter50x41.png) @[RConsortium](https://twitter.com/Rconsortium)
-
-# Jobs: Anyone hiring? Any recruiters here?
+# Anyone hiring R folks? 
 
 # Today's meetup and its Sponsor
 
-## Microsoft Developer Advocates
-
-```{r, out.width = "900px", , fig.align='center'}
-path1 <- paste0(getwd(), "/images/Microsoft-2.png")
-knitr::include_graphics(path1)
-```
 
 ## Microsoft Developer Advocates
 
 ```{r, out.width = "900px", , fig.align='center'}
-path1 <- paste0(getwd(), "/images/Microsoft-1.png")
+path1 <- paste0(getwd(), "/images/Microsoft-1.PNG")
 knitr::include_graphics(path1)
 ```
 
@@ -127,42 +84,18 @@ knitr::include_graphics(path1)
 What ever giveaway the meetup has here. Ask a trivia question.
 
 
-## Today's Feature {.columns-2}
+## Today's Feature 
 
 
-- ##################
+- **XXXXXXXXXXXX** xxxxxxxxxxxxxxxxxxx
 
-- ##################
+- **XXXXXXXXXXXXXX** xxxxxxxxxxxxxxxxxx
 
-- ##################
-
+- **XXXXXXXXXXXXXX** xxxxxxxxxxxxxxxxxxx
 
 Thanks again to Microsoft Developer Advocates for sponsoring today's meetup!
 
-```{r, out.width = "200px"}
-path <- paste0(getwd(), "/images/BitDevAdvocate.png")
-knitr::include_graphics(path)
-```
-
-
-
-## Today's Feature {.columns-2}
-
-
-- XXXXXXXXXXXX
-
-- XXXXXXXXXXXX
-
-- XXXXXXXXXXXX
-
-Thanks to IBM for sponsoring this meetup and making it possible!
-
 ```{r, out.width = "400px"}
-path <- paste0(getwd(), "/images/IBM-Logo.jpeg")
+path <- paste0(getwd(), "/images/MS_header.png")
 knitr::include_graphics(path)
 ```
-
-
-
-
-

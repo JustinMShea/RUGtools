@@ -11,13 +11,18 @@
 #' to .csv, open it with excel and then `save as .csv`. Alternatively, one can 
 #' upload the .xls file to google sheets and then export as .csv.
 #'   
-#' To utilize the Default file path of this function, place the file the folder 
-#' path \strong{`data-raw/meetup`} of the working directory and make sure it is
+#' To utilize the Default file path of this function, place the file in the 
+#' folder path \strong{`data-raw/meetup`} of the working directory and make sure it is
 #' the only file in the folder.
 #' 
-#' @param file File path to .csv file. Defaults to NULL. Default attempts to import 
-#' any .csv file present in the \strong{data-raw/meetup} folder of the working directory.
-#' See \strong{Details} section and file argument of \code{\link{read.csv}} 
+#' @param file File path to .csv file. Defaults to NULL. Default attempts to 
+#' import any .csv file present in the \strong{data-raw/meetup} folder of the 
+#' working directory.See \strong{Details} section and file argument of 
+#' \code{\link{read.csv}} 
+#' 
+#' @param format Character vector of Date format. See usage above for default. 
+#' Meetup seems to change this frequently, so check your data. 
+#' See \code{\link{strptime}} for formating details. 
 #' 
 #' @param ... arguments passed to \code{\link{read.csv}}
 #' 
@@ -27,13 +32,14 @@
 #'
 #' @importFrom utils read.csv
 #' 
-#' @return A \code{\link{data.frame}} formated indentically to \code{\link{member_list}}.
+#' @return A \code{\link{data.frame}} formated indentically to 
+#'  \code{\link{member_list}}.
 #' 
 #' @examples
 #' \dontrun{ 
 #' member_list <- meetup_import()}
 #' @export
-meetup_import <- function(file = NULL, ...) {
+meetup_import <- function(file = NULL, format = "%d-%b-%y", ...) {
 
 if(is.null(file) == TRUE) {
         
@@ -48,9 +54,9 @@ member_list <- read.csv(file = file_path, stringsAsFactors=FALSE, ...)
 #################### 
 
 # Convert dates of charachter type to `Date`.
-member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = "%m/%d/%Y")
-member_list$Last.visited.group.on <- as.Date.character(member_list$Last.visited.group.on, format = "%m/%d/%Y")
-member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = "%m/%d/%Y")
+member_list$Joined.Group.on <- as.Date.character(member_list$Joined.Group.on, format = format)
+member_list$Last.visited.group.on <- as.Date.character(member_list$Last.visited.group.on, format = format)
+member_list$Last.Attended <- as.Date.character(member_list$Last.Attended, format = format)
 
 # Next, convert reponse oriented variables into factors
 member_list$Intro <- as.factor(member_list$Intro)

@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="New Member Counter — new_mem_counter" />
 
 <meta property="og:description" content="Generates sum of new members between each meetup." />
@@ -38,8 +41,6 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -57,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">RUGtools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -108,9 +109,11 @@
     <div class="hidden name"><code>new_mem_counter.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Generates sum of new members between each meetup.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>new_mem_counter</span>(<span class='no'>data</span>)</pre>
     
@@ -137,12 +140,12 @@ meetup.</p>
  <span class='no'>new_members</span> <span class='kw'>&lt;-</span> <span class='fu'>new_mem_counter</span>(<span class='no'>member_list</span>)
 
  <span class='fu'>tail</span>(<span class='no'>new_members</span>)</div><div class='output co'>#&gt;          Date New
-#&gt; 57 2017-11-15  98
+#&gt; 57 2017-11-15  96
 #&gt; 58 2018-01-27  87
 #&gt; 59 2018-02-15  66
-#&gt; 60 2018-03-29  94
-#&gt; 61 2018-04-14  83
-#&gt; 62 2018-05-03   8</div><div class='input'>
+#&gt; 60 2018-03-29  93
+#&gt; 61 2018-04-14  82
+#&gt; 62 2018-05-29  84</div><div class='input'>
  <span class='co'># Plot the new members data since 2017.</span>
 
  <span class='co'># Create Date Range Index</span>

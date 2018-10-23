@@ -7,6 +7,10 @@
 library(RUGtools)
 member_list <- meetup_import()
 
+# Build checks might reveal character issues.
+member_list$R.Experience <- stringi::stri_trans_general(member_list$R.Experience, "latin-ascii")
+member_list$Location <- stringi::stri_trans_general(member_list$Location, "latin-ascii")
+
 
   #########################
  # write to .Rdata files #

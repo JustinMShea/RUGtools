@@ -73,8 +73,6 @@ text(x=c((1:4)-2.5, (1:6)-3.5, (1:8)-4.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1
 Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG.
 Personally identifiable information has been removed, data formatted and ready for analysis.
 
-###  How many members joined since January of 2017?
- 
 Load the member list data. 
 How many members do we have?
 
@@ -167,7 +165,7 @@ Plot the `new members` data since 2017.
 ```
  
  
-##  Graphing membership over time
+##  Graphing membership as time series
 
 ```{r, message=FALSE, warning=FALSE}
 library(xts)

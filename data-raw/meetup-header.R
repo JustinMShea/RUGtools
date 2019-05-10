@@ -1,9 +1,11 @@
+## First plot
 
 library(wooldridge)
 data("attend")
 
-# create plot 
+## Explore approaches
 library(ggplot2)
+
 Graph <- ggplot(attend, aes(x = atndrte, y = termGPA))  
 
 # add labels, theme, and loess smoother
@@ -19,6 +21,7 @@ Graph + geom_point() +
         labs(x="Percent Meetup Attendance", y="Final Grade in R skills") +
         theme_classic()
 
+
 ## use magick package to store graph as image and overlay logos
 library(magick)
 
@@ -30,8 +33,9 @@ attend_graph <- image_graph(width = 600, height = 338)
 dev.off()
                 
                 
-                
+# twitter                
 crug_twitter_header <- image_graph(width = 1500, height = 500)
+
 Graph + geom_point() + 
         geom_smooth(method = "loess") +
         labs(x="Percent Meetup Attendance", y="Final Grade in R skills (4.0 scale)") +

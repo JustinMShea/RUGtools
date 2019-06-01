@@ -7,7 +7,7 @@
 #' 
 #' @usage data(member_list)
 #' 
-#' @format A data.frame with 3101 observations on 17 variables:
+#' @format A data.frame with 3606 observations on 16 variables:
 #' \itemize{
 #'  \item \strong{Member.ID: }{Integer. Original Member.ID overwritten with a sequence 
 #'  of numbers beginning with 1 (not zero). Used as count index to sum new members.}

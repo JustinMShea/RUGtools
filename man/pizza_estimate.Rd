@@ -4,8 +4,8 @@
 \alias{pizza_estimate}
 \title{Estimate your pizza order}
 \usage{
-pizza_estimate(registered = 120, pizza_diameter = 18, attend_rate = 0.6,
-  serving = 2, style = "thin")
+pizza_estimate(registered = 120, pizza_diameter = 18,
+  attend_rate = 0.6, serving = 2, style = "thin")
 }
 \arguments{
 \item{registered}{Integer. The number of people registered on Meetup.com}

@@ -68,7 +68,7 @@ text(x=c((1:4)-2.5, (1:6)-3.5, (1:8)-4.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1
  
 
 
-## Data and Analysis
+## Data Analysis
 
 Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG.
 Personally identifiable information has been removed, data formatted and ready for analysis.
@@ -85,21 +85,27 @@ NROW(member_list$Member.ID)
 Lets plot the cumulative membership.
 
 ```{r, tidy=TRUE}
-plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", 
+plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", lwd=2, 
      col = "blue", frame = FALSE, main = "Chicago R User Group members", 
-     ylab = "Members", xlab = "")
+     ylab = "Members", xlab = "", ylim = c(0, 4000), 
+     xlim=c(min(member_list$Joined.Group.on), as.Date("2020-01-01")))
 ```
 
 How many members joined since January 2017?
 
 ```{r}
-members_2017_present <- subset(member_list, Joined.Group.on > "2017-01-01")
+NROW(subset(member_list, Joined.Group.on > "2017-01-01"))
+```
+What percentage of the Chicago R User Group joined since January 2017?
 
-NROW(members_2017_present$Member.ID)
+```{r}
+Percentage <- 100 * NROW(subset(member_list, Joined.Group.on > "2017-01-01")) / NROW(member_list)
+
+round(Percentage, 2)
 ```
 
 
-## How many new members join between meetups? 
+## How many new members usually join between meetups? 
 
 First, get a unique ordered list of Meetup dates
 
@@ -123,6 +129,8 @@ all meetups in the data set.
 
 ```{r}
 new_members <- new_mem_counter(member_list)
+# drop the last observation, as incomplete data leading up to the coming meetup.
+new_members <- new_members[-NROW(new_members),]
 
 kable(head(new_members), align = 'l')
 
@@ -135,6 +143,14 @@ Which gap between meetups had the most new members?
 max_new_members <- new_members[new_members$New==max(new_members$New),]
 
 kable(max_new_members, align = 'l')
+```
+
+Note the previous meetup was 6 months prior, so likely this was not due to the topic covered.
+
+What is the average number of new members joined between meetups?
+ 
+```{r, message=FALSE, warning=FALSE}
+mean(new_members$New)
 ```
 
 Plot the `new members` data.
@@ -164,8 +180,27 @@ Plot the `new members` data since 2017.
           ylab = "New Members", xlab = "")
 ```
  
+What is the average number of new members joined between meetups since 2017?
  
-##  Graphing membership as time series
+```{r, message=FALSE, warning=FALSE}
+mean(new_members$New[Date_Index])
+```
+
+ Lets subtract the mean and `plot`.
+ 
+```{r}
+new_members_demeaned_2017 <- new_members$New[Date_Index] - mean(new_members$New[Date_Index])
+  # Plot
+  barplot(new_members_demeaned_2017, names.arg = x_labels, las=2, main = "CRUG members, joined between meetups, de-meaned",  
+          ylab = "New Members", xlab = "")
+
+```
+
+
+
+#  Membership as time series
+
+Load and use the `xts` package.
 
 ```{r, message=FALSE, warning=FALSE}
 library(xts)
@@ -185,10 +220,10 @@ barplot(diff(members_monthly), col = "lightgrey", main = "Chicago R User Group, 
 
 ### What's our percentage growth per month?
 
-Omit the first two month's outliers.
+Omit the first two months growth outliers. 
 
 ```{r}
-barplot(100*diff(members_monthly)/members_monthly[-c(1:2)], col = "lightgrey")
+barplot(100*diff(members_monthly)[-c(1,2)]/members_monthly[-c(1,2)], col = "lightgrey")
 ```
 
 Let's view the last 3 years.
@@ -196,3 +231,5 @@ Let's view the last 3 years.
 ```{r}
 barplot(tail(100*diff(members_monthly)/members_monthly, 36), col = "lightgrey")
 ```
+
+As one of the largest and oldest `R` user groups in existence, the Chicago `R` User Group has matured into a comfortable period of value. Growth rates are lower by percentage, but the group continues to serve a steady group of new use`R`s.

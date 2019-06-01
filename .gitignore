@@ -22,6 +22,8 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
 .Rproj.user
+# Additional developer defined files
 RUGtools.Rproj
 data-raw/meetup

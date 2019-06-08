@@ -1,7 +1,7 @@
 ---
 title: "Introduction to RUGtools"
 author: "Justin M. Shea"
-date: "April 23, 2018"
+date: "June 8th, 2019"
 output: html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
@@ -186,17 +186,6 @@ What is the average number of new members joined between meetups since 2017?
 mean(new_members$New[Date_Index])
 ```
 
- Lets subtract the mean and `plot`.
- 
-```{r}
-new_members_demeaned_2017 <- new_members$New[Date_Index] - mean(new_members$New[Date_Index])
-  # Plot
-  barplot(new_members_demeaned_2017, names.arg = x_labels, las=2, main = "CRUG members, joined between meetups, de-meaned",  
-          ylab = "New Members", xlab = "")
-
-```
-
-
 
 #  Membership as time series
 
@@ -206,6 +195,7 @@ Load and use the `xts` package.
 library(xts)
 
 members_xts <- xts(x = member_list$Member.ID, order.by = member_list$Joined.Group.on)
+names(members_xts) <- "useRs"
 
 plot(members_xts, col = "blue", grid.col = "white", main = "Chicago R User Group members by join date")
 ```
@@ -223,13 +213,27 @@ barplot(diff(members_monthly), col = "lightgrey", main = "Chicago R User Group, 
 Omit the first two months growth outliers. 
 
 ```{r}
-barplot(100*diff(members_monthly)[-c(1,2)]/members_monthly[-c(1,2)], col = "lightgrey")
+barplot(100*diff(members_monthly)[-c(1,2)]/members_monthly[-c(1,2)], col = "lightgrey",
+        main = "CRUG Growth since inception", ylab="Percent")
 ```
 
-Let's view the last 3 years.
+Let's view the last 4 years.
 
 ```{r}
-barplot(tail(100*diff(members_monthly)/members_monthly, 36), col = "lightgrey")
+members_3_years <- 100*diff(members_monthly["2015-05/"]) / members_monthly["2015-05/"]
+barplot(members_3_years, col = "lightgrey", main = "CRUG Growth, last 4 years", ylab="Percent")
+```
+
+Consider seasonal variation.
+
+```{r}
+month_percent_growth <- c(NA, NA, NA, NA, 100*diff(log(coredata(members_monthly))), NA, NA, NA, NA, NA, NA, NA)
+seasonal_matrix <- matrix(month_percent_growth, ncol = 12, byrow = TRUE)
+colnames(seasonal_matrix) <- month.abb
+rownames(seasonal_matrix) <- 2010:2019
+seasonal_matrix <- rbind(seasonal_matrix, Median=round(apply(seasonal_matrix, 2, median, na.rm=TRUE), 2))
+
+kable(seasonal_matrix, digits=2, caption = "Percentage Growth per Month")
 ```
 
 As one of the largest and oldest `R` user groups in existence, the Chicago `R` User Group has matured into a comfortable period of value. Growth rates are lower by percentage, but the group continues to serve a steady group of new use`R`s.

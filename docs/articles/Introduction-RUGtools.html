@@ -76,7 +76,7 @@
       <h1>Introduction to RUGtools</h1>
                         <h4 class="author">Justin M. Shea</h4>
             
-            <h4 class="date">April 23, 2018</h4>
+            <h4 class="date">June 8th, 2019</h4>
       
       
       <div class="hidden name"><code>Introduction-RUGtools.Rmd</code></div>
@@ -93,16 +93,16 @@
 <h2 class="hasAnchor">
 <a href="#r-user-group-introduction-slides-template" class="anchor"></a>R User Group Introduction Slides template</h2>
 <p>This is a traditional ioslides R Markdown template, but modified to contain default content routinely used when introducing Chicago R user group meetups. Slides are useful because they look good and you won’t forget to do important things like <strong>thanking the sponsors!</strong> Slides can be accessed from within R Studio using the <code>New R Markdown</code> dialog menu, and then selecting <code>From Template</code>. One can also use the <code>draft</code> function, exemplified below.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">rmarkdown<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rmarkdown/topics/draft">draft</a></span>(<span class="dt">file=</span><span class="st">"new_meetup.Rmd"</span>, <span class="dt">template =</span> <span class="st">"intro_slides"</span>, <span class="dt">package=</span><span class="st">"RUGtools"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">rmarkdown<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/rmarkdown/topics/draft">draft</a></span>(<span class="dt">file=</span><span class="st">"new_meetup.Rmd"</span>, <span class="dt">template =</span> <span class="st">"intro_slides"</span>, <span class="dt">package=</span><span class="st">"RUGtools"</span>)</a></code></pre></div>
 </div>
 <div id="estimate-your-pizza-order" class="section level2">
 <h2 class="hasAnchor">
 <a href="#estimate-your-pizza-order" class="anchor"></a>Estimate your pizza order</h2>
 <p>In Chicago, we think a lot about Pizza. And if one is involved in the local meetup culture, this is doubly so. At a recent meetup group that wasn’t ours, I counted nearly 6 large pizzas left over. Struck by an overwhelming sorrow, I vowed the Chicago R User Group shall never partake in such a tragic waste of resources. With a few data points, one can use the <code>pizza_estimate</code> function to arrive at a more efficient order.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">pizzas &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pizza_estimate.html">pizza_estimate</a></span>(<span class="dt">registered =</span> <span class="dv">140</span>, <span class="dt">pizza_diameter =</span> <span class="dv">18</span>, <span class="dt">attend_rate =</span> <span class="fl">0.60</span>, </a>
-<a class="sourceLine" id="cb2-2" title="2">               <span class="dt">serving =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">"thin"</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw">kable</span>(pizzas)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">pizzas &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pizza_estimate.html">pizza_estimate</a></span>(<span class="dt">registered =</span> <span class="dv">140</span>, <span class="dt">pizza_diameter =</span> <span class="dv">18</span>, <span class="dt">attend_rate =</span> <span class="fl">0.60</span>, </a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">               <span class="dt">serving =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">"thin"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">kable</span>(pizzas)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">registered</th>
@@ -127,44 +127,44 @@
 <a href="#data-analysis" class="anchor"></a>Data Analysis</h2>
 <p>Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG. Personally identifiable information has been removed, data formatted and ready for analysis.</p>
 <p>Load the member list data. How many members do we have?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(member_list)</a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(member_list<span class="op">$</span>Member.ID)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(member_list)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(member_list<span class="op">$</span>Member.ID)</a></code></pre></div>
 <pre><code>## [1] 3606</code></pre>
 <p>Lets plot the cumulative membership.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, </a>
-<a class="sourceLine" id="cb5-2" title="2">    <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members"</span>, </a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="dt">ylab =</span> <span class="st">"Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>, <span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">4000</span>), <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(member_list<span class="op">$</span>Joined.Group.on), </a>
-<a class="sourceLine" id="cb5-4" title="4">        <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(<span class="st">"2020-01-01"</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">lwd=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">     <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members"</span>, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">     <span class="dt">ylab =</span> <span class="st">"Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>, <span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">4000</span>), </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">     <span class="dt">xlim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(member_list<span class="op">$</span>Joined.Group.on), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(<span class="st">"2020-01-01"</span>)))</a></code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>How many members joined since January 2017?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>))</a></code></pre></div>
 <pre><code>## [1] 1554</code></pre>
 <p>What percentage of the Chicago R User Group joined since January 2017?</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">Percentage &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(member_list)</a>
-<a class="sourceLine" id="cb8-2" title="2"></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(Percentage, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Percentage &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(member_list)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(Percentage, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 43.09</code></pre>
 </div>
 <div id="how-many-new-members-usually-join-between-meetups" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-many-new-members-usually-join-between-meetups" class="anchor"></a>How many new members usually join between meetups?</h2>
 <p>First, get a unique ordered list of Meetup dates</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">Meetup_dates &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(member_list<span class="op">$</span>Last.Attended))</a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3">new_members &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)])</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">Meetup_dates &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sort">sort</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(member_list<span class="op">$</span>Last.Attended))</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">new_members &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)])</a></code></pre></div>
 <p>Then count the number of new members joined between the most recent meetup and the one prior to that.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">new_members2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)] <span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">                                    </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb11-3" title="3"></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(new_members2)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">new_members2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)] <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">                                    </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(new_members2)</a></code></pre></div>
 <pre><code>## [1] 67</code></pre>
 <p>In danger of repeating the above analysis several times over, we created a function <code>new_mem_counter</code> to count the number of new members joined between meetups for all meetups in the data set.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="co"># drop the last observation, as incomplete data leading up to the coming meetup.</span></a>
-<a class="sourceLine" id="cb13-3" title="3">new_members &lt;-<span class="st"> </span>new_members[<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(new_members),]</a>
-<a class="sourceLine" id="cb13-4" title="4"></a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(new_members), <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># drop the last observation, as incomplete data leading up to the coming meetup.</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">new_members &lt;-<span class="st"> </span>new_members[<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(new_members),]</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(new_members), <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Date</th>
@@ -197,7 +197,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail</a></span>(new_members), <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail</a></span>(new_members), <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -238,9 +238,9 @@
 </tbody>
 </table>
 <p>Which gap between meetups had the most new members?</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">max_new_members &lt;-<span class="st"> </span>new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(new_members<span class="op">$</span>New),]</a>
-<a class="sourceLine" id="cb15-2" title="2"></a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="kw">kable</span>(max_new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">max_new_members &lt;-<span class="st"> </span>new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(new_members<span class="op">$</span>New),]</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">kable</span>(max_new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -255,66 +255,256 @@
 </table>
 <p>Note the previous meetup was 6 months prior, so likely this was not due to the topic covered.</p>
 <p>What is the average number of new members joined between meetups?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(new_members<span class="op">$</span>New)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(new_members<span class="op">$</span>New)</a></code></pre></div>
 <pre><code>## [1] 49.54286</code></pre>
 <p>Plot the <code>new members</code> data.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">   <span class="co"># Create Date Range Index</span></a>
-<a class="sourceLine" id="cb18-2" title="2">  Date_Index &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/row.names">row.names</a></span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> "2010-01-01"</span> <span class="op">&amp;</span><span class="st"> </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(),]))</a>
-<a class="sourceLine" id="cb18-3" title="3">  </a>
-<a class="sourceLine" id="cb18-4" title="4">  <span class="co"># Create x-axis labels, using year-month date format</span></a>
-<a class="sourceLine" id="cb18-5" title="5">  x_labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/format">format</a></span>(new_members<span class="op">$</span>Date[Date_Index], <span class="st">"%Y-%m"</span>)</a>
-<a class="sourceLine" id="cb18-6" title="6"></a>
-<a class="sourceLine" id="cb18-7" title="7">  <span class="co"># Plot</span></a>
-<a class="sourceLine" id="cb18-8" title="8">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  </a>
-<a class="sourceLine" id="cb18-9" title="9">          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">   <span class="co"># Create Date Range Index</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">  Date_Index &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/row.names">row.names</a></span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> "2010-01-01"</span> <span class="op">&amp;</span><span class="st"> </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(),]))</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">  <span class="co"># Create x-axis labels, using year-month date format</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">  x_labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/format">format</a></span>(new_members<span class="op">$</span>Date[Date_Index], <span class="st">"%Y-%m"</span>)</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">  <span class="co"># Plot</span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  </a>
+<a class="sourceLine" id="cb18-9" data-line-number="9">          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</a></code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <p>Plot the <code>new members</code> data since 2017.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">   <span class="co"># Create Date Range Index</span></a>
-<a class="sourceLine" id="cb19-2" title="2">  Date_Index &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/row.names">row.names</a></span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> "2017-01-01"</span> <span class="op">&amp;</span><span class="st"> </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(),]))</a>
-<a class="sourceLine" id="cb19-3" title="3">  </a>
-<a class="sourceLine" id="cb19-4" title="4">  x_labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/format">format</a></span>(new_members<span class="op">$</span>Date[Date_Index], <span class="st">"%Y-%m"</span>)</a>
-<a class="sourceLine" id="cb19-5" title="5"></a>
-<a class="sourceLine" id="cb19-6" title="6">  <span class="co"># Plot</span></a>
-<a class="sourceLine" id="cb19-7" title="7">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  </a>
-<a class="sourceLine" id="cb19-8" title="8">          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">   <span class="co"># Create Date Range Index</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">  Date_Index &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">as.numeric</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/row.names">row.names</a></span>(new_members[new_members<span class="op">$</span>Date <span class="op">&gt;</span><span class="st"> "2017-01-01"</span> <span class="op">&amp;</span><span class="st"> </span>new_members<span class="op">$</span>Date <span class="op">&lt;=</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(),]))</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">  </a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">  x_labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/format">format</a></span>(new_members<span class="op">$</span>Date[Date_Index], <span class="st">"%Y-%m"</span>)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="co"># Plot</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(new_members<span class="op">$</span>New[Date_Index], <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups"</span>,  </a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</a></code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 <p>What is the average number of new members joined between meetups since 2017?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(new_members<span class="op">$</span>New[Date_Index])</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(new_members<span class="op">$</span>New[Date_Index])</a></code></pre></div>
 <pre><code>## [1] 64.33333</code></pre>
-<p>Lets subtract the mean and <code>plot</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">new_members_demeaned_<span class="dv">2017</span> &lt;-<span class="st"> </span>new_members<span class="op">$</span>New[Date_Index] <span class="op">-</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(new_members<span class="op">$</span>New[Date_Index])</a>
-<a class="sourceLine" id="cb22-2" title="2">  <span class="co"># Plot</span></a>
-<a class="sourceLine" id="cb22-3" title="3">  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(new_members_demeaned_<span class="dv">2017</span>, <span class="dt">names.arg =</span> x_labels, <span class="dt">las=</span><span class="dv">2</span>, <span class="dt">main =</span> <span class="st">"CRUG members, joined between meetups, de-meaned"</span>,  </a>
-<a class="sourceLine" id="cb22-4" title="4">          <span class="dt">ylab =</span> <span class="st">"New Members"</span>, <span class="dt">xlab =</span> <span class="st">""</span>)</a></code></pre></div>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
 <div id="membership-as-time-series" class="section level1">
 <h1 class="hasAnchor">
 <a href="#membership-as-time-series" class="anchor"></a>Membership as time series</h1>
 <p>Load and use the <code>xts</code> package.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(xts)</a>
-<a class="sourceLine" id="cb23-2" title="2"></a>
-<a class="sourceLine" id="cb23-3" title="3">members_xts &lt;-<span class="st"> </span><span class="kw">xts</span>(<span class="dt">x =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">order.by =</span> member_list<span class="op">$</span>Joined.Group.on)</a>
-<a class="sourceLine" id="cb23-4" title="4"></a>
-<a class="sourceLine" id="cb23-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(members_xts, <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">grid.col =</span> <span class="st">"white"</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members by join date"</span>)</a></code></pre></div>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(xts)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">members_xts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/xts/topics/xts">xts</a></span>(<span class="dt">x =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">order.by =</span> member_list<span class="op">$</span>Joined.Group.on)</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(members_xts) &lt;-<span class="st"> "useRs"</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(members_xts, <span class="dt">col =</span> <span class="st">"blue"</span>, <span class="dt">grid.col =</span> <span class="st">"white"</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group members by join date"</span>)</a></code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 <div id="how-many-members-join-by-month" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-many-members-join-by-month" class="anchor"></a>How many members join by month?</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">members_monthly &lt;-<span class="st"> </span><span class="kw">to.monthly</span>(members_xts, <span class="dt">OHLC =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb24-2" title="2"></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(members_monthly), <span class="dt">col =</span> <span class="st">"lightgrey"</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group, new members by month"</span>)</a></code></pre></div>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">members_monthly &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/xts/topics/to.period">to.monthly</a></span>(members_xts, <span class="dt">OHLC =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(members_monthly), <span class="dt">col =</span> <span class="st">"lightgrey"</span>, <span class="dt">main =</span> <span class="st">"Chicago R User Group, new members by month"</span>)</a></code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
 <div id="whats-our-percentage-growth-per-month" class="section level3">
 <h3 class="hasAnchor">
 <a href="#whats-our-percentage-growth-per-month" class="anchor"></a>What’s our percentage growth per month?</h3>
 <p>Omit the first two months growth outliers.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(members_monthly)[<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>)]<span class="op">/</span>members_monthly[<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>)], <span class="dt">col =</span> <span class="st">"lightgrey"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(members_monthly)[<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>)]<span class="op">/</span>members_monthly[<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>)], <span class="dt">col =</span> <span class="st">"lightgrey"</span>,</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">        <span class="dt">main =</span> <span class="st">"CRUG Growth since inception"</span>, <span class="dt">ylab=</span><span class="st">"Percent"</span>)</a></code></pre></div>
+<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
+<p>Let’s view the last 4 years.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">members_<span class="dv">3</span>_years &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(members_monthly[<span class="st">"2015-05/"</span>]) <span class="op">/</span><span class="st"> </span>members_monthly[<span class="st">"2015-05/"</span>]</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(members_<span class="dv">3</span>_years, <span class="dt">col =</span> <span class="st">"lightgrey"</span>, <span class="dt">main =</span> <span class="st">"CRUG Growth, last 4 years"</span>, <span class="dt">ylab=</span><span class="st">"Percent"</span>)</a></code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
-<p>Let’s view the last 3 years.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/barplot">barplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(members_monthly)<span class="op">/</span>members_monthly, <span class="dv">36</span>), <span class="dt">col =</span> <span class="st">"lightgrey"</span>)</a></code></pre></div>
-<p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
+<p>Consider seasonal variation.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">month_percent_growth &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="dv">100</span><span class="op">*</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="kw">coredata</span>(members_monthly))), <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">seasonal_matrix &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(month_percent_growth, <span class="dt">ncol =</span> <span class="dv">12</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">colnames</a></span>(seasonal_matrix) &lt;-<span class="st"> </span>month.abb</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colnames">rownames</a></span>(seasonal_matrix) &lt;-<span class="st"> </span><span class="dv">2010</span><span class="op">:</span><span class="dv">2019</span></a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">seasonal_matrix &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(seasonal_matrix, <span class="dt">Median=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/apply">apply</a></span>(seasonal_matrix, <span class="dv">2</span>, median, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="kw">kable</span>(seasonal_matrix, <span class="dt">digits=</span><span class="dv">2</span>, <span class="dt">caption =</span> <span class="st">"Percentage Growth per Month"</span>)</a></code></pre></div>
+<table class="table">
+<caption>Percentage Growth per Month</caption>
+<thead><tr class="header">
+<th></th>
+<th align="right">Jan</th>
+<th align="right">Feb</th>
+<th align="right">Mar</th>
+<th align="right">Apr</th>
+<th align="right">May</th>
+<th align="right">Jun</th>
+<th align="right">Jul</th>
+<th align="right">Aug</th>
+<th align="right">Sep</th>
+<th align="right">Oct</th>
+<th align="right">Nov</th>
+<th align="right">Dec</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>2010</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">32.54</td>
+<td align="right">5.41</td>
+<td align="right">8.41</td>
+<td align="right">17.69</td>
+<td align="right">6.54</td>
+<td align="right">8.49</td>
+<td align="right">2.30</td>
+<td align="right">17.66</td>
+</tr>
+<tr class="even">
+<td>2011</td>
+<td align="right">8.22</td>
+<td align="right">5.96</td>
+<td align="right">11.69</td>
+<td align="right">2.18</td>
+<td align="right">8.28</td>
+<td align="right">3.90</td>
+<td align="right">3.75</td>
+<td align="right">6.53</td>
+<td align="right">7.21</td>
+<td align="right">2.64</td>
+<td align="right">8.48</td>
+<td align="right">3.76</td>
+</tr>
+<tr class="odd">
+<td>2012</td>
+<td align="right">7.54</td>
+<td align="right">8.99</td>
+<td align="right">9.67</td>
+<td align="right">8.82</td>
+<td align="right">13.07</td>
+<td align="right">5.54</td>
+<td align="right">5.25</td>
+<td align="right">7.39</td>
+<td align="right">6.66</td>
+<td align="right">8.31</td>
+<td align="right">7.29</td>
+<td align="right">2.81</td>
+</tr>
+<tr class="even">
+<td>2013</td>
+<td align="right">5.92</td>
+<td align="right">3.42</td>
+<td align="right">3.15</td>
+<td align="right">5.55</td>
+<td align="right">5.55</td>
+<td align="right">2.59</td>
+<td align="right">3.91</td>
+<td align="right">6.74</td>
+<td align="right">4.13</td>
+<td align="right">2.18</td>
+<td align="right">1.43</td>
+<td align="right">1.18</td>
+</tr>
+<tr class="odd">
+<td>2014</td>
+<td align="right">1.97</td>
+<td align="right">4.70</td>
+<td align="right">2.91</td>
+<td align="right">4.37</td>
+<td align="right">5.06</td>
+<td align="right">1.82</td>
+<td align="right">1.97</td>
+<td align="right">2.30</td>
+<td align="right">2.25</td>
+<td align="right">3.67</td>
+<td align="right">3.54</td>
+<td align="right">1.56</td>
+</tr>
+<tr class="even">
+<td>2015</td>
+<td align="right">4.15</td>
+<td align="right">3.23</td>
+<td align="right">3.42</td>
+<td align="right">2.53</td>
+<td align="right">2.33</td>
+<td align="right">2.14</td>
+<td align="right">2.16</td>
+<td align="right">2.51</td>
+<td align="right">1.04</td>
+<td align="right">2.80</td>
+<td align="right">2.23</td>
+<td align="right">1.88</td>
+</tr>
+<tr class="odd">
+<td>2016</td>
+<td align="right">2.20</td>
+<td align="right">1.75</td>
+<td align="right">0.92</td>
+<td align="right">1.37</td>
+<td align="right">1.18</td>
+<td align="right">2.59</td>
+<td align="right">2.95</td>
+<td align="right">2.56</td>
+<td align="right">2.14</td>
+<td align="right">1.35</td>
+<td align="right">0.99</td>
+<td align="right">1.03</td>
+</tr>
+<tr class="even">
+<td>2017</td>
+<td align="right">3.21</td>
+<td align="right">2.38</td>
+<td align="right">2.86</td>
+<td align="right">1.38</td>
+<td align="right">2.18</td>
+<td align="right">2.35</td>
+<td align="right">1.92</td>
+<td align="right">1.68</td>
+<td align="right">2.21</td>
+<td align="right">2.98</td>
+<td align="right">2.67</td>
+<td align="right">0.60</td>
+</tr>
+<tr class="odd">
+<td>2018</td>
+<td align="right">2.15</td>
+<td align="right">2.35</td>
+<td align="right">2.93</td>
+<td align="right">3.25</td>
+<td align="right">2.33</td>
+<td align="right">1.47</td>
+<td align="right">3.00</td>
+<td align="right">1.47</td>
+<td align="right">1.20</td>
+<td align="right">2.30</td>
+<td align="right">1.57</td>
+<td align="right">0.50</td>
+</tr>
+<tr class="even">
+<td>2019</td>
+<td align="right">1.42</td>
+<td align="right">1.12</td>
+<td align="right">0.74</td>
+<td align="right">1.21</td>
+<td align="right">0.95</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td>Median</td>
+<td align="right">3.21</td>
+<td align="right">3.23</td>
+<td align="right">2.93</td>
+<td align="right">2.53</td>
+<td align="right">3.69</td>
+<td align="right">2.59</td>
+<td align="right">3.00</td>
+<td align="right">2.56</td>
+<td align="right">2.25</td>
+<td align="right">2.80</td>
+<td align="right">2.30</td>
+<td align="right">1.56</td>
+</tr>
+</tbody>
+</table>
 <p>As one of the largest and oldest <code>R</code> user groups in existence, the Chicago <code>R</code> User Group has matured into a comfortable period of value. Growth rates are lower by percentage, but the group continues to serve a steady group of new use<code>R</code>s.</p>
 </div>
 </div>

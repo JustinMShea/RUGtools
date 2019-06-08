@@ -1,6 +1,6 @@
 Package: RUGtools
 Type: Package
-Title: Functions useful for organizing R User Group meetups.
+Title: Functions useful for organizing R User Group meetups
 Version: 0.3-0
 Authors@R: person("Justin M.", "Shea", email = "justin.shea@gmail.com", role = c("aut", "cre"))
 Description: This package contains functions, data, reports, and Rmarkdown templates 

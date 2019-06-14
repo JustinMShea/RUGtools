@@ -10,10 +10,12 @@ preiously contained in the "data-raw/meetup-download-clean.R" file, used to prod
 the "member_list" data.frame. Now, we just call this function after downloading 
 data from meetup.com and it cleans and formats the data for us.
 
+Additional content added to the `Introduction-RUGtools` vignette. These include a better pizza graphic, and additional exploration of time series of membership.
+
 
 # RUGtools 0.2-0
 
-In the spirit of open source, doped the `C` and now its `RUGtools`, which will hopefully encourage others to use the work and perhaps contribute.
+In the spirit of open source, droped the `C` and now its `RUGtools`, which will hopefully encourage others to use the work and perhaps contribute.
 Chicago R User group listed as the motivation in the DESCRIPTION file.
 
 Created a formal R markdown template of `intro-slides` which can be called using the `draft` function or from the Rstudio r markdown template selection.

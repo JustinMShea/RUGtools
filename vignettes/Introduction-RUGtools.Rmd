@@ -43,7 +43,6 @@ With a few data points, one can use the `pizza_estimate` function to arrive at
 a more efficient order.
 
 ```{r, align = "l"}
-
 kable( pizza_estimate(registered = 120, pizza_diameter = 18, attend_rate = 0.57, 
                       serving = 2, style = "thin") )
 
@@ -65,8 +64,8 @@ points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:
      y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=1.33), pch=19, cex=4, col="red")
 points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
      y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=2), pch="`", cex=6, col="green")
-text(x=c((1:4)-2.5, (1:6)-3.5, (1:6)-3.5, (1:6)-3.5, (1:6)-3.5, (1:4)-2.5), 
-     y=c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, labels=1:32, col="black")
+points(x=jitter(c(seq(from=-1.5, to=1.5, length.out=12), seq(from = -2, to =2, length.out=18), seq(from=-3, to=3, length.out=24), seq(from=-3, to=3, length.out=24), seq(from = -2, to =2, length.out=18), seq(from=-1.5, to=1.5, length.out=12)), factor = 2), 
+       y=jitter(c(rnorm(12, mean = 3, sd=0.5), rnorm(18, mean = 2, sd=0.5), rnorm(24, mean = 1, sd=0.5), rnorm(24, mean = 0, sd=0.5), rnorm(18, mean = -1, sd=0.5), rnorm(12, mean = -2, sd=0.5))-0.5, factor=2), pch=".", cex=1.5, col="black")
 abline(h=-3:3, col="white", lwd=2.5)
 abline(v=-3:3, col="white", lwd=2.5)
 ```
@@ -82,8 +81,7 @@ Load the member list data.
 How many members do we have?
 
 ```{r}
-data(member_list)
-NROW(member_list)
+nrow(member_list)
 ```
 
 Lets plot the cumulative membership.
@@ -98,13 +96,12 @@ plot(y = member_list$Member.ID, x = member_list$Joined.Group.on, type = "l", lwd
 How many members joined since January 2017?
 
 ```{r}
-NROW(subset(member_list, Joined.Group.on > "2017-01-01"))
+nrow(subset(member_list, Joined.Group.on > "2017-01-01"))
 ```
 What percentage of the Chicago R User Group joined since January 2017?
 
 ```{r}
 Percentage <- 100 * NROW(subset(member_list, Joined.Group.on > "2017-01-01")) / NROW(member_list)
-
 round(Percentage, 2)
 ```
 
@@ -125,7 +122,7 @@ Then count the number of new members joined between the most recent meetup and t
 new_members2 <- subset(member_list, Joined.Group.on <= Meetup_dates[NROW(Meetup_dates)] &
                                     Joined.Group.on > Meetup_dates[NROW(Meetup_dates)-1])
 
-NROW(new_members2)
+nrow(new_members2)
 ```
 
 In danger of repeating the above analysis several times over, we created a function `new_mem_counter` to count the number of new members joined between meetups for 
@@ -144,9 +141,7 @@ kable(tail(new_members), align = 'l')
 Which gap between meetups had the most new members?
  
 ```{r}
-max_new_members <- new_members[new_members$New==max(new_members$New),]
-
-kable(max_new_members, align = 'l')
+kable(new_members[new_members$New==max(new_members$New), ], align = 'l')
 ```
 
 Note the previous meetup was 6 months prior, so likely this was not due to the topic covered.

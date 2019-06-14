@@ -3,7 +3,7 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/JustinMShea/RUGtools?branch=master&svg=true)](https://ci.appveyor.com/project/JustinMShea/RUGtools) [![Travis-CI Build Status](https://travis-ci.org/JustinMShea/RUGtools.svg?branch=master)](https://travis-ci.org/JustinMShea/RUGtools)
 
 
-A collection of data, functions, reports, and a custom r markdown template related to the [Chicago R User Group (Chicago RUG, CRUG) Data and Statistics](https://www.meetup.com/ChicagoRUG/). These include:
+A collection of data, functions, reports, and a custom r markdown template related to the [Chicago R User Group (CRUG)](https://www.meetup.com/ChicagoRUG/). These include:
 
 - **`pizza_estimate`**: Function to estimate your meetup pizza order.
 

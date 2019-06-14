@@ -76,7 +76,7 @@
       <h1>Introduction to RUGtools</h1>
                         <h4 class="author">Justin M. Shea</h4>
             
-            <h4 class="date">June 8th, 2019</h4>
+            <h4 class="date">June 13th, 2019</h4>
       
       
       <div class="hidden name"><code>Introduction-RUGtools.Rmd</code></div>
@@ -99,10 +99,8 @@
 <h2 class="hasAnchor">
 <a href="#estimate-your-pizza-order" class="anchor"></a>Estimate your pizza order</h2>
 <p>In Chicago, we think a lot about Pizza. And if one is involved in the local meetup culture, this is doubly so. At a recent meetup group that wasn’t ours, I counted nearly 6 large pizzas left over. Struck by an overwhelming sorrow, I vowed the Chicago R User Group shall never partake in such a tragic waste of resources. With a few data points, one can use the <code>pizza_estimate</code> function to arrive at a more efficient order.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">pizzas &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pizza_estimate.html">pizza_estimate</a></span>(<span class="dt">registered =</span> <span class="dv">140</span>, <span class="dt">pizza_diameter =</span> <span class="dv">18</span>, <span class="dt">attend_rate =</span> <span class="fl">0.60</span>, </a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">               <span class="dt">serving =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">"thin"</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">kable</span>(pizzas)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">kable</span>( <span class="kw"><a href="../reference/pizza_estimate.html">pizza_estimate</a></span>(<span class="dt">registered =</span> <span class="dv">120</span>, <span class="dt">pizza_diameter =</span> <span class="dv">18</span>, <span class="dt">attend_rate =</span> <span class="fl">0.57</span>, </a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                      <span class="dt">serving =</span> <span class="dv">2</span>, <span class="dt">style =</span> <span class="st">"thin"</span>) )</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">registered</th>
@@ -112,14 +110,14 @@
 <th align="right">pizza_estimate</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">140</td>
-<td align="right">84</td>
+<td align="right">120</td>
+<td align="right">69</td>
 <td align="right">5.342811</td>
 <td align="left">thin</td>
-<td align="right">16</td>
+<td align="right">13</td>
 </tr></tbody>
 </table>
-<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing <strong>n</strong> pizzas among <strong>p</strong> guests. Small square pieces allow guests to better estimate pizza consumption, thus decreasing the integer-programming problem exacerbated by large triangular slices. Reducing wasted pizza is not only virtuous, it demonstrates great stewardship of sponsor resources bestowed upon thee.</p>
+<p>Channeling our ever-curious pizza scientist, <em><strong>it turns out</strong></em> the Chicago “party cut” (thin-crust cut into small squares) inherits a few very attractive properties when dividing <strong>p</strong> pizzas among <strong>n</strong> guests. Small square pieces allow guests to better estimate pizza consumption, thus decreasing the integer-programming problem exacerbated by large triangular slices. Reducing wasted pizza is not only virtuous, it demonstrates great stewardship of sponsor resources bestowed upon thee.</p>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 </div>
 <div id="data-analysis" class="section level2">
@@ -127,9 +125,7 @@
 <a href="#data-analysis" class="anchor"></a>Data Analysis</h2>
 <p>Chicago R User Group data is included and downloaded from meetup.com/ChicagoRUG. Personally identifiable information has been removed, data formatted and ready for analysis.</p>
 <p>Load the member list data. How many members do we have?</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(member_list)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(member_list<span class="op">$</span>Member.ID)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(member_list)</a></code></pre></div>
 <pre><code>## [1] 3606</code></pre>
 <p>Lets plot the cumulative membership.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dt">y =</span> member_list<span class="op">$</span>Member.ID, <span class="dt">x =</span> member_list<span class="op">$</span>Joined.Group.on, <span class="dt">type =</span> <span class="st">"l"</span>, <span class="dt">lwd=</span><span class="dv">2</span>, </a>
@@ -138,12 +134,11 @@
 <a class="sourceLine" id="cb5-4" data-line-number="4">     <span class="dt">xlim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(member_list<span class="op">$</span>Joined.Group.on), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date</a></span>(<span class="st">"2020-01-01"</span>)))</a></code></pre></div>
 <p><img src="Introduction-RUGtools_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>How many members joined since January 2017?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>))</a></code></pre></div>
 <pre><code>## [1] 1554</code></pre>
 <p>What percentage of the Chicago R User Group joined since January 2017?</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Percentage &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&gt;</span><span class="st"> "2017-01-01"</span>)) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(member_list)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(Percentage, <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(Percentage, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 43.09</code></pre>
 </div>
 <div id="how-many-new-members-usually-join-between-meetups" class="section level2">
@@ -157,7 +152,7 @@
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">new_members2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(member_list, Joined.Group.on <span class="op">&lt;=</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)] <span class="op">&amp;</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">                                    </span>Joined.Group.on <span class="op">&gt;</span><span class="st"> </span>Meetup_dates[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(Meetup_dates)<span class="op">-</span><span class="dv">1</span>])</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">NROW</a></span>(new_members2)</a></code></pre></div>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(new_members2)</a></code></pre></div>
 <pre><code>## [1] 67</code></pre>
 <p>In danger of repeating the above analysis several times over, we created a function <code>new_mem_counter</code> to count the number of new members joined between meetups for all meetups in the data set.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">new_members &lt;-<span class="st"> </span><span class="kw"><a href="../reference/new_mem_counter.html">new_mem_counter</a></span>(member_list)</a>
@@ -238,9 +233,7 @@
 </tbody>
 </table>
 <p>Which gap between meetups had the most new members?</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">max_new_members &lt;-<span class="st"> </span>new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(new_members<span class="op">$</span>New),]</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">kable</span>(max_new_members, <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">kable</span>(new_members[new_members<span class="op">$</span>New<span class="op">==</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">max</a></span>(new_members<span class="op">$</span>New), ], <span class="dt">align =</span> <span class="st">'l'</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>

@@ -1,7 +1,7 @@
 ---
 title: "Introduction to RUGtools"
 author: "Justin M. Shea"
-date: "June 8th, 2019"
+date: "June 13th, 2019"
 output: html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}
@@ -50,24 +50,25 @@ kable( pizza_estimate(registered = 120, pizza_diameter = 18, attend_rate = 0.57,
  
 Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
 "party cut" (thin-crust cut into small squares) inherits a few very attractive 
-properties when dividing **n** pizzas among **p** guests. Small square pieces allow 
+properties when dividing **p** pizzas among **n** guests. Small square pieces allow 
 guests to better estimate pizza consumption, thus decreasing the integer-programming 
 problem exacerbated by large triangular slices. Reducing wasted pizza is not only 
 virtuous, it demonstrates great stewardship of sponsor resources bestowed upon thee.
 
 ```{r, echo=FALSE, fig.height= 6, fig.width= 6}
-plot(3*c(1, 0, -1, 0), 3*c(0, 1, 0, -1) , col = "transparent",
+plot(3.1*c(1, 0, -1, 0), 3.1*c(0, 1, 0, -1) , col = "transparent",
      xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="18 inches", xlab="18 inches", 
-     main = "The Chicago `Party Cut` Extra-Large Pizza", bg = "white")
-polygon(3*sin(seq(0, 2*pi, length=100)), 3*cos(seq(0, 2*pi, length=100)), border = "goldenrod1", lwd=14, col = "lightgoldenrod1")
+     main = "The Chicago `Party Cut` Extra-Large Pizza", bg = "white", axes = 0)
+polygon(3*sin(seq(0, 2*pi, length=100)), 3*cos(seq(0, 2*pi, length=100)), border = "goldenrod2", lwd=6, col = "lightgoldenrod1")
+polygon(2.85*sin(seq(0, 2*pi, length=100)), 2.85*cos(seq(0, 2*pi, length=100)), border = "goldenrod1", lwd=16, col = "lightgoldenrod1")
 points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
      y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=1.33), pch=19, cex=4, col="red")
 points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
      y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=2), pch="`", cex=6, col="green")
 points(x=jitter(c(seq(from=-1.5, to=1.5, length.out=12), seq(from = -2, to =2, length.out=18), seq(from=-3, to=3, length.out=24), seq(from=-3, to=3, length.out=24), seq(from = -2, to =2, length.out=18), seq(from=-1.5, to=1.5, length.out=12)), factor = 2), 
        y=jitter(c(rnorm(12, mean = 3, sd=0.5), rnorm(18, mean = 2, sd=0.5), rnorm(24, mean = 1, sd=0.5), rnorm(24, mean = 0, sd=0.5), rnorm(18, mean = -1, sd=0.5), rnorm(12, mean = -2, sd=0.5))-0.5, factor=2), pch=".", cex=1.5, col="black")
-abline(h=-3:3, col="white", lwd=2.5)
-abline(v=-3:3, col="white", lwd=2.5)
+abline(h=seq(from=-3.1, to=3.1, length.out=7), col="white", lwd=2.5)
+abline(v=seq(from=-3.1, to=3.1, length.out=6), col="white", lwd=2.5)
 ```
  
 

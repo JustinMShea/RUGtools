@@ -44,10 +44,9 @@ a more efficient order.
 
 ```{r, align = "l"}
 
-pizzas <- pizza_estimate(registered = 140, pizza_diameter = 18, attend_rate = 0.60, 
-               serving = 2, style = "thin")
+kable( pizza_estimate(registered = 120, pizza_diameter = 18, attend_rate = 0.57, 
+                      serving = 2, style = "thin") )
 
-kable(pizzas)
 ```
  
 Channeling our ever-curious pizza scientist, _**it turns out**_ the Chicago
@@ -58,12 +57,18 @@ problem exacerbated by large triangular slices. Reducing wasted pizza is not onl
 virtuous, it demonstrates great stewardship of sponsor resources bestowed upon thee.
 
 ```{r, echo=FALSE, fig.height= 6, fig.width= 6}
-plot(5*c(1, 0, -1, 0), 5*c(0, 1, 0, -1) , col="transparent",
-     xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="", xlab="")
-abline(h=-5:5)
-abline(v=-5:5)
-polygon(5*sin(seq(0, 2*pi, length=100)), 5*cos(seq(0, 2*pi, length=100)))
-text(x=c((1:4)-2.5, (1:6)-3.5, (1:8)-4.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1:10)-5.5, (1:8)-4.5, (1:6)-3.5, (1:4)-2.5), y=c(rep(5,4), rep(4,6), rep(3,8), rep(2,10), rep(1,10), rep(0,10), rep(-1,10), rep(-2,8), rep(-3,6), rep(-4,4))-0.5, labels=1:76)
+plot(3*c(1, 0, -1, 0), 3*c(0, 1, 0, -1) , col = "transparent",
+     xaxs="i", yaxs="i", xaxt="n", yaxt="n", ylab="18 inches", xlab="18 inches", 
+     main = "The Chicago `Party Cut` Extra-Large Pizza", bg = "white")
+polygon(3*sin(seq(0, 2*pi, length=100)), 3*cos(seq(0, 2*pi, length=100)), border = "goldenrod1", lwd=14, col = "lightgoldenrod1")
+points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
+     y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=1.33), pch=19, cex=4, col="red")
+points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
+     y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=2), pch="`", cex=6, col="green")
+text(x=c((1:4)-2.5, (1:6)-3.5, (1:6)-3.5, (1:6)-3.5, (1:6)-3.5, (1:4)-2.5), 
+     y=c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, labels=1:32, col="black")
+abline(h=-3:3, col="white", lwd=2.5)
+abline(v=-3:3, col="white", lwd=2.5)
 ```
  
 
@@ -78,8 +83,7 @@ How many members do we have?
 
 ```{r}
 data(member_list)
-
-NROW(member_list$Member.ID)
+NROW(member_list)
 ```
 
 Lets plot the cumulative membership.

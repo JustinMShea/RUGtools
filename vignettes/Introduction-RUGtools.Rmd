@@ -62,9 +62,9 @@ plot(3.1*c(1, 0, -1, 0), 3.1*c(0, 1, 0, -1) , col = "transparent",
 polygon(3*sin(seq(0, 2*pi, length=100)), 3*cos(seq(0, 2*pi, length=100)), border = "goldenrod2", lwd=6, col = "lightgoldenrod1")
 polygon(2.85*sin(seq(0, 2*pi, length=100)), 2.85*cos(seq(0, 2*pi, length=100)), border = "goldenrod1", lwd=16, col = "lightgoldenrod1")
 points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
-       y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=1.5), pch=19, cex=4, col="red")
+       y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor=1), pch=19, cex=4, col="red")
 points(x=jitter(c((1:4)-2.5, seq(from = -2, to =2, length.out=6), (1:6)-3.5, (1:6)-3.5, seq(from = -2, to =2, length.out=6), (1:4)-2.5), factor = 2), 
-       y=jitter(c(rep(2.75,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.75,4))-0.5, factor = 2), pch="`", cex=6, col="darkgreen")
+       y=jitter(c(rep(2.6,4), rep(1.85, 6), rep(1,6), rep(0,6), rep(-0.85, 6), rep(-1.6,4))-0.5, factor = 2), pch="`", cex=4, col="darkgreen")
 points(x=jitter(c(seq(from=-1.5, to=1.5, length.out=12), seq(from = -2, to =2, length.out=18), seq(from=-3, to=3, length.out=24), seq(from=-3, to=3, length.out=24), seq(from = -2, to =2, length.out=18), seq(from=-1.5, to=1.5, length.out=12)), factor = 2), 
        y=jitter(c(rnorm(12, mean = 3, sd=0.5), rnorm(18, mean = 2, sd=0.5), rnorm(24, mean = 1, sd=0.5), rnorm(24, mean = 0, sd=0.5), rnorm(18, mean = -1, sd=0.5), rnorm(12, mean = -2, sd=0.5))-0.5, factor=2), pch=".", cex=1.5, col="black")
 abline(h=seq(from=-3.1, to=3.1, length.out=7), col="white", lwd=2.5)

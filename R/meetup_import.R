@@ -42,11 +42,11 @@
 meetup_import <- function(file = NULL, format = "%d-%b-%y", ...) {
 
 if(is.null(file) == TRUE) {
-        
-file_path <- paste0(getwd(), "/data-raw/meetup/", list.files("data-raw/meetup", pattern = ".csv$"))
-
+        file_path <- paste0(getwd(), "/data-raw/meetup/", list.files("data-raw/meetup", pattern = ".csv$"))
+} else {
+        file_path <- file
 }
-        
+
 member_list <- read.csv(file = file_path, stringsAsFactors=FALSE, ...)
 
 ####################

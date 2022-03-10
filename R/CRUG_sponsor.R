@@ -1,6 +1,8 @@
 # CRUG_sponsor.R
 
 library(imager)
+# CRUG logo from here
+# https://github.com/Chicago-R-User-Group/Chicago-R-User-Group.github.io/blob/master/images/header-background.png
 im <- load.image("header-background.png")
 plot(im)
 

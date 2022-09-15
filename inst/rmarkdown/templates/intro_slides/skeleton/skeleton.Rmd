@@ -13,11 +13,11 @@ library(RUGtools)
 
 ## Chicago R User Group News
 
-Leading up to this meetup, we reached xxxx members!
+Leading up to this meetup, we reached 3927 members!
 
 
-```{r, out.width = "700px", , fig.align='center'}
-path1 <- paste0(getwd(), "/images/CRUG-members.png")
+```{r, out.width = "700px", fig.align='center'}
+path1 <- paste0(getwd(), "/images/CRUG-members-2022-09-15.png")
 knitr::include_graphics(path1)
 ```
 
@@ -48,33 +48,31 @@ Follow us:
 fortunes::fortune()
 ```
 
-## R-Ladies Chicago
+## Swag
 
-```{r, out.width = "150px", fig.align='left'}
-path2 <- paste0(getwd(), "/images/R-LadiesGlobal.png")
-knitr::include_graphics(path2)
+Get your R user group t-shirts here!
+
+https://stats-stuff.myspreadshop.com/
+
+```{r, out.width = "200px", fig.align='left'}
+knitr::include_graphics(paste0(getwd(), "/images/CRUG-tshirt-words.jpg"))
+
+knitr::include_graphics(paste0(getwd(), "/images/CRUG-tshirt-flag.jpg"))
 ```
 
+```{r, out.width = "200px", fig.align='right'}
 
-Thank you for attending and all you do for the Chicago R community!
+```
 
-For more information join the meetup and follow on twitter:
-
-
-![](images/m_swarm_50x50.png)[meetup.com/R-Ladies Chicago](https://www.meetup.com/rladies-chicago/)
-
-
-![](images/twitter50x41.png)@[RLadiesChicago](https://twitter.com/RLadiesChicago)
-
-# Anyone hiring R folks? 
+# Anyone hiring?
 
 # Today's meetup and its Sponsor
 
 
-## Microsoft Developer Advocates
+## IBM
 
-```{r, out.width = "900px", , fig.align='center'}
-path1 <- paste0(getwd(), "/images/Microsoft-1.PNG")
+```{r, out.width = "400px", , fig.align='center'}
+path1 <- paste0(getwd(), "/images/IBM-Logo.jpeg")
 knitr::include_graphics(path1)
 ```
 
@@ -84,8 +82,7 @@ knitr::include_graphics(path1)
 What ever giveaway the meetup has here. Ask a trivia question.
 
 
-## Today's Feature 
-
+## Today's Featured presentations
 
 - **XXXXXXXXXXXX** xxxxxxxxxxxxxxxxxxx
 
@@ -93,9 +90,4 @@ What ever giveaway the meetup has here. Ask a trivia question.
 
 - **XXXXXXXXXXXXXX** xxxxxxxxxxxxxxxxxxx
 
-Thanks again to Microsoft Developer Advocates for sponsoring today's meetup!
-
-```{r, out.width = "400px"}
-path <- paste0(getwd(), "/images/MS_header.png")
-knitr::include_graphics(path)
-```
+Thanks again to IBM for sponsoring today's meetup!
